@@ -59,7 +59,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('👋 SPANK!')
             .setDescription(`${interaction.user} spanks ${user}!`)
-            .setColor(0xFF0000)
+            .setColor(0x212121)
             .setFooter({ text: 'Powered by PurrBot API ✨' });
 
         if (gifUrl) {
