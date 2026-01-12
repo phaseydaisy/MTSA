@@ -1,0 +1,11 @@
+# Environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# JSON stats files (optional - uncomment if you don't want to track stats)
+# jsons/
