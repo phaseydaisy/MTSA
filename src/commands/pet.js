@@ -1,9 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
-
-const statsFile = path.join(__dirname, '..', 'jsons', 'pet_stats.json');
 const apiEndpoints = [
     'https://purrbot.site/api/img/sfw/pat/gif',
     'https://purrbot.site/api/img/sfw/hug/gif',
@@ -17,43 +13,6 @@ const apiEndpoints = [
     'https://waifu.pics/api/sfw/hug',
     'https://api.waifu.im/random?gif=true'
 ];
-
-function loadStats() {
-    try {
-        if (fs.existsSync(statsFile)) {
-            return JSON.parse(fs.readFileSync(statsFile, 'utf8'));
-        }
-    } catch (error) {}
-    return {};
-}
-
-function saveStats(stats) {
-    try {
-        const dir = path.dirname(statsFile);
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
-        fs.writeFileSync(statsFile, JSON.stringify(stats, null, 2), 'utf8');
-    } catch (error) {}
-}
-
-function addPet(user1Id, user2Id) {
-    const stats = loadStats();
-    const pairKey = [user1Id.toString(), user2Id.toString()].sort().join('_');
-
-    if (!stats[pairKey]) {
-        stats[pairKey] = 0;
-    }
-
-    stats[pairKey] += 1;
-    saveStats(stats);
-}
-
-function getPetCount(user1Id, user2Id) {
-    const stats = loadStats();
-    const pairKey = [user1Id.toString(), user2Id.toString()].sort().join('_');
-    return stats[pairKey] || 0;
-}
 
 async function getAnimeGif(action) {
     for (const endpoint of apiEndpoints) {
@@ -111,15 +70,12 @@ module.exports = {
 
         await interaction.deferReply();
 
-        addPet(interaction.user.id, user.id);
-        const petCount = getPetCount(interaction.user.id, user.id);
-
         let gifUrl = await getAnimeGif('pat');
         if (!gifUrl) gifUrl = await getAnimeGif('hug');
 
         const embed = new EmbedBuilder()
             .setTitle('🐾 PET!')
-            .setDescription(`${interaction.user} pets ${user}!\n\n-# ${interaction.user} has petted ${user} **${petCount}** times\n-# ${interaction.user} and ${user} have petted **${petCount}** times total`)
+            .setDescription(`${interaction.user} pets ${user}!`)
             .setColor(0x212121)
             .setFooter({ text: 'Gentle pets! ✨' });
 

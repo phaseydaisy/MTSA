@@ -1,27 +1,27 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
+
 const apiEndpoints = [
-    'https://api.purrbot.site/v2/img/nsfw/blowjob/gif',
-    'https://api.waifu.pics/nsfw/blowjob'
+    'https://purrbot.site/api/img/sfw/dance/gif',
+    'https://nekos.best/api/v2/dance',
+    'https://nekos.life/api/v2/img/dance',
+    'https://api.waifu.im/search?gif=true&included_tags=dancing',
+    'https://api.waifu.pics/sfw/dance'
 ];
 
 async function getAnimeGif(action) {
     for (const endpoint of apiEndpoints) {
         try {
-            const headers = endpoint.includes('purrbot') ? { 'User-Agent': 'DiscordBot' } : {};
-            const response = await axios.get(endpoint, { timeout: 5000, headers });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
-            // purrbot format
             if (data.link) return data.link;
-            
-            // waifu.pics format
             if (data.url) return data.url;
-            
-            // nekos.best format
-            if (data.results && Array.isArray(data.results) && data.results[0]?.url) {
-                return data.results[0].url;
-            }
+            if (data.data && Array.isArray(data.data) && data.data[0]?.url) return data.data[0].url;
+            if (data.data && data.data.link) return data.data.link;
+            if (data.image_url) return data.image_url;
+            if (data.images && Array.isArray(data.images) && data.images[0]) return data.images[0];
+            if (data.results && Array.isArray(data.results) && data.results[0]?.url) return data.results[0].url;
         } catch (error) {
             continue;
         }
@@ -31,11 +31,11 @@ async function getAnimeGif(action) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('suck')
-        .setDescription('Suck someone')
+        .setName('dance')
+        .setDescription('Dance with someone!')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('The user you want to suck')
+                .setDescription('The user you want to dance with')
                 .setRequired(true)
         )
         .setContexts([0, 1, 2])
@@ -46,26 +46,26 @@ module.exports = {
 
         if (user.id === interaction.user.id) {
             return interaction.reply({
-                content: "❌ You can't suck yourself!",
+                content: "❌ You can't dance with yourself! Find a partner.",
                 ephemeral: true
             });
         }
 
         await interaction.deferReply();
 
-        const gifUrl = await getAnimeGif('suck');
+        const gifUrl = await getAnimeGif('dance');
 
         const embed = new EmbedBuilder()
-            .setTitle('💋 SUCK!')
-            .setDescription(`${interaction.user} sucks ${user}!`)
+            .setTitle('💃 DANCE!')
+            .setDescription(`${interaction.user} and ${user} are dancing together!`)
             .setColor(0x212121)
-            .setFooter({ text: 'Slurp slurp. ✨' });
+            .setFooter({ text: 'Let\'s get down! 🎵' });
 
         if (gifUrl) {
             try {
                 const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer' });
-                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'suck.gif' });
-                embed.setImage('attachment://suck.gif');
+                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'dance.gif' });
+                embed.setImage('attachment://dance.gif');
                 await interaction.followUp({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 await interaction.followUp({ embeds: [embed] });

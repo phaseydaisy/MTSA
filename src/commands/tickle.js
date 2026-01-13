@@ -2,28 +2,16 @@ const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discor
 const axios = require('axios');
 
 const apiEndpoints = [
-    'https://purrbot.site/api/img/sfw/pat/gif',
-    'https://purrbot.site/api/img/sfw/cuddle/gif',
-    'https://nekos.best/api/v2/pat',
-    'https://nekos.life/api/v2/img/pat',
-    'https://api.waifu.pics/sfw/pat',
-    'https://api.waifu.im/search?gif=true&included_tags=pat',
-    'https://api.waifu.im/search?gif=true&included_tags=boop'
+    'https://nekos.life/api/v2/img/tickle',
+    'https://nekos.best/api/v2/tickle',
+    'https://api.waifu.im/search?gif=true&included_tags=tickle',
+    'https://api.waifu.im/search?gif=true&included_tags=happy'
 ];
 
 async function getAnimeGif(action) {
     for (const endpoint of apiEndpoints) {
         try {
-            let url;
-            if (endpoint.includes('purrbot')) {
-                url = endpoint;
-            } else if (endpoint.includes('waifu.pics')) {
-                url = endpoint.includes('/pat') ? endpoint : `https://api.waifu.pics/sfw/${action}`;
-            } else {
-                url = endpoint;
-            }
-
-            const response = await axios.get(url, { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
             if (data.link) return data.link;
@@ -42,11 +30,11 @@ async function getAnimeGif(action) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('boop')
-        .setDescription('Boop someone on the nose!')
+        .setName('tickle')
+        .setDescription('Tickle someone!')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('The user you want to boop')
+                .setDescription('The user you want to tickle')
                 .setRequired(true)
         )
         .setContexts([0, 1, 2])
@@ -57,26 +45,26 @@ module.exports = {
 
         if (user.id === interaction.user.id) {
             return interaction.reply({
-                content: "❌ You can't boop yourself!",
+                content: "❌ You can't tickle yourself!",
                 ephemeral: true
             });
         }
 
         await interaction.deferReply();
 
-        const gifUrl = await getAnimeGif('pat');
+        const gifUrl = await getAnimeGif('tickle');
 
         const embed = new EmbedBuilder()
-            .setTitle('👆 BOOP!')
-            .setDescription(`${interaction.user} boops ${user}!`)
+            .setTitle('😂 TICKLE!')
+            .setDescription(`${interaction.user} tickles ${user}!`)
             .setColor(0x212121)
-            .setFooter({ text: 'Boop the snoot! ✨' });
+            .setFooter({ text: 'Giggles incoming! ✨' });
 
         if (gifUrl) {
             try {
                 const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer' });
-                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'boop.gif' });
-                embed.setImage('attachment://boop.gif');
+                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'tickle.gif' });
+                embed.setImage('attachment://tickle.gif');
                 await interaction.followUp({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 await interaction.followUp({ embeds: [embed] });
