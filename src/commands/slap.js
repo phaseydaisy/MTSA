@@ -4,9 +4,28 @@ const fs = require('fs');
 const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'slap_stats.json');
-const phawseAPI = 'https://api.phawse.lol/gif/slap';
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/gif/slap',
+    'https://api.phawse.lol/gif/angry',
+    'https://api.phawse.lol/gif/punch'
+];
 
-function loadStats() {
+async function getAnimeGif(action) {
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
+
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
+        }
+    }
+    console.error('All phawse API endpoints failed for slap');
+    return null;
+}
     try {
         if (fs.existsSync(statsFile)) {
             return JSON.parse(fs.readFileSync(statsFile, 'utf8'));

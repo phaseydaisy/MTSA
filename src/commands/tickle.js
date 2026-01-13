@@ -1,23 +1,26 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPI = 'https://api.phawse.lol/gif/tickle';
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/gif/tickle',
+    'https://api.phawse.lol/gif/laugh',
+    'https://api.phawse.lol/gif/happy'
+];
 
 async function getAnimeGif(action) {
-    try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
-        const data = response.data;
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
 
-        if (data.link) return data.link;
-        if (data.url) return data.url;
-        if (data.data && Array.isArray(data.data) && data.data[0]?.url) return data.data[0].url;
-        if (data.data && data.data.link) return data.data.link;
-        if (data.image_url) return data.image_url;
-        if (data.images && Array.isArray(data.images) && data.images[0]) return data.images[0];
-        if (data.results && Array.isArray(data.results) && data.results[0]?.url) return data.results[0].url;
-    } catch (error) {
-        console.error('Error fetching anime gif:', error);
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
+        }
     }
+    console.error('All phawse API endpoints failed for tickle');
     return null;
 }
 

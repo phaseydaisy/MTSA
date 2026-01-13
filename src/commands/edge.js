@@ -1,10 +1,12 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
-const axios = require('axios');
+const getPhawseGif = require('../utils/getPhawseGif');
 const fs = require('fs');
 const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'edge_stats.json');
-const phawseAPI = 'https://api.phawse.lol/nsfw/masturbate';
+
+// Only use tags relevant to the command (no generic hentai, etc.)
+const edgeTags = ['masturbate', 'ecchi', 'tease'];
 
 function loadStats() {
     try {
@@ -51,21 +53,7 @@ function getEdgeCount(issuerId, targetId) {
     return stats[targetStr][issuerStr] || 0;
 }
 
-async function getAnimeGif(action) {
-    try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
-        const data = response.data;
 
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        if (data.image) return data.image;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
-    }
-}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -87,7 +75,7 @@ module.exports = {
         addEdge(interaction.user.id, user.id);
         const edgeCount = getEdgeCount(interaction.user.id, user.id);
 
-        const gifUrl = await getAnimeGif();
+        const gifUrl = await getPhawseGif(edgeTags, true); // true = nsfw endpoint
 
         const isSelf = user.id === interaction.user.id;
         const description = isSelf 
