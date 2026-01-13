@@ -8,21 +8,15 @@ async function getAnimeGif(action) {
         const response = await axios.get(phawseAPI, { timeout: 5000 });
         const data = response.data;
 
-            // purrbot format
-            if (data.link) return data.link;
-            
-            // waifu.pics format
-            if (data.url) return data.url;
-            
-            // nekos.best format
-            if (data.results && Array.isArray(data.results) && data.results[0]?.url) {
-                return data.results[0].url;
-            }
-        } catch (error) {
-            continue;
-        }
+        if (data.url) return data.url;
+        if (data.gif) return data.gif;
+        if (data.image) return data.image;
+        
+        return null;
+    } catch (error) {
+        console.error(`Error fetching from phawse API: ${error.message}`);
+        return null;
     }
-    return null;
 }
 
 module.exports = {
