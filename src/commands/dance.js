@@ -35,8 +35,8 @@ module.exports = {
         .setDescription('Dance with someone!')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('The user you want to dance with')
-                .setRequired(true)
+                .setDescription('The user you want to dance with (optional)')
+                .setRequired(false)
         )
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
@@ -44,9 +44,9 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.options.getUser('user');
 
-        if (user.id === interaction.user.id) {
+        if (user && user.id === interaction.user.id) {
             return interaction.reply({
-                content: "❌ You can't dance with yourself! Find a partner.",
+                content: "❌ You can't dance with yourself! Find a partner or just dance solo.",
                 ephemeral: true
             });
         }
@@ -57,7 +57,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('💃 DANCE!')
-            .setDescription(`${interaction.user} and ${user} are dancing together!`)
+            .setDescription(user ? `${interaction.user} and ${user} are dancing together!` : `${interaction.user} is dancing solo!`)
             .setColor(0x212121)
             .setFooter({ text: 'Let\'s get down! 🎵' });
 

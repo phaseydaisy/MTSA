@@ -84,24 +84,17 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('edge')
-        .setDescription('Edge someone and track how many times')
+        .setDescription('Edge someone or yourself and track how many times')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('The user you want to edge')
-                .setRequired(true)
+                .setDescription('The user you want to edge (optional - defaults to yourself)')
+                .setRequired(false)
         )
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 
     async execute(interaction) {
-        const user = interaction.options.getUser('user');
-
-        if (user.id === interaction.user.id) {
-            return interaction.reply({
-                content: "❌ You can't edge yourself!",
-                ephemeral: true
-            });
-        }
+        const user = interaction.options.getUser('user') || interaction.user;
 
         await interaction.deferReply();
 
@@ -110,9 +103,14 @@ module.exports = {
 
         const gifUrl = await getAnimeGif();
 
+        const isSelf = user.id === interaction.user.id;
+        const description = isSelf 
+            ? `${interaction.user} edges themselves **${edgeCount}** time(s)!`
+            : `${interaction.user} has edged ${user} **${edgeCount}** time(s)!`;
+
         const embed = new EmbedBuilder()
             .setTitle('🪢 EDGE!')
-            .setDescription(`${interaction.user} has edged ${user} **${edgeCount}** time(s)!`)
+            .setDescription(description)
             .setColor(0x212121)
             .setFooter({ text: 'Stay on the edge. ✨' });
 
