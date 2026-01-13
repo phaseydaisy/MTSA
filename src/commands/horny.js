@@ -98,7 +98,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('horny-level')
-        .setDescription('Check the horny level')
+        .setDescription('Check the horny level 🔞 (arousal rating)', 'nsfw')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user to check (optional - checks yourself if not specified)')

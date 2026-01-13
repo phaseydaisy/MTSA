@@ -21,7 +21,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('suck')
-        .setDescription('Suck someone')
+        .setDescription('Suck someone 🔞 (oral, pleasure)', 'nsfw')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to suck')

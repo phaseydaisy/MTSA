@@ -22,7 +22,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('cheer')
-        .setDescription('Send someone some encouragement!')
+        .setDescription('Cheer someone on! (celebrate, clap, hype, support)', 'social')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to cheer (optional)')

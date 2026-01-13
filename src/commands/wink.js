@@ -1,15 +1,16 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const phawseAPI = 'https://api.phawse.lol/gif/pat';
 
-async function getAnimeGif(action) {
+const phawseAPI = 'https://api.phawse.lol/gif/wink';
+
+async function getPhawseGif(category = 'wink') {
     try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const response = await axios.get(`https://api.phawse.lol/gif/${category}`, { timeout: 5000 });
         const data = response.data;
 
-        if (data.link) return data.link;
         if (data.url) return data.url;
         if (data.gif) return data.gif;
+        if (data.image) return data.image;
         
         return null;
     } catch (error) {
@@ -20,11 +21,11 @@ async function getAnimeGif(action) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('pet')
-        .setDescription('Pet someone gently! (pat, stroke, caress)', 'touch')
+        .setName('wink')
+        .setDescription('Wink at someone! (flirt, tease)', 'flirt')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('The user you want to pet')
+                .setDescription('The user you want to wink at')
                 .setRequired(true)
         )
         .setContexts([0, 1, 2])
@@ -34,28 +35,27 @@ module.exports = {
         const user = interaction.options.getUser('user');
 
         if (user.id === interaction.user.id) {
-            return interaction.reply({
-                content: "❌ You can't pet yourself! Pick someone else.",
-                ephemeral: true
+            return interaction.reply({ 
+                content: "❌ You can't wink at yourself!", 
+                ephemeral: true 
             });
         }
 
         await interaction.deferReply();
 
-        let gifUrl = await getAnimeGif('pat');
-        if (!gifUrl) gifUrl = await getAnimeGif('hug');
+        const gifUrl = await getPhawseGif('wink');
 
         const embed = new EmbedBuilder()
-            .setTitle('🐾 PET!')
-            .setDescription(`${interaction.user} pets ${user}!`)
-            .setColor(0x212121)
-            .setFooter({ text: 'Gentle pets! ✨' });
+            .setTitle('😉 WINK!')
+            .setDescription(`${interaction.user} winks at ${user}!\n\n-# *flirty wink* 😎`)
+            .setColor(0xFFD700)
+            .setFooter({ text: 'Got winked at! 👀' });
 
         if (gifUrl) {
             try {
-                const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer' });
-                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'pet.gif' });
-                embed.setImage('attachment://pet.gif');
+                const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer', timeout: 5000 });
+                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'wink.gif' });
+                embed.setImage('attachment://wink.gif');
                 await interaction.followUp({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 await interaction.followUp({ embeds: [embed] });

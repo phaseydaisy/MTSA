@@ -60,7 +60,7 @@ async function getPhawseGif(category = 'blush') {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('blush')
-        .setDescription('Blush adorably!')
+        .setDescription('Blush adorably! (shy, embarrassed, flustered)', 'emotions')
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 

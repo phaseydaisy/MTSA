@@ -62,7 +62,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('slap')
-        .setDescription('Playfully slap someone!')
+        .setDescription('Slap someone! (hit, punch, strike)', 'playful aggression')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to slap')

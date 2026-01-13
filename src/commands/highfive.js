@@ -1,15 +1,16 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const phawseAPI = 'https://api.phawse.lol/gif/pat';
 
-async function getAnimeGif(action) {
+const phawseAPI = 'https://api.phawse.lol/gif/highfive';
+
+async function getPhawseGif(category = 'highfive') {
     try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const response = await axios.get(`https://api.phawse.lol/gif/${category}`, { timeout: 5000 });
         const data = response.data;
 
-        if (data.link) return data.link;
         if (data.url) return data.url;
         if (data.gif) return data.gif;
+        if (data.image) return data.image;
         
         return null;
     } catch (error) {
@@ -20,11 +21,11 @@ async function getAnimeGif(action) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('pet')
-        .setDescription('Pet someone gently! (pat, stroke, caress)', 'touch')
+        .setName('highfive')
+        .setDescription('Give someone a high-five! (celebrate, victory)', 'celebration')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('The user you want to pet')
+                .setDescription('The user you want to high-five')
                 .setRequired(true)
         )
         .setContexts([0, 1, 2])
@@ -34,28 +35,27 @@ module.exports = {
         const user = interaction.options.getUser('user');
 
         if (user.id === interaction.user.id) {
-            return interaction.reply({
-                content: "❌ You can't pet yourself! Pick someone else.",
-                ephemeral: true
+            return interaction.reply({ 
+                content: "❌ You can't high-five yourself!", 
+                ephemeral: true 
             });
         }
 
         await interaction.deferReply();
 
-        let gifUrl = await getAnimeGif('pat');
-        if (!gifUrl) gifUrl = await getAnimeGif('hug');
+        const gifUrl = await getPhawseGif('highfive');
 
         const embed = new EmbedBuilder()
-            .setTitle('🐾 PET!')
-            .setDescription(`${interaction.user} pets ${user}!`)
-            .setColor(0x212121)
-            .setFooter({ text: 'Gentle pets! ✨' });
+            .setTitle('🙌 HIGH-FIVE!')
+            .setDescription(`${interaction.user} high-fives ${user}!\n\n-# *SLAP!* 🎉`)
+            .setColor(0x00FF00)
+            .setFooter({ text: 'Epic high-five! 🔥' });
 
         if (gifUrl) {
             try {
-                const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer' });
-                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'pet.gif' });
-                embed.setImage('attachment://pet.gif');
+                const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer', timeout: 5000 });
+                const attachment = new AttachmentBuilder(gifResponse.data, { name: 'highfive.gif' });
+                embed.setImage('attachment://highfive.gif');
                 await interaction.followUp({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 await interaction.followUp({ embeds: [embed] });

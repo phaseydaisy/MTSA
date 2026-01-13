@@ -22,7 +22,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('dance')
-        .setDescription('Dance with someone!')
+        .setDescription('Dance with someone! (groove, move, jive)', 'actions')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to dance with (optional)')

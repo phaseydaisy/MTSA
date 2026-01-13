@@ -78,7 +78,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('rape')
-        .setDescription('RAPE THEM')
+        .setDescription('Playfully attack someone! (aggressive roleplay)', 'aggressive')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to rape')

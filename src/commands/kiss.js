@@ -62,7 +62,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('kiss')
-        .setDescription('Give someone a kiss!')
+        .setDescription('Give someone a kiss! (smooch, peck, lip)', 'romance')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to kiss')

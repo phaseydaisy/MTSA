@@ -24,7 +24,7 @@ async function getAnimeGif(action) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('tickle')
-        .setDescription('Tickle someone!')
+        .setDescription('Tickle someone! (tease, giggle, laugh)', 'playful')
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to tickle')
