@@ -49,7 +49,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('✨ CHEER!')
-            .setDescription(`${interaction.user} sends some encouragement to ${user}!`)
+            .setDescription(user.id === interaction.user.id ? `${interaction.user} sends some encouragement!` : `${interaction.user} sends some encouragement to ${user}!`)
             .setColor(0x212121)
             .setFooter({ text: 'Stay positive! 💖' });
 
