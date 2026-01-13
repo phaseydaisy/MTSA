@@ -115,7 +115,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('✋ SLAP!')
             .setDescription(`${interaction.user} slaps ${user}!\n\n-# ${interaction.user} and ${user} have slapped **${slapCount}** times`)
-            .setColor(0xFFA500)
+            .setColor(0x212121)
             .setFooter({ text: 'Oof! 💫' });
 
         if (gifUrl) {

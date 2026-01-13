@@ -118,7 +118,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('💋 KISS!')
             .setDescription(`${interaction.user} kisses ${user}!\n\n-# ${interaction.user} and ${user} have kissed **${kissCount}** times`)
-            .setColor(0xFF1493)
+            .setColor(0x212121)
             .setFooter({ text: 'Smooch! 💕' });
 
         if (gifUrl) {

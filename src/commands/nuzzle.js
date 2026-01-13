@@ -118,7 +118,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('😊 NUZZLE!')
             .setDescription(`${interaction.user} nuzzles ${user}!\n\n-# ${interaction.user} and ${user} have nuzzled **${nuzzleCount}** times`)
-            .setColor(0xFFB6C1)
+            .setColor(0x212121)
             .setFooter({ text: 'Cozy vibes! 💕' });
 
         if (gifUrl) {

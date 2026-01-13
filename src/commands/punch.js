@@ -115,7 +115,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('👊 PUNCH!')
             .setDescription(`${interaction.user} punches ${user}!\n\n-# ${interaction.user} and ${user} have punched **${punchCount}** times`)
-            .setColor(0xFF6347)
+            .setColor(0x212121)
             .setFooter({ text: 'Ouch! 💥' });
 
         if (gifUrl) {
