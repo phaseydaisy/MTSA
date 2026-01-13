@@ -8,8 +8,12 @@ const apiEndpoints = [
     'https://purrbot.site/api/img/sfw/punch/gif',
     'https://api.waifu.im/search?gif=true&included_tags=punch',
     'https://api.waifu.im/search?gif=true&included_tags=fight',
-    'https://api.waifu.im/random?gif=true',
-    'https://waifu.pics/api/sfw/punch'
+    'https://api.waifu.im/search?gif=true&included_tags=hit',
+    'https://api.waifu.im/search?gif=true&included_tags=attack',
+    'https://api.waifu.im/search?gif=true&included_tags=action',
+    'https://waifu.pics/api/sfw/punch',
+    'https://api.waifu.im/search?gif=true&included_tags=combat',
+    'https://api.waifu.im/random?gif=true&included_tags=punch'
 ];
 
 function loadStats() {
