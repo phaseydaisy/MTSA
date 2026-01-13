@@ -1,16 +1,11 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const apiEndpoints = [
-    'https://api.purrbot.site/v2/img/nsfw/blowjob/gif',
-    'https://api.waifu.pics/nsfw/blowjob'
-];
+const phawseAPI = 'https://api.phawse.lol/nsfw/blowjob';
 
 async function getAnimeGif(action) {
-    for (const endpoint of apiEndpoints) {
-        try {
-            const headers = endpoint.includes('purrbot') ? { 'User-Agent': 'DiscordBot' } : {};
-            const response = await axios.get(endpoint, { timeout: 5000, headers });
-            const data = response.data;
+    try {
+        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const data = response.data;
 
             // purrbot format
             if (data.link) return data.link;

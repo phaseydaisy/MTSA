@@ -4,11 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'bite_stats.json');
-const apiEndpoints = [
-    'https://api.waifu.pics/nsfw/chew',
-    'https://nekos.best/api/v2/bite',
-    'https://purrbot.site/api/img/nsfw/bite/gif'
-];
+const phawseAPI = 'https://api.phawse.lol/gif/bite';
 
 function loadStats() {
     try {
@@ -56,27 +52,19 @@ function getBiteCount(issuerId, targetId) {
 }
 
 async function getAnimeGif(action) {
-    for (const endpoint of apiEndpoints) {
-        try {
-            const headers = endpoint.includes('purrbot') ? { 'User-Agent': 'DiscordBot' } : {};
-            const response = await axios.get(endpoint, { timeout: 5000, headers });
-            const data = response.data;
+    try {
+        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const data = response.data;
 
-            // purrbot format
-            if (data.link) return data.link;
-            
-            // waifu.pics format
-            if (data.url) return data.url;
-            
-            // nekos.best format
-            if (data.results && Array.isArray(data.results) && data.results[0]?.url) {
-                return data.results[0].url;
-            }
-        } catch (error) {
-            continue;
-        }
+        if (data.url) return data.url;
+        if (data.gif) return data.gif;
+        if (data.image) return data.image;
+        
+        return null;
+    } catch (error) {
+        console.error(`Error fetching from phawse API: ${error.message}`);
+        return null;
     }
-    return null;
 }
 
 module.exports = {

@@ -5,17 +5,14 @@ const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'rape_stats.json');
 const responses = [
-    'violently rapes',
-    'aggressively rapes',
-    'brutally rapes',
-    'forcefully rapes',
-    'savagely rapes'
+    'violently attacks',
+    'aggressively attacks',
+    'brutally attacks',
+    'forcefully attacks',
+    'savagely attacks'
 ];
 
-const apiEndpoints = [
-    'https://api.purrbot.site/v2/img/nsfw/fuck/gif',
-    'https://api.waifu.pics/nsfw/waifu'
-];
+const phawseAPI = 'https://api.phawse.lol/gif/slap';
 
 function loadStats() {
     try {
@@ -63,27 +60,19 @@ function getRapesBy(targetId, issuerId) {
 }
 
 async function getAnimeGif(action) {
-    for (const endpoint of apiEndpoints) {
-        try {
-            const headers = endpoint.includes('purrbot') ? { 'User-Agent': 'DiscordBot' } : {};
-            const response = await axios.get(endpoint, { timeout: 5000, headers });
-            const data = response.data;
+    try {
+        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const data = response.data;
 
-            // purrbot format
-            if (data.link) return data.link;
-            
-            // waifu.pics format
-            if (data.url) return data.url;
-            
-            // nekos.best format
-            if (data.results && Array.isArray(data.results) && data.results[0]?.url) {
-                return data.results[0].url;
-            }
-        } catch (error) {
-            continue;
-        }
+        if (data.url) return data.url;
+        if (data.gif) return data.gif;
+        if (data.image) return data.image;
+        
+        return null;
+    } catch (error) {
+        console.error(`Error fetching from phawse API: ${error.message}`);
+        return null;
     }
-    return null;
 }
 
 module.exports = {

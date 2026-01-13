@@ -1,10 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const apiEndpoints = [
-    'https://api.waifu.pics/nsfw/waifu',
-    'https://nekos.best/api/v2/neko'
-];
+const phawseAPI = 'https://api.phawse.lol/nsfw/oppai';
 
 const levelMessages = {
     '0-10': [

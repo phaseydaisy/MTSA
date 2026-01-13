@@ -1,32 +1,24 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const apiEndpoints = [
-    'https://nekos.life/api/v2/img/stare',
-    'https://nekos.best/api/v2/stare',
-    'https://api.waifu.im/search?gif=true&included_tags=stare',
-    'https://api.waifu.im/search?gif=true&included_tags=smug',
-    'https://api.waifu.pics/sfw/smug'
-];
+const phawseAPI = 'https://api.phawse.lol/gif/stare';
 
 // Removed stats dependencies
 
 
 async function getAnimeGif(action) {
-    for (const endpoint of apiEndpoints) {
-        try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
-            const data = response.data;
+    try {
+        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const data = response.data;
 
-            if (data.link) return data.link;
-            if (data.url) return data.url;
-            if (data.data && Array.isArray(data.data) && data.data[0]?.url) return data.data[0].url;
-            if (data.data && data.data.link) return data.data.link;
-            if (data.image_url) return data.image_url;
-            if (data.images && Array.isArray(data.images) && data.images[0]) return data.images[0];
-            if (data.results && Array.isArray(data.results) && data.results[0]?.url) return data.results[0].url;
-        } catch (error) {
-            continue;
-        }
+        if (data.link) return data.link;
+        if (data.url) return data.url;
+        if (data.data && Array.isArray(data.data) && data.data[0]?.url) return data.data[0].url;
+        if (data.data && data.data.link) return data.data.link;
+        if (data.image_url) return data.image_url;
+        if (data.images && Array.isArray(data.images) && data.images[0]) return data.images[0];
+        if (data.results && Array.isArray(data.results) && data.results[0]?.url) return data.results[0].url;
+    } catch (error) {
+        console.error('Error fetching gif:', error);
     }
     return null;
 }

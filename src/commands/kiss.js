@@ -4,15 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'kiss_stats.json');
-const apiEndpoints = [
-    'https://purrbot.site/api/img/sfw/kiss/gif',
-    'https://purrbot.site/api/img/sfw/smooch/gif',
-    'https://nekos.life/api/v2/img/kiss',
-    'https://nekos.best/api/v2/kiss',
-    'https://api.waifu.pics/sfw/kiss',
-    'https://api.waifu.im/search?gif=true&included_tags=kiss',
-    'https://api.waifu.im/search?gif=true&included_tags=romantic'
-];
+const phawseAPI = 'https://api.phawse.lol/gif/kiss';
 
 function loadStats() {
     try {
@@ -52,35 +44,19 @@ function getKissCount(user1Id, user2Id) {
 }
 
 async function getAnimeGif(action) {
-    for (const endpoint of apiEndpoints) {
-        try {
-            let url;
-            if (endpoint.includes('purrbot')) {
-                url = endpoint.includes('kiss') ? endpoint : endpoint.replace(/\/[^\/]+\/gif$/, `/${action}/gif`);
-            } else if (endpoint.includes('waifu.im')) {
-                url = endpoint;
-            } else if (endpoint.includes('waifu.pics')) {
-                url = endpoint.includes('kiss') ? endpoint : `https://api.waifu.pics/sfw/${action}`;
-            } else if (endpoint.includes('nekos.life')) {
-                url = endpoint;
-            } else {
-                url = endpoint;
-            }
+    try {
+        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const data = response.data;
 
-            const response = await axios.get(url, { timeout: 5000 });
-            const data = response.data;
-
-            if (data.link) return data.link;
-            if (data.url) return data.url;
-            if (data.data && Array.isArray(data.data) && data.data[0]?.url) return data.data[0].url;
-            if (data.data && data.data.link) return data.data.link;
-            if (data.image_url) return data.image_url;
-            if (data.images && Array.isArray(data.images) && data.images[0]) return data.images[0];
-        } catch (error) {
-            continue;
-        }
+        if (data.link) return data.link;
+        if (data.url) return data.url;
+        if (data.gif) return data.gif;
+        
+        return null;
+    } catch (error) {
+        console.error(`Error fetching from phawse API: ${error.message}`);
+        return null;
     }
-    return null;
 }
 
 module.exports = {

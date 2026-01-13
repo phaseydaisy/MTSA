@@ -4,13 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'edge_stats.json');
-const apiEndpoints = [
-    'https://api.purrbot.site/v2/img/nsfw/goon/gif',
-    'https://api.purrbot.site/v2/img/nsfw/edge/gif',
-    'https://api.purrbot.site/v2/img/nsfw/masturbate/gif',
-    'https://nekos.life/api/v2/img/pussy'
-
-];
+const phawseAPI = 'https://api.phawse.lol/nsfw/edge';
 
 function loadStats() {
     try {
@@ -58,11 +52,9 @@ function getEdgeCount(issuerId, targetId) {
 }
 
 async function getAnimeGif(action) {
-    for (const endpoint of apiEndpoints) {
-        try {
-            const headers = endpoint.includes('purrbot') ? { 'User-Agent': 'DiscordBot' } : {};
-            const response = await axios.get(endpoint, { timeout: 5000, headers });
-            const data = response.data;
+    try {
+        const response = await axios.get(phawseAPI, { timeout: 5000 });
+        const data = response.data;
 
             // purrbot format
             if (data.link) return data.link;
