@@ -6,14 +6,11 @@ const path = require('path');
 const statsFile = path.join(__dirname, '..', 'jsons', 'punch_stats.json');
 const apiEndpoints = [
     'https://purrbot.site/api/img/sfw/punch/gif',
+    'https://nekos.best/api/v2/punch',
+    'https://api.waifu.pics/sfw/punch',
     'https://api.waifu.im/search?gif=true&included_tags=punch',
     'https://api.waifu.im/search?gif=true&included_tags=fight',
-    'https://api.waifu.im/search?gif=true&included_tags=hit',
-    'https://api.waifu.im/search?gif=true&included_tags=attack',
-    'https://api.waifu.im/search?gif=true&included_tags=action',
-    'https://waifu.pics/api/sfw/punch',
-    'https://api.waifu.im/search?gif=true&included_tags=combat',
-    'https://api.waifu.im/random?gif=true&included_tags=punch'
+    'https://api.waifu.im/search?gif=true&included_tags=hit'
 ];
 
 function loadStats() {

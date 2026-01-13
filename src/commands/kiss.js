@@ -7,14 +7,11 @@ const statsFile = path.join(__dirname, '..', 'jsons', 'kiss_stats.json');
 const apiEndpoints = [
     'https://purrbot.site/api/img/sfw/kiss/gif',
     'https://purrbot.site/api/img/sfw/smooch/gif',
-    'https://api.waifu.im/search?gif=true&included_tags=kiss',
-    'https://api.waifu.im/search?gif=true&included_tags=romantic',
-    'https://api.waifu.im/search?gif=true&included_tags=affection',
-    'https://api.waifu.im/search?gif=true&included_tags=love',
     'https://nekos.life/api/v2/img/kiss',
-    'https://waifu.pics/api/sfw/kiss',
-    'https://api.waifu.im/search?gif=true&included_tags=couplehugging',
-    'https://api.waifu.im/random?gif=true&included_tags=romantic'
+    'https://nekos.best/api/v2/kiss',
+    'https://api.waifu.pics/sfw/kiss',
+    'https://api.waifu.im/search?gif=true&included_tags=kiss',
+    'https://api.waifu.im/search?gif=true&included_tags=romantic'
 ];
 
 function loadStats() {

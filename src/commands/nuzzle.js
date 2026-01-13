@@ -7,14 +7,11 @@ const statsFile = path.join(__dirname, '..', 'jsons', 'nuzzle_stats.json');
 const apiEndpoints = [
     'https://purrbot.site/api/img/sfw/cuddle/gif',
     'https://purrbot.site/api/img/sfw/nuzzle/gif',
-    'https://api.waifu.im/search?gif=true&included_tags=cuddle',
-    'https://api.waifu.im/search?gif=true&included_tags=affection',
-    'https://api.waifu.im/search?gif=true&included_tags=love',
-    'https://api.waifu.im/search?gif=true&included_tags=romantic',
-    'https://api.waifu.im/search?gif=true&included_tags=happy',
     'https://nekos.life/api/v2/img/nuzzle',
-    'https://waifu.pics/api/sfw/cuddle',
-    'https://api.waifu.im/search?gif=true&included_tags=smile'
+    'https://nekos.best/api/v2/cuddle',
+    'https://api.waifu.pics/sfw/cuddle',
+    'https://api.waifu.im/search?gif=true&included_tags=cuddle',
+    'https://api.waifu.im/search?gif=true&included_tags=affection'
 ];
 
 function loadStats() {
