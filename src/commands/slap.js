@@ -26,6 +26,8 @@ async function getAnimeGif(action) {
     console.error('All phawse API endpoints failed for slap');
     return null;
 }
+
+function loadStats() {
     try {
         if (fs.existsSync(statsFile)) {
             return JSON.parse(fs.readFileSync(statsFile, 'utf8'));

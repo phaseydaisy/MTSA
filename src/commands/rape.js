@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discor
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const getPhawseGif = require('../utils/getPhawseGif');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'rape_stats.json');
 const responses = [
@@ -12,7 +13,8 @@ const responses = [
     'savagely rapes'
 ];
 
-const phawseAPI = 'https://api.phawse.lol/nsfw/sex';
+// Only use tags relevant to the command (no generic tags)
+const rapeTags = ['sex', 'masturbate', 'ecchi'];
 
 
 function loadStats() {
@@ -60,21 +62,7 @@ function getRapesBy(targetId, issuerId) {
     return stats[targetStr][issuerStr] || 0;
 }
 
-async function getAnimeGif(action) {
-    try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
-        const data = response.data;
 
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        if (data.image) return data.image;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
-    }
-}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -102,9 +90,7 @@ module.exports = {
 
         addRape(interaction.user.id, user.id);
 
-        let gifUrl = await getAnimeGif('fuck');
-        if (!gifUrl) gifUrl = await getAnimeGif('sex');
-        if (!gifUrl) gifUrl = await getAnimeGif('rape');
+        const gifUrl = await getPhawseGif(rapeTags, true); // true = nsfw endpoint
 
         const actionText = responses[Math.floor(Math.random() * responses.length)];
         const rapeCount = getRapesBy(user.id, interaction.user.id);
