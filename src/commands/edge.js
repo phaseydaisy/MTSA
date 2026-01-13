@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'edge_stats.json');
-const phawseAPI = 'https://api.phawse.lol/nsfw/edge';
+const phawseAPI = 'https://api.phawse.lol/nsfw/masturbate';
 
 function loadStats() {
     try {

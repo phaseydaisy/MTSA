@@ -12,7 +12,7 @@ const responses = [
     'savagely rapes'
 ];
 
-const phawseAPI = 'https://api.phawse.lol/gif/fuck';
+const phawseAPI = 'https://api.phawse.lol/nsfw/sex';
 
 
 function loadStats() {
