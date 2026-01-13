@@ -26,7 +26,7 @@ module.exports = {
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('The user you want to wink at')
-                .setRequired(true)
+                .setRequired(false)
         )
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
@@ -34,7 +34,7 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.options.getUser('user');
 
-        if (user.id === interaction.user.id) {
+        if (user && user.id === interaction.user.id) {
             return interaction.reply({ 
                 content: "❌ You can't wink at yourself!", 
                 ephemeral: true 
@@ -47,7 +47,9 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('😉 WINK!')
-            .setDescription(`${interaction.user} winks at ${user}!\n\n-# *flirty wink* 😎`)
+            .setDescription(user
+                ? `${interaction.user} winks at ${user}!\n\n-# *flirty wink* 😎`
+                : `${interaction.user} throws a playful wink!\n\n-# *flirty wink* 😎`)
             .setColor(0xFFD700)
             .setFooter({ text: 'Got winked at! 👀' });
 

@@ -5,14 +5,15 @@ const path = require('path');
 
 const statsFile = path.join(__dirname, '..', 'jsons', 'rape_stats.json');
 const responses = [
-    'violently attacks',
-    'aggressively attacks',
-    'brutally attacks',
-    'forcefully attacks',
-    'savagely attacks'
+    'violently rapes',
+    'aggressively rapes',
+    'brutally rapes',
+    'forcefully rapes',
+    'savagely rapes'
 ];
 
-const phawseAPI = 'https://api.phawse.lol/gif/slap';
+const phawseAPI = 'https://api.phawse.lol/gif/fuck';
+
 
 function loadStats() {
     try {
