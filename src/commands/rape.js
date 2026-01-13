@@ -13,8 +13,7 @@ const responses = [
     'savagely rapes'
 ];
 
-// Only use tags relevant to the command (no generic tags)
-const rapeTags = ['sex', 'masturbate', 'ecchi'];
+const rapeTags = ['sex', 'fuck'];
 
 
 function loadStats() {
@@ -90,7 +89,7 @@ module.exports = {
 
         addRape(interaction.user.id, user.id);
 
-        const gifUrl = await getPhawseGif(rapeTags, true); // true = nsfw endpoint
+        const gifUrl = await getPhawseGif(rapeTags, true);
 
         const actionText = responses[Math.floor(Math.random() * responses.length)];
         const rapeCount = getRapesBy(user.id, interaction.user.id);
