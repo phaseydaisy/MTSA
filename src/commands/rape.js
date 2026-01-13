@@ -13,7 +13,7 @@ const responses = [
     'savagely rapes'
 ];
 
-const rapeTags = ['sex', 'fuck'];
+const rapeTags = ['sex', 'fuck',];
 
 
 function loadStats() {
@@ -89,7 +89,7 @@ module.exports = {
 
         addRape(interaction.user.id, user.id);
 
-        const gifUrl = await getPhawseGif(rapeTags, true);
+        const gifUrl = await getPhawseGif(rapeTags, true, 'rape');
 
         const actionText = responses[Math.floor(Math.random() * responses.length)];
         const rapeCount = getRapesBy(user.id, interaction.user.id);

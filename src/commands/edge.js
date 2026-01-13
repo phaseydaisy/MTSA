@@ -75,7 +75,7 @@ module.exports = {
         addEdge(interaction.user.id, user.id);
         const edgeCount = getEdgeCount(interaction.user.id, user.id);
 
-        const gifUrl = await getPhawseGif(edgeTags, true); // true = nsfw endpoint
+        const gifUrl = await getPhawseGif(edgeTags, true, 'edge'); // true = nsfw endpoint
 
         const isSelf = user.id === interaction.user.id;
         const description = isSelf 
