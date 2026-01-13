@@ -117,7 +117,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('😊 NUZZLE!')
-            .setDescription(`${interaction.user} nuzzles ${user}!\n\n-# ${interaction.user} and ${user} have nuzzled **${nuzzleCount}** times`)
+            .setDescription(`${interaction.user} nuzzles ${user}!\n\n-# ${interaction.user} has nuzzled ${user} **${nuzzleCount}** times`)
             .setColor(0x212121)
             .setFooter({ text: 'Cozy vibes! 💕' });
 

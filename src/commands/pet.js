@@ -119,7 +119,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('🐾 PET!')
-            .setDescription(`${interaction.user} pets ${user}!\n\n-# ${interaction.user} and ${user} have petted **${petCount}** times`)
+            .setDescription(`${interaction.user} pets ${user}!\n\n-# ${interaction.user} has petted ${user} **${petCount}** times`)
             .setColor(0x212121)
             .setFooter({ text: 'Gentle pets! ✨' });
 

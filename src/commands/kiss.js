@@ -117,7 +117,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('💋 KISS!')
-            .setDescription(`${interaction.user} kisses ${user}!\n\n-# ${interaction.user} and ${user} have kissed **${kissCount}** times`)
+            .setDescription(`${interaction.user} kisses ${user}!\n\n-# ${interaction.user} has kissed ${user} **${kissCount}** times`)
             .setColor(0x212121)
             .setFooter({ text: 'Smooch! 💕' });
 

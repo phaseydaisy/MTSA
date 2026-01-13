@@ -114,7 +114,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('👊 PUNCH!')
-            .setDescription(`${interaction.user} punches ${user}!\n\n-# ${interaction.user} and ${user} have punched **${punchCount}** times`)
+            .setDescription(`${interaction.user} punches ${user}!\n\n-# ${interaction.user} has punched ${user} **${punchCount}** times`)
             .setColor(0x212121)
             .setFooter({ text: 'Ouch! 💥' });
 

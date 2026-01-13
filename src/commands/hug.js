@@ -118,7 +118,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('🤗 HUG!')
-            .setDescription(`${interaction.user} hugs ${user}!\n\n-# ${interaction.user} and ${user} have hugged **${hugCount}** times`)
+            .setDescription(`${interaction.user} hugs ${user}!\n\n-# ${interaction.user} has hugged ${user} **${hugCount}** times`)
             .setColor(0x212121)
             .setFooter({ text: 'Warm hugs! ✨' });
 
