@@ -2,7 +2,6 @@ const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discor
 const axios = require('axios');
 const phawseAPI = 'https://api.phawse.lol/gif/stare';
 
-// Removed stats dependencies
 
 
 async function getAnimeGif(action) {
