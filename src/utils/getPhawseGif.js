@@ -29,7 +29,6 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
                 }
             }
         } catch (err) {
-            // Try purrbot API as fallback
             try {
                 const purrbotEndpoint = nsfw ? 'nsfw' : 'sfw';
                 const res = await axios.get(`https://api.purrbot.site/v2/img/${purrbotEndpoint}/${tag}/gif`, { timeout: 5000 });

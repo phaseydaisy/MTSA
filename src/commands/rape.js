@@ -3,8 +3,9 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const getPhawseGif = require('../utils/getPhawseGif');
+const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'rape_stats.json');
+const statsFile = resolveDataFile('rape_stats.json');
 const responses = [
     'violently rapes',
     'aggressively rapes',

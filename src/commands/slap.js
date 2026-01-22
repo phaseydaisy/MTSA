@@ -2,8 +2,9 @@ const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discor
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'slap_stats.json');
+const statsFile = resolveDataFile('slap_stats.json');
 const phawseAPIEndpoints = [
     'https://api.phawse.lol/gif/slap',
     'https://api.phawse.lol/gif/angry',

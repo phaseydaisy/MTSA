@@ -2,8 +2,9 @@ const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discor
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'nuzzle_stats.json');
+const statsFile = resolveDataFile('nuzzle_stats.json');
 const phawseAPI = 'https://api.phawse.lol/gif/nuzzle';
 
 function loadStats() {

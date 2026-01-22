@@ -1,9 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs');
-const path = require('path');
+const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'blush_stats.json');
+const statsFile = resolveDataFile('blush_stats.json');
 const phawseAPI = 'https://api.phawse.lol/gif/blush';
 
 function loadStats() {

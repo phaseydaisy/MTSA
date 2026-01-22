@@ -1,9 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 const fs = require('fs');
-const path = require('path');
+const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'bite_stats.json');
+const statsFile = resolveDataFile('bite_stats.json');
 const phawseAPIEndpoints = [
     'https://api.phawse.lol/gif/bite',
     'https://api.phawse.lol/gif/pinch',

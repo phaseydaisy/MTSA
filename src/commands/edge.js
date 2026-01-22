@@ -1,9 +1,10 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const getPhawseGif = require('../utils/getPhawseGif');
+const { resolveDataFile } = require('../utils/dataDir');
 const fs = require('fs');
 const path = require('path');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'edge_stats.json');
+const statsFile = resolveDataFile('edge_stats.json');
 
 // Only use tags relevant to the command (no generic hentai, etc.)
 const edgeTags = ['masturbate', 'ecchi', 'tease'];

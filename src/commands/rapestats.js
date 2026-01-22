@@ -1,8 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
-const path = require('path');
+const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = path.join(__dirname, '..', 'jsons', 'rape_stats.json');
+const statsFile = resolveDataFile('rape_stats.json');
 
 function loadStats() {
     try {
