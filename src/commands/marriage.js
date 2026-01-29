@@ -100,8 +100,6 @@ module.exports = {
                     option.setName('user')
                         .setDescription('The user you want to divorce')
                         .setRequired(true)
-                        .setAutocomplete(true)
-                )
         )
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
