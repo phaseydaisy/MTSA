@@ -2,8 +2,12 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 const fs = require('fs');
 const path = require('path');
 const { resolveDataFile } = require('../utils/dataDir');
+const { getPhawseGif } = require('../utils/getPhawseGif');
 
 const marriageFile = resolveDataFile('marriages.json');
+
+// Track active marriage proposals
+const activeProposals = new Map();
 
 function loadMarriages() {
     try {
@@ -30,13 +34,14 @@ function isMarried(userId, targetId) {
     const targetStr = targetId.toString();
     
     if (!marriages[userStr]) return false;
-    return marriages[userStr].includes(targetStr);
+    return marriages[userStr].some(m => m.spouseId === targetStr);
 }
 
 function addMarriage(userId, targetId) {
     const marriages = loadMarriages();
     const userStr = userId.toString();
     const targetStr = targetId.toString();
+    const timestamp = Date.now();
     
     if (!marriages[userStr]) {
         marriages[userStr] = [];
@@ -45,11 +50,10 @@ function addMarriage(userId, targetId) {
         marriages[targetStr] = [];
     }
     
-    if (!marriages[userStr].includes(targetStr)) {
-        marriages[userStr].push(targetStr);
-    }
-    if (!marriages[targetStr].includes(userStr)) {
-        marriages[targetStr].push(userStr);
+    const alreadyMarried = marriages[userStr].some(m => m.spouseId === targetStr);
+    if (!alreadyMarried) {
+        marriages[userStr].push({ spouseId: targetStr, date: timestamp });
+        marriages[targetStr].push({ spouseId: userStr, date: timestamp });
     }
     
     saveMarriages(marriages);
@@ -91,6 +95,22 @@ module.exports = {
             });
         }
 
+        // Check if the proposer already has an active proposal
+        if (activeProposals.has(interaction.user.id)) {
+            return interaction.reply({ 
+                content: "❌ You already have a pending marriage proposal! Wait for a response before proposing again.", 
+                ephemeral: true 
+            });
+        }
+
+        // Check if the target user already has an active proposal
+        if (activeProposals.has(user.id)) {
+            return interaction.reply({ 
+                content: `❌ ${user} already has a pending marriage proposal! Try again later.`, 
+                ephemeral: true 
+            });
+        }
+
         const embed = new EmbedBuilder()
             .setTitle('💍 Marriage Proposal')
             .setDescription(`${interaction.user} wants to marry ${user}!\n\n${user}, do you accept this proposal?`)
@@ -115,6 +135,10 @@ module.exports = {
             fetchReply: true 
         });
 
+        // Mark both users as having an active proposal
+        activeProposals.set(interaction.user.id, user.id);
+        activeProposals.set(user.id, interaction.user.id);
+
         const collector = response.createMessageComponentCollector({ 
             time: 60000 
         });
@@ -130,16 +154,26 @@ module.exports = {
             if (i.customId.startsWith('marry_accept')) {
                 addMarriage(interaction.user.id, user.id);
 
+                const gifUrl = await getPhawseGif(['marry', 'wedding', 'hug', 'cuddle'], false, 'marry');
+
                 const acceptEmbed = new EmbedBuilder()
                     .setTitle('💕 Marriage Accepted!')
                     .setDescription(`Congratulations! ${interaction.user} and ${user} are now married! 🎉💍`)
                     .setColor(0x00FF00)
                     .setFooter({ text: 'May your love last forever! 💖' });
 
+                if (gifUrl) {
+                    acceptEmbed.setImage(gifUrl);
+                }
+
                 await i.update({ 
                     embeds: [acceptEmbed], 
                     components: [] 
                 });
+
+                // Remove the active proposal
+                activeProposals.delete(interaction.user.id);
+                activeProposals.delete(user.id);
             } else if (i.customId.startsWith('marry_decline')) {
                 const declineEmbed = new EmbedBuilder()
                     .setTitle('💔 Marriage Declined')
@@ -151,6 +185,10 @@ module.exports = {
                     embeds: [declineEmbed], 
                     components: [] 
                 });
+
+                // Remove the active proposal
+                activeProposals.delete(interaction.user.id);
+                activeProposals.delete(user.id);
             }
 
             collector.stop();
@@ -168,6 +206,10 @@ module.exports = {
                     embeds: [timeoutEmbed], 
                     components: [] 
                 }).catch(() => {});
+
+                // Remove the active proposal on timeout
+                activeProposals.delete(interaction.user.id);
+                activeProposals.delete(user.id);
             }
         });
     }

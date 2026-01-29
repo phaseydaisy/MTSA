@@ -27,7 +27,29 @@ function saveMarriages(marriages) {
 function getSpouses(userId) {
     const marriages = loadMarriages();
     const userStr = userId.toString();
-    return marriages[userStr] || [];
+    const spouseData = marriages[userStr] || [];
+    
+    // Handle old format (array of IDs) and new format (array of objects)
+    if (spouseData.length > 0 && typeof spouseData[0] === 'string') {
+        // Convert old format to new format
+        return spouseData.map(id => ({ spouseId: id, date: Date.now() }));
+    }
+    return spouseData;
+}
+
+function formatDuration(timestamp) {
+    const now = Date.now();
+    const diff = now - timestamp;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    
+    if (days > 0) {
+        return `${days} day${days !== 1 ? 's' : ''}`;
+    } else if (hours > 0) {
+        return `${hours} hour${hours !== 1 ? 's' : ''}`;
+    } else {
+        return 'less than an hour';
+    }
 }
 
 function removeMarriage(userId, targetId) {
@@ -36,14 +58,18 @@ function removeMarriage(userId, targetId) {
     const targetStr = targetId.toString();
     
     if (marriages[userStr]) {
-        marriages[userStr] = marriages[userStr].filter(id => id !== targetStr);
+        marriages[userStr] = marriages[userStr].filter(m => 
+            (typeof m === 'string' ? m : m.spouseId) !== targetStr
+        );
         if (marriages[userStr].length === 0) {
             delete marriages[userStr];
         }
     }
     
     if (marriages[targetStr]) {
-        marriages[targetStr] = marriages[targetStr].filter(id => id !== userStr);
+        marriages[targetStr] = marriages[targetStr].filter(m => 
+            (typeof m === 'string' ? m : m.spouseId) !== userStr
+        );
         if (marriages[targetStr].length === 0) {
             delete marriages[targetStr];
         }
@@ -74,10 +100,32 @@ module.exports = {
                     option.setName('user')
                         .setDescription('The user you want to divorce')
                         .setRequired(true)
+                        .setAutocomplete(true)
                 )
         )
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
+
+    async autocomplete(interaction) {
+        const focusedValue = interaction.options.getFocused().toLowerCase();
+        const spouses = getSpouses(interaction.user.id);
+        
+        // Get spouse user objects
+        const choices = [];
+        for (const spouse of spouses) {
+            const spouseId = typeof spouse === 'string' ? spouse : spouse.spouseId;
+            try {
+                const user = await interaction.client.users.fetch(spouseId);
+                if (user && user.username.toLowerCase().includes(focusedValue)) {
+                    choices.push({ name: user.username, value: spouseId });
+                }
+            } catch (error) {
+                // Skip if user can't be fetched
+            }
+        }
+        
+        await interaction.respond(choices.slice(0, 25));
+    },
 
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
@@ -94,8 +142,14 @@ module.exports = {
             if (spouses.length === 0) {
                 embed.setDescription(`${targetUser} is not married to anyone.`);
             } else {
-                const spouseList = spouses.map(id => `<@${id}>`).join('\n');
-                embed.setDescription(`**Married to:**\n${spouseList}`);
+                const spouseList = [];
+                for (const spouse of spouses) {
+                    const spouseId = typeof spouse === 'string' ? spouse : spouse.spouseId;
+                    const marriageDate = typeof spouse === 'object' ? spouse.date : Date.now();
+                    const timestampSeconds = Math.floor(marriageDate / 1000);
+                    spouseList.push(`<@${spouseId}> • Married <t:${timestampSeconds}:R>`);
+                }
+                embed.setDescription(`**Married to:**\n${spouseList.join('\n')}`);
             }
 
             await interaction.reply({ embeds: [embed] });
@@ -103,8 +157,11 @@ module.exports = {
         } else if (subcommand === 'divorce') {
             const targetUser = interaction.options.getUser('user');
             const spouses = getSpouses(interaction.user.id);
+            const isMarriedTo = spouses.some(s => 
+                (typeof s === 'string' ? s : s.spouseId) === targetUser.id.toString()
+            );
 
-            if (!spouses.includes(targetUser.id.toString())) {
+            if (!isMarriedTo) {
                 return interaction.reply({ 
                     content: `❌ You are not married to ${targetUser}!`, 
                     ephemeral: true 
