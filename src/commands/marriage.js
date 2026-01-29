@@ -29,11 +29,7 @@ function getSpouses(userId) {
     const userStr = userId.toString();
     const spouseData = marriages[userStr] || [];
     
-    // Handle old format (array of IDs) and new format (array of objects)
-    if (spouseData.length > 0 && typeof spouseData[0] === 'string') {
-        // Convert old format to new format
-        return spouseData.map(id => ({ spouseId: id, date: Date.now() }));
-    }
+    // Return as-is, handle both formats in display
     return spouseData;
 }
 
@@ -144,9 +140,14 @@ module.exports = {
                 const spouseList = [];
                 for (const spouse of spouses) {
                     const spouseId = typeof spouse === 'string' ? spouse : spouse.spouseId;
-                    const marriageDate = typeof spouse === 'object' ? spouse.date : Date.now();
-                    const timestampSeconds = Math.floor(marriageDate / 1000);
-                    spouseList.push(`<@${spouseId}> • Married <t:${timestampSeconds}:R>`);
+                    const marriageDate = typeof spouse === 'object' && spouse.date ? spouse.date : null;
+                    
+                    if (marriageDate) {
+                        const timestampSeconds = Math.floor(marriageDate / 1000);
+                        spouseList.push(`<@${spouseId}> • Married <t:${timestampSeconds}:R>`);
+                    } else {
+                        spouseList.push(`<@${spouseId}> • Married`);
+                    }
                 }
                 embed.setDescription(`**Married to:**\n${spouseList.join('\n')}`);
             }
