@@ -14,7 +14,7 @@ const responses = [
     'savagely rapes'
 ];
 
-const rapeTags = ['sex', 'fuck',];
+const rapeTags = ['sex'];
 
 
 function loadStats() {
