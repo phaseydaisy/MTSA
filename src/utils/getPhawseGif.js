@@ -16,7 +16,6 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
     const lastGif = lastGifCache[commandName];
     
     for (const tag of tags) {
-        // Try api.phawse.lol first
         try {
             const phawseEndpoint = nsfw ? 'nsfw' : 'gif';
             const res = await axios.get(`https://api.phawse.lol/${phawseEndpoint}/${tag}`, { timeout: 5000 });
@@ -41,7 +40,7 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
                     }
                 }
             } catch (purrbotErr) {
-                continue; // Try next tag
+                continue; 
             }
         }
     }

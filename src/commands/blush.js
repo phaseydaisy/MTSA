@@ -4,7 +4,11 @@ const fs = require('fs');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('blush_stats.json');
-const phawseAPI = 'https://api.phawse.lol/gif/blush';
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/gif/blush',
+    'https://api.phawse.lol/gif/shy',
+    'https://api.phawse.lol/gif/flustered'
+];
 
 function loadStats() {
     try {
@@ -42,19 +46,19 @@ function getBlushCount(userId) {
 }
 
 async function getPhawseGif(category = 'blush') {
-    try {
-        const response = await axios.get(`https://api.phawse.lol/gif/${category}`, { timeout: 5000 });
-        const data = response.data;
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
 
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        if (data.image) return data.image;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
+        }
     }
+    return null;
 }
 
 module.exports = {

@@ -1,11 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
-const getPhawseGif = require('../utils/getPhawseGif');
-const { resolveDataFile } = require('../utils/dataDir');
 
-const statsFile = resolveDataFile('rape_stats.json');
 const responses = [
     'violently rapes',
     'aggressively rapes',
@@ -14,52 +9,24 @@ const responses = [
     'savagely rapes'
 ];
 
-const rapeTags = ['sex'];
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/nsfw/sex'
+];
 
+async function getAnimeGif() {
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
 
-function loadStats() {
-    try {
-        if (fs.existsSync(statsFile)) {
-            return JSON.parse(fs.readFileSync(statsFile, 'utf8'));
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
         }
-    } catch (error) {}
-    return {};
-}
-
-function saveStats(stats) {
-    try {
-        const dir = path.dirname(statsFile);
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
-        fs.writeFileSync(statsFile, JSON.stringify(stats, null, 2), 'utf8');
-    } catch (error) {}
-}
-
-function addRape(issuerId, targetId) {
-    const stats = loadStats();
-    const targetStr = targetId.toString();
-    const issuerStr = issuerId.toString();
-
-    if (!stats[targetStr]) {
-        stats[targetStr] = {};
     }
-
-    if (!stats[targetStr][issuerStr]) {
-        stats[targetStr][issuerStr] = 0;
-    }
-
-    stats[targetStr][issuerStr] += 1;
-    saveStats(stats);
-}
-
-function getRapesBy(targetId, issuerId) {
-    const stats = loadStats();
-    const targetStr = targetId.toString();
-    const issuerStr = issuerId.toString();
-
-    if (!stats[targetStr]) return 0;
-    return stats[targetStr][issuerStr] || 0;
+    return null;
 }
 
 
@@ -88,22 +55,19 @@ module.exports = {
 
         await interaction.deferReply();
 
-        addRape(interaction.user.id, user.id);
-
-        const gifUrl = await getPhawseGif(rapeTags, true, 'rape');
+        const gifUrl = await getAnimeGif();
 
         const actionText = responses[Math.floor(Math.random() * responses.length)];
-        const rapeCount = getRapesBy(user.id, interaction.user.id);
 
         const embed = new EmbedBuilder()
             .setTitle('💢 RAPE!')
-            .setDescription(`${interaction.user} ${actionText} ${user}!\n\n-# ${user} has been raped by ${interaction.user} **${rapeCount}** times`)
+            .setDescription(`${interaction.user} ${actionText} ${user}!`)
             .setColor(0x212121)
-            .setFooter({ text: 'Powered by PurrBot API ✨' });
+            .setFooter({ text: 'Powered by Phawse API ✨' });
 
         if (gifUrl) {
             try {
-                const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer' });
+                const gifResponse = await axios.get(gifUrl, { responseType: 'arraybuffer', timeout: 5000 });
                 const attachment = new AttachmentBuilder(gifResponse.data, { name: 'rape.gif' });
                 embed.setImage('attachment://rape.gif');
                 await interaction.followUp({ embeds: [embed], files: [attachment] });

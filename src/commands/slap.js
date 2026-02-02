@@ -65,21 +65,7 @@ function getSlapCount(user1Id, user2Id) {
     return stats[pairKey] || 0;
 }
 
-async function getAnimeGif(action) {
-    try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
-        const data = response.data;
 
-        if (data.link) return data.link;
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
-    }
-}
 
 module.exports = {
     data: new SlashCommandBuilder()

@@ -29,7 +29,6 @@ function getSpouses(userId) {
     const userStr = userId.toString();
     const spouseData = marriages[userStr] || [];
     
-    // Return as-is, handle both formats in display
     return spouseData;
 }
 
@@ -105,7 +104,6 @@ module.exports = {
         const focusedValue = interaction.options.getFocused().toLowerCase();
         const spouses = getSpouses(interaction.user.id);
         
-        // Get spouse user objects
         const choices = [];
         for (const spouse of spouses) {
             const spouseId = typeof spouse === 'string' ? spouse : spouse.spouseId;
@@ -115,7 +113,6 @@ module.exports = {
                     choices.push({ name: user.username, value: spouseId });
                 }
             } catch (error) {
-                // Skip if user can't be fetched
             }
         }
         

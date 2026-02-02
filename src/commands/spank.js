@@ -1,22 +1,26 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPI = 'https://api.phawse.lol/nsfw/bondage';
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/nsfw/bondage',
+    'https://api.phawse.lol/nsfw/sex',
+    'https://api.phawse.lol/nsfw/oppai'
+];
 
 async function getAnimeGif(action) {
-    try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
-        const data = response.data;
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
 
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        if (data.image) return data.image;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
+        }
     }
+    return null;
 }
 
 module.exports = {

@@ -1,22 +1,26 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPI = 'https://api.phawse.lol/gif/boop';
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/gif/boop',
+    'https://api.phawse.lol/gif/poke',
+    'https://api.phawse.lol/gif/cuddle'
+];
 
 async function getPhawseGif(category = 'boop') {
-    try {
-        const response = await axios.get(`https://api.phawse.lol/gif/${category}`, { timeout: 5000 });
-        const data = response.data;
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
 
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        if (data.image) return data.image;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
+        }
     }
+    return null;
 }
 
 module.exports = {

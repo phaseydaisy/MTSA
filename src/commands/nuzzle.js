@@ -5,7 +5,11 @@ const path = require('path');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('nuzzle_stats.json');
-const phawseAPI = 'https://api.phawse.lol/gif/nuzzle';
+const phawseAPIEndpoints = [
+    'https://api.phawse.lol/gif/nuzzle',
+    'https://api.phawse.lol/gif/cuddle',
+    'https://api.phawse.lol/gif/snuggle'
+];
 
 function loadStats() {
     try {
@@ -45,19 +49,19 @@ function getNuzzleCount(user1Id, user2Id) {
 }
 
 async function getAnimeGif(action) {
-    try {
-        const response = await axios.get(phawseAPI, { timeout: 5000 });
-        const data = response.data;
+    for (const endpoint of phawseAPIEndpoints) {
+        try {
+            const response = await axios.get(endpoint, { timeout: 5000 });
+            const data = response.data;
 
-        if (data.link) return data.link;
-        if (data.url) return data.url;
-        if (data.gif) return data.gif;
-        
-        return null;
-    } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
-        return null;
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
+        } catch (error) {
+            continue;
+        }
     }
+    return null;
 }
 
 module.exports = {
@@ -91,7 +95,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('😊 NUZZLE!')
-            .setDescription(`${interaction.user} nuzzles ${user}!\n\n-# ${interaction.user} has nuzzled ${user} **${nuzzleCount}** times\n-# ${interaction.user} and ${user} have nuzzled **${nuzzleCount}** times total`)
+            .setDescription(`${interaction.user} nuzzles ${user}!\n\n-# ${interaction.user} and ${user} have nuzzled **${nuzzleCount}** times`)
             .setColor(0x212121)
             .setFooter({ text: 'Cozy vibes! 💕' });
 
