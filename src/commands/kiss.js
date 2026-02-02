@@ -51,18 +51,21 @@ function getKissCount(user1Id, user2Id) {
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
     console.error('All phawse API endpoints failed for kiss');
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -92,13 +95,14 @@ module.exports = {
         addKiss(interaction.user.id, user.id);
         const kissCount = getKissCount(interaction.user.id, user.id);
 
-        const gifUrl = await getAnimeGif('kiss');
+        const result = await getAnimeGif('kiss');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('💋 KISS!')
             .setDescription(`${interaction.user} kisses ${user}!\n\n-# ${interaction.user} has kissed ${user} **${kissCount}** times\n-# ${interaction.user} and ${user} have kissed **${kissCount}** times total`)
             .setColor(0x212121)
-            .setFooter({ text: 'Smooch! 💕' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 💕` : 'Smooch! 💕' });
 
         if (gifUrl) {
             try {

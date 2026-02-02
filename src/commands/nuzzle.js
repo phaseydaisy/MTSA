@@ -51,17 +51,20 @@ function getNuzzleCount(user1Id, user2Id) {
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -91,13 +94,14 @@ module.exports = {
         addNuzzle(interaction.user.id, user.id);
         const nuzzleCount = getNuzzleCount(interaction.user.id, user.id);
 
-        const gifUrl = await getAnimeGif('nuzzle');
+        const result = await getAnimeGif('nuzzle');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('😊 NUZZLE!')
             .setDescription(`${interaction.user} nuzzles ${user}!\n\n-# ${interaction.user} and ${user} have nuzzled **${nuzzleCount}** times`)
             .setColor(0x212121)
-            .setFooter({ text: 'Cozy vibes! 💕' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 💕` : 'Cozy vibes! 💕' });
 
         if (gifUrl) {
             try {

@@ -48,17 +48,20 @@ function getBlushCount(userId) {
 async function getPhawseGif(category = 'blush') {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -74,13 +77,14 @@ module.exports = {
         addBlush(interaction.user.id);
         const blushCount = getBlushCount(interaction.user.id);
 
-        const gifUrl = await getPhawseGif('blush');
+        const result = await getPhawseGif('blush');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('😊 BLUSH!')
             .setDescription(`${interaction.user} is blushing!\n\n-# ${interaction.user} has blushed **${blushCount}** times`)
             .setColor(0xFF69B4)
-            .setFooter({ text: 'So cute~ 💕' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 💕` : 'So cute~ 💕' });
 
         if (gifUrl) {
             try {

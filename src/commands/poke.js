@@ -10,17 +10,20 @@ const phawseAPIEndpoints = [
 async function getPhawseGif(category = 'poke') {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -47,13 +50,14 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('poke');
+        const result = await getPhawseGif('poke');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('👉 POKE!')
             .setDescription(`${interaction.user} pokes ${user}!\n\n-# *poke poke* 😝`)
             .setColor(0xFFA500)
-            .setFooter({ text: 'Got poked! 🙃' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 🙃` : 'Got poked! 🙃' });
 
         if (gifUrl) {
             try {

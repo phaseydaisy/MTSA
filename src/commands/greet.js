@@ -28,13 +28,14 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif(greetTags, false, 'greet');
+        const result = await getPhawseGif(greetTags, false, 'greet');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('👋 Greet!')
             .setDescription(`${interaction.user} greets ${user}! Hello! 👋`)
             .setColor(0xFFD700)
-            .setFooter({ text: 'Nice to meet you! ✨' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} ✨` : 'Nice to meet you! ✨' });
 
         if (gifUrl) {
             try {

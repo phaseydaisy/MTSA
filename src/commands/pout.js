@@ -10,17 +10,20 @@ const phawseAPIEndpoints = [
 async function getPhawseGif(category = 'pout') {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -33,13 +36,14 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('pout');
+        const result = await getPhawseGif('pout');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('😠 POUT!')
             .setDescription(`${interaction.user} is pouting adorably!\n\n-# *pouty face* 🥺`)
             .setColor(0xFF6B9D)
-            .setFooter({ text: 'So adorable when pouting~ 💕' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 💕` : 'So adorable when pouting~ 💕' });
 
         if (gifUrl) {
             try {

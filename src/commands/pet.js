@@ -9,17 +9,20 @@ const phawseAPIEndpoints = [
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -46,14 +49,15 @@ module.exports = {
 
         await interaction.deferReply();
 
-        let gifUrl = await getAnimeGif('pat');
-        if (!gifUrl) gifUrl = await getAnimeGif('hug');
+        let result = await getAnimeGif('pat');
+        if (!result.url) result = await getAnimeGif('hug');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('🐾 PET!')
             .setDescription(`${interaction.user} pets ${user}!`)
             .setColor(0x212121)
-            .setFooter({ text: 'Gentle pets! ✨' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} ✨` : 'Gentle pets! ✨' });
 
         if (gifUrl) {
             try {

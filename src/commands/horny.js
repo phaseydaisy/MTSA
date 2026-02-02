@@ -86,17 +86,20 @@ function getLevelMessage(percentage) {
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -120,7 +123,8 @@ module.exports = {
         const bar = getHornyBar(percentage);
         const message = getLevelMessage(percentage);
         const color = getEmbedColor(percentage);
-        const gifUrl = await getAnimeGif('horny');
+        const result = await getAnimeGif('horny');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle(`🔥 ${target.username}'s Horny Level`)
@@ -129,13 +133,13 @@ module.exports = {
             .addFields({ name: 'Level', value: bar, inline: false });
 
         if (percentage >= 90) {
-            embed.setFooter({ text: '⚠️ WARNING: CRITICAL LEVELS DETECTED' });
+            embed.setFooter({ text: result.anime ? `From: ${result.anime} ⚠️` : '⚠️ WARNING: CRITICAL LEVELS DETECTED' });
         } else if (percentage >= 75) {
-            embed.setFooter({ text: '🔥 Dangerously high levels' });
+            embed.setFooter({ text: result.anime ? `From: ${result.anime} 🔥` : '🔥 Dangerously high levels' });
         } else if (percentage >= 50) {
-            embed.setFooter({ text: '😏 Getting spicy' });
+            embed.setFooter({ text: result.anime ? `From: ${result.anime} 😏` : '😏 Getting spicy' });
         } else {
-            embed.setFooter({ text: '✨ Perfectly normal' });
+            embed.setFooter({ text: result.anime ? `From: ${result.anime} ✨` : '✨ Perfectly normal' });
         }
 
         if (gifUrl) {

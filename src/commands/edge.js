@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const axios = require('axios');
 const getPhawseGif = require('../utils/getPhawseGif');
 const { resolveDataFile } = require('../utils/dataDir');
 const fs = require('fs');
@@ -76,7 +77,8 @@ module.exports = {
         addEdge(interaction.user.id, user.id);
         const edgeCount = getEdgeCount(interaction.user.id, user.id);
 
-        const gifUrl = await getPhawseGif(edgeTags, true, 'edge'); // true = nsfw endpoint
+        const result = await getPhawseGif(edgeTags, true, 'edge'); // true = nsfw endpoint
+        const gifUrl = result.url;
 
         const isSelf = user.id === interaction.user.id;
         const description = isSelf 
@@ -87,7 +89,7 @@ module.exports = {
             .setTitle('🪢 EDGE!')
             .setDescription(description)
             .setColor(0x212121)
-            .setFooter({ text: 'Stay on the edge. ✨' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} ✨` : 'Stay on the edge. ✨' });
 
         if (gifUrl) {
             try {

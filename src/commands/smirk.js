@@ -10,17 +10,20 @@ const phawseAPIEndpoints = [
 async function getPhawseGif(category = 'smirk') {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -40,7 +43,8 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('smirk');
+        const result = await getPhawseGif('smirk');
+        const gifUrl = result.url;
 
         let description;
         if (user) {
@@ -53,7 +57,7 @@ module.exports = {
             .setTitle('😏 SMIRK!')
             .setDescription(description)
             .setColor(0x1E90FF)
-            .setFooter({ text: 'Got smirked at! 👀' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 👀` : 'Got smirked at! 👀' });
 
         if (gifUrl) {
             try {

@@ -10,17 +10,20 @@ const phawseAPIEndpoints = [
 async function getPhawseGif(category = 'lick') {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint, { timeout: 5000 });
+            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
             const data = response.data;
 
-            if (data.url) return data.url;
-            if (data.gif) return data.gif;
-            if (data.image) return data.image;
+            if (data.url || data.gif || data.image) {
+                return {
+                    url: data.url || data.gif || data.image,
+                    anime: data.anime || null
+                };
+            }
         } catch (error) {
             continue;
         }
     }
-    return null;
+    return { url: null, anime: null };
 }
 
 module.exports = {
@@ -47,13 +50,14 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('lick');
+        const result = await getPhawseGif('lick');
+        const gifUrl = result.url;
 
         const embed = new EmbedBuilder()
             .setTitle('👅 LICK!')
             .setDescription(`${interaction.user} licks ${user}!\n\n-# *slurp* 😜`)
             .setColor(0xFF69B4)
-            .setFooter({ text: 'Got licked! 😳' });
+            .setFooter({ text: result.anime ? `From: ${result.anime} 😳` : 'Got licked! 😳' });
 
         if (gifUrl) {
             try {
