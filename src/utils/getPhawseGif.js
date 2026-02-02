@@ -19,9 +19,11 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
         try {
             const phawseEndpoint = nsfw ? 'nsfw' : 'gif';
             const res = await axios.get(`https://api.phawse.lol/${phawseEndpoint}/${tag}?detect`, { timeout: 5000 });
+            console.log(`[DEBUG] API Response for ${tag}:`, JSON.stringify(res.data, null, 2));
             if (res.data && (res.data.url || res.data.gif || res.data.image)) {
                 const gifUrl = res.data.url || res.data.gif || res.data.image;
-                const animeName = res.data.anime || null;
+                const animeName = res.data.anime || res.data.detected || res.data.source || null;
+                console.log(`[DEBUG] Extracted anime name: ${animeName}`);
                 
                 if (gifUrl !== lastGif) {
                     lastGifCache[commandName] = gifUrl;
