@@ -11,7 +11,8 @@ const aiConfig = {
         enabled: true,
         headless: false,
         slowMoMs: 0,
-        userDataDir: 'puter-browser-data'
+        userDataDir: 'puter-browser-data',
+        executablePath: ''
     },
     maxReplyLength: 1200,
     cooldownMs: 0

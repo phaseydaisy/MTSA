@@ -133,7 +133,8 @@ if (aiConfig.enabled) {
             url: bridgeUrl,
             headless: aiConfig.headlessBridge.headless,
             slowMoMs: aiConfig.headlessBridge.slowMoMs,
-            userDataDir: aiConfig.headlessBridge.userDataDir
+            userDataDir: aiConfig.headlessBridge.userDataDir,
+            executablePath: aiConfig.headlessBridge.executablePath
         }).catch(error => {
             console.error('Headless Puter bridge failed:', error.message || error);
         });
