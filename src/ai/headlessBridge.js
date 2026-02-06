@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 function loadChromium() {
@@ -36,6 +37,10 @@ async function startHeadlessBridge(options = {}) {
     const userDataDir = options.userDataDir
         ? path.resolve(options.userDataDir)
         : path.resolve('puter-browser-data');
+    const cacheDir = path.join(path.dirname(userDataDir), 'puter-cache');
+
+    fs.mkdirSync(userDataDir, { recursive: true });
+    fs.mkdirSync(cacheDir, { recursive: true });
 
     const chromium = loadChromium();
     let puppeteer = loadPuppeteerCore();
@@ -51,7 +56,6 @@ async function startHeadlessBridge(options = {}) {
         throw new Error('No puppeteer runtime available.');
     }
 
-    const cacheDir = path.join(path.dirname(userDataDir), 'puter-cache');
     const launchOptions = {
         headless: options.headless !== false,
         slowMo: options.slowMoMs || 0,
@@ -61,7 +65,10 @@ async function startHeadlessBridge(options = {}) {
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
             `--disk-cache-dir=${cacheDir}`,
-            `--media-cache-dir=${cacheDir}`
+            `--media-cache-dir=${cacheDir}`,
+            '--disable-application-cache',
+            '--disk-cache-size=1048576',
+            '--media-cache-size=1048576'
         ]
     };
 
