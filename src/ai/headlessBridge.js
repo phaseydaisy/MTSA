@@ -51,6 +51,7 @@ async function startHeadlessBridge(options = {}) {
         throw new Error('No puppeteer runtime available.');
     }
 
+    const cacheDir = path.join(path.dirname(userDataDir), 'puter-cache');
     const launchOptions = {
         headless: options.headless !== false,
         slowMo: options.slowMoMs || 0,
@@ -58,7 +59,9 @@ async function startHeadlessBridge(options = {}) {
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage'
+            '--disable-dev-shm-usage',
+            `--disk-cache-dir=${cacheDir}`,
+            `--media-cache-dir=${cacheDir}`
         ]
     };
 
