@@ -1,6 +1,10 @@
 const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const { aiConfig } = require('./src/ai/aiConfig');
+const { startPuterBridge } = require('./src/ai/bridgeServer');
+const { startHeadlessBridge } = require('./src/ai/headlessBridge');
+const { chatWithPuter } = require('./src/ai/puterClient');
 require('dotenv').config();
 
 const client = new Client({
@@ -79,7 +83,62 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+const lastAiReplyAt = new Map();
+
+client.on('messageCreate', async message => {
+    if (!aiConfig.enabled) return;
+    if (message.author.bot) return;
+    if (!aiConfig.channelIds.includes(message.channelId)) return;
+
+    const content = (message.content || '').trim();
+    if (!content) return;
+
+    const now = Date.now();
+    const last = lastAiReplyAt.get(message.channelId) || 0;
+    if (aiConfig.cooldownMs > 0 && now - last < aiConfig.cooldownMs) return;
+
+    try {
+        await message.channel.sendTyping();
+        const reply = await chatWithPuter(content, {
+            model: aiConfig.model,
+            systemPrompt: aiConfig.systemPrompt,
+            bridgeUrl: `http://localhost:${aiConfig.bridgePort}`,
+            timeoutMs: aiConfig.bridgeTimeoutMs
+        });
+
+        if (!reply) return;
+
+        const trimmedReply = reply.length > aiConfig.maxReplyLength
+            ? reply.slice(0, aiConfig.maxReplyLength - 3) + '...'
+            : reply;
+
+        await message.reply(trimmedReply);
+        lastAiReplyAt.set(message.channelId, now);
+    } catch (error) {
+        console.error('AI reply failed:', error.message || error);
+    }
+});
+
 loadCommands();
+
+if (aiConfig.enabled) {
+    startPuterBridge({
+        port: aiConfig.bridgePort,
+        timeoutMs: aiConfig.bridgeTimeoutMs
+    });
+
+    if (aiConfig.headlessBridge && aiConfig.headlessBridge.enabled) {
+        const bridgeUrl = `http://localhost:${aiConfig.bridgePort}/`;
+        startHeadlessBridge({
+            url: bridgeUrl,
+            headless: aiConfig.headlessBridge.headless,
+            slowMoMs: aiConfig.headlessBridge.slowMoMs,
+            userDataDir: aiConfig.headlessBridge.userDataDir
+        }).catch(error => {
+            console.error('Headless Puter bridge failed:', error.message || error);
+        });
+    }
+}
 
 const token = process.env.DISCORD_TOKEN;
 if (!token) {

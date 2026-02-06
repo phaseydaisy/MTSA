@@ -9,7 +9,7 @@ const aiConfig = {
     bridgeTimeoutMs: 20000,
     headlessBridge: {
         enabled: true,
-        headless: true,
+        headless: false,
         slowMoMs: 0,
         userDataDir: 'puter-browser-data'
     },
