@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puter AI Bridge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 24px;
+            color: #1a1a1a;
+        }
+        .status {
+            padding: 10px 12px;
+            border-radius: 6px;
+            background: #f2f2f2;
+            margin-bottom: 12px;
+        }
+        .ok {
+            background: #e6f7ea;
+            color: #145a2d;
+        }
+        .warn {
+            background: #fff4e5;
+            color: #7a4b00;
+        }
+        .mono {
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Puter AI Bridge</h1>
+    <div id="status" class="status warn">Connecting to bridge...</div>
+    <div class="mono">Keep this page open while the bot is running.</div>
+
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+        const statusEl = document.getElementById('status');
+        const wsUrl = `ws://${location.host}`;
+        const ws = new WebSocket(wsUrl);
+
+        function setStatus(text, ok) {
+            statusEl.textContent = text;
+            statusEl.className = ok ? 'status ok' : 'status warn';
+        }
+
+        ws.addEventListener('open', () => {
+            setStatus('Connected. Ready to chat.', true);
+        });
+
+        ws.addEventListener('close', () => {
+            setStatus('Disconnected. Refresh to reconnect.', false);
+        });
+
+        ws.addEventListener('error', () => {
+            setStatus('WebSocket error. Check the bridge server.', false);
+        });
+
+        ws.addEventListener('message', async event => {
+            let message = null;
+            try {
+                message = JSON.parse(event.data);
+            } catch (error) {
+                return;
+            }
+
+            if (!message || message.type !== 'chat') return;
+
+            try {
+                const model = message.model || 'gpt-5-nano';
+                const systemPrompt = message.systemPrompt || '';
+                const prompt = message.prompt || '';
+
+                const finalPrompt = systemPrompt
+                    ? `${systemPrompt}\n\nUser: ${prompt}`
+                    : prompt;
+
+                const result = await puter.ai.chat(finalPrompt, { model });
+
+                const text = typeof result === 'string'
+                    ? result
+                    : (result && result.text) || (result && result.message) || String(result || '');
+
+                ws.send(JSON.stringify({
+                    type: 'chat-result',
+                    id: message.id,
+                    ok: true,
+                    text
+                }));
+            } catch (error) {
+                ws.send(JSON.stringify({
+                    type: 'chat-result',
+                    id: message.id,
+                    ok: false,
+                    error: error && error.message ? error.message : 'Puter chat error'
+                }));
+            }
+        });
+    </script>
+</body>
+</html>

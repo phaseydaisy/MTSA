@@ -1,44 +1,26 @@
-async function resolvePuterModule() {
-    try {
-        // Try common export shapes for @heyputer/puter (CommonJS)
-        // eslint-disable-next-line global-require
-        const mod = require('@heyputer/puter');
-        return mod.puter || mod.default || mod;
-    } catch (error) {
-        // Fallback to ESM dynamic import
-        const mod = await import('@heyputer/puter');
-        return mod.puter || mod.default || mod;
-    }
-}
+const axios = require('axios');
 
 async function chatWithPuter(prompt, options = {}) {
-    const puter = await resolvePuterModule();
-    if (!puter || !puter.ai || typeof puter.ai.chat !== 'function') {
-        throw new Error('Puter AI client not available.');
-    }
-
     const model = options.model || 'gpt-5-nano';
     const systemPrompt = options.systemPrompt || '';
+    const bridgeUrl = options.bridgeUrl;
+    const timeoutMs = options.timeoutMs || 20000;
 
-    const finalPrompt = systemPrompt
-        ? `${systemPrompt}\n\nUser: ${prompt}`
-        : prompt;
-
-    const response = await puter.ai.chat(finalPrompt, { model });
-
-    if (typeof response === 'string') {
-        return response;
+    if (!bridgeUrl) {
+        throw new Error('Puter bridge URL not configured.');
     }
 
-    if (response && typeof response.text === 'string') {
-        return response.text;
+    const response = await axios.post(
+        `${bridgeUrl}/api/chat`,
+        { prompt, model, systemPrompt },
+        { timeout: timeoutMs }
+    );
+
+    if (response.data && typeof response.data.text === 'string') {
+        return response.data.text;
     }
 
-    if (response && typeof response.message === 'string') {
-        return response.message;
-    }
-
-    return String(response ?? '');
+    return String(response.data ?? '');
 }
 
 module.exports = { chatWithPuter };
