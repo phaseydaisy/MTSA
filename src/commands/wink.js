@@ -5,20 +5,17 @@ const phawseAPI = 'https://api.phawse.lol/gif/wink';
 
 async function getPhawseGif(category = 'wink') {
     try {
-        const response = await axios.get(`https://api.phawse.lol/gif/${category}?detect`, { timeout: 5000 });
+        const response = await axios.get(`https://api.phawse.lol/gif/${category}`, { timeout: 5000 });
         const data = response.data;
 
         if (data.url || data.gif || data.image) {
-            return {
-                url: data.url || data.gif || data.image,
-                anime: data.anime || null
-            };
+            return data.url || data.gif || data.image;
         }
         
-        return { url: null, anime: null };
+        return null;
     } catch (error) {
         console.error(`Error fetching from phawse API: ${error.message}`);
-        return { url: null, anime: null };
+        return null;
     }
 }
 
@@ -46,8 +43,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const result = await getPhawseGif('wink');
-        const gifUrl = result.url;
+        const gifUrl = await getPhawseGif('wink');
 
         const embed = new EmbedBuilder()
             .setTitle('😉 WINK!')
@@ -55,7 +51,7 @@ module.exports = {
                 ? `${interaction.user} winks at ${user}!\n\n-# *flirty wink* 😎`
                 : `${interaction.user} throws a playful wink!\n\n-# *flirty wink* 😎`)
             .setColor(0xFFD700)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 👀` : 'Got winked at! 👀' });
+            .setFooter({ text: 'Got winked at! 👀' });
 
         if (gifUrl) {
             try {

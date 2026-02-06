@@ -14,21 +14,18 @@ const phawseAPIEndpoints = [
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
             if (data.url || data.gif || data.image) {
-                return {
-                    url: data.url || data.gif || data.image,
-                    anime: data.anime || null
-                };
+                return data.url || data.gif || data.image;
             }
         } catch (error) {
             continue;
         }
     }
     console.error('All phawse API endpoints failed for slap');
-    return { url: null, anime: null };
+    return null;
 }
 
 function loadStats() {
@@ -97,14 +94,13 @@ module.exports = {
         addSlap(interaction.user.id, user.id);
         const slapCount = getSlapCount(interaction.user.id, user.id);
 
-        const result = await getAnimeGif('slap');
-        const gifUrl = result.url;
+        const gifUrl = await getAnimeGif('slap');
 
         const embed = new EmbedBuilder()
             .setTitle('✋ SLAP!')
             .setDescription(`${interaction.user} slaps ${user}!\n\n-# ${interaction.user} has slapped ${user} **${slapCount}** times`)
             .setColor(0x212121)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 💫` : 'Oof! 💫' });
+            .setFooter({ text: 'Oof! 💫' });
 
         if (gifUrl) {
             try {

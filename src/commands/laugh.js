@@ -21,8 +21,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const result = await getPhawseGif(laughTags, false, 'laugh');
-        const gifUrl = result.url;
+        const gifUrl = await getPhawseGif(laughTags, false, 'laugh');
 
         const isSelf = !user || user.id === interaction.user.id;
         const description = isSelf 
@@ -33,7 +32,7 @@ module.exports = {
             .setTitle('😂 Laugh')
             .setDescription(description)
             .setColor(0xFFD700)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 😄` : 'Laughter is contagious! 😄' });
+            .setFooter({ text: 'Laughter is contagious! 😄' });
 
         if (gifUrl) {
             try {

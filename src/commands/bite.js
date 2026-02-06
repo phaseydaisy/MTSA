@@ -13,21 +13,18 @@ const phawseAPIEndpoints = [
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
-            if (data.url || data.gif || data.image) {
-                return {
-                    url: data.url || data.gif || data.image,
-                    anime: data.anime || null
-                };
-            }
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
         } catch (error) {
             continue;
         }
     }
     console.error('All phawse API endpoints failed for bite');
-    return { url: null, anime: null };
+    return null;
 }
 
 function loadStats() {
@@ -96,14 +93,13 @@ module.exports = {
         addBite(interaction.user.id, user.id);
         const biteCount = getBiteCount(interaction.user.id, user.id);
 
-        const result = await getAnimeGif('bite');
-        const gifUrl = result.url;
+        const gifUrl = await getAnimeGif('bite');
 
         const embed = new EmbedBuilder()
             .setTitle('🦷 BITE!')
             .setDescription(`${interaction.user} has bitten ${user} **${biteCount}** time(s)!`)
             .setColor(0x212121)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 🐾` : 'Chomp chomp. 🐾' });
+            .setFooter({ text: 'Chomp chomp. 🐾' });
 
         if (gifUrl) {
             try {

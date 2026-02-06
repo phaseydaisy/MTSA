@@ -10,7 +10,7 @@ const lastGifCache = {};
  * @param {string[]} tags - Array of tags to try (in order).
  * @param {boolean} nsfw - Whether to use the NSFW endpoint.
  * @param {string} commandName - Command name for caching purposes.
- * @returns {Promise<{url: string|null, anime: string|null}>} 
+ * @returns {Promise<string|null>} 
  */
 async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
     const lastGif = lastGifCache[commandName];
@@ -18,16 +18,13 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
     for (const tag of tags) {
         try {
             const phawseEndpoint = nsfw ? 'nsfw' : 'gif';
-            const res = await axios.get(`https://api.phawse.lol/${phawseEndpoint}/${tag}?detect`, { timeout: 5000 });
-            console.log(`[DEBUG] API Response for ${tag}:`, JSON.stringify(res.data, null, 2));
+            const res = await axios.get(`https://api.phawse.lol/${phawseEndpoint}/${tag}`, { timeout: 5000 });
             if (res.data && (res.data.url || res.data.gif || res.data.image)) {
                 const gifUrl = res.data.url || res.data.gif || res.data.image;
-                const animeName = res.data.anime || res.data.detected || res.data.source || null;
-                console.log(`[DEBUG] Extracted anime name: ${animeName}`);
                 
                 if (gifUrl !== lastGif) {
                     lastGifCache[commandName] = gifUrl;
-                    return { url: gifUrl, anime: animeName };
+                    return gifUrl;
                 }
             }
         } catch (err) {
@@ -39,7 +36,7 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
                     
                     if (gifUrl !== lastGif) {
                         lastGifCache[commandName] = gifUrl;
-                        return { url: gifUrl, anime: null };
+                        return gifUrl;
                     }
                 }
             } catch (purrbotErr) {
@@ -47,7 +44,7 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
             }
         }
     }
-    return { url: null, anime: null };
+    return null;
 }
 
 module.exports = getPhawseGif;

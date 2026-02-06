@@ -51,21 +51,18 @@ function getHugCount(user1Id, user2Id) {
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
-            if (data.url || data.gif || data.image) {
-                return {
-                    url: data.url || data.gif || data.image,
-                    anime: data.anime || null
-                };
-            }
+            if (data.url) return data.url;
+            if (data.gif) return data.gif;
+            if (data.image) return data.image;
         } catch (error) {
             continue;
         }
     }
     console.error('All phawse API endpoints failed for hug');
-    return { url: null, anime: null };
+    return null;
 }
 
 module.exports = {
@@ -95,14 +92,13 @@ module.exports = {
         addHug(interaction.user.id, user.id);
         const hugCount = getHugCount(interaction.user.id, user.id);
 
-        const result = await getAnimeGif('hug');
-        const gifUrl = result.url;
+        const gifUrl = await getAnimeGif('hug');
 
         const embed = new EmbedBuilder()
             .setTitle('🤗 HUG!')
             .setDescription(`${interaction.user} hugs ${user}!\n\n-# ${interaction.user} has hugged ${user} **${hugCount}** times`)
             .setColor(0x212121)
-            .setFooter({ text: result.anime ? `From: ${result.anime} ✨` : 'Warm hugs! ✨' });
+            .setFooter({ text: 'Warm hugs! ✨' });
 
         if (gifUrl) {
             try {

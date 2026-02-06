@@ -154,14 +154,13 @@ module.exports = {
             if (i.customId.startsWith('marry_accept')) {
                 addMarriage(interaction.user.id, user.id);
 
-                const result = await getPhawseGif(['marry', 'wedding', 'hug', 'cuddle'], false, 'marry');
-                const gifUrl = result.url;
+                const gifUrl = await getPhawseGif(['marry', 'wedding', 'hug', 'cuddle'], false, 'marry');
 
                 const acceptEmbed = new EmbedBuilder()
                     .setTitle('💕 Marriage Accepted!')
                     .setDescription(`Congratulations! ${interaction.user} and ${user} are now married! 🎉💍`)
                     .setColor(0x00FF00)
-                    .setFooter({ text: result.anime ? `From: ${result.anime} 💖` : 'May your love last forever! 💖' });
+                    .setFooter({ text: 'May your love last forever! 💖' });
 
                 if (gifUrl) {
                     acceptEmbed.setImage(gifUrl);

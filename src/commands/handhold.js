@@ -10,20 +10,17 @@ const phawseAPIEndpoints = [
 async function getPhawseGif(category = 'handhold') {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
             if (data.url || data.gif || data.image) {
-                return {
-                    url: data.url || data.gif || data.image,
-                    anime: data.anime || null
-                };
+                return data.url || data.gif || data.image;
             }
         } catch (error) {
             continue;
         }
     }
-    return { url: null, anime: null };
+    return null;
 }
 
 module.exports = {
@@ -50,14 +47,13 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const result = await getPhawseGif('handhold');
-        const gifUrl = result.url;
+        const gifUrl = await getPhawseGif('handhold');
 
         const embed = new EmbedBuilder()
             .setTitle('🤝 HANDHOLD!')
             .setDescription(`${interaction.user} holds hands with ${user}!\n\n-# *so romantic* 💕`)
             .setColor(0xFF1493)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 💫` : 'Hand in hand~ 💫' });
+            .setFooter({ text: 'Hand in hand~ 💫' });
 
         if (gifUrl) {
             try {

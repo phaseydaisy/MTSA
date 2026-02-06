@@ -10,21 +10,18 @@ const phawseAPIEndpoints = [
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
             if (data.url || data.gif || data.image) {
-                return {
-                    url: data.url || data.gif || data.image,
-                    anime: data.anime || null
-                };
+                return data.url || data.gif || data.image;
             }
         } catch (error) {
             continue;
         }
     }
     console.error('All phawse API endpoints failed for tickle');
-    return { url: null, anime: null };
+    return null;
 }
 
 module.exports = {
@@ -51,14 +48,13 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const result = await getAnimeGif('tickle');
-        const gifUrl = result.url;
+        const gifUrl = await getAnimeGif('tickle');
 
         const embed = new EmbedBuilder()
             .setTitle('😂 TICKLE!')
             .setDescription(`${interaction.user} tickles ${user}!`)
             .setColor(0x212121)
-            .setFooter({ text: result.anime ? `From: ${result.anime} ✨` : 'Giggles incoming! ✨' });
+            .setFooter({ text: 'Giggles incoming! ✨' });
 
         if (gifUrl) {
             try {

@@ -21,8 +21,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const result = await getPhawseGif(cryTags, false, 'cry');
-        const gifUrl = result.url;
+        const gifUrl = await getPhawseGif(cryTags, false, 'cry');
 
         const isSelf = !user || user.id === interaction.user.id;
         const description = isSelf 
@@ -33,7 +32,7 @@ module.exports = {
             .setTitle('😭 Cry')
             .setDescription(description)
             .setColor(0x4682B4)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 💙` : 'It\'s okay to cry. 💙' });
+            .setFooter({ text: 'It\'s okay to cry. 💙' });
 
         if (gifUrl) {
             try {

@@ -9,21 +9,18 @@ const phawseAPIEndpoints = [
 async function getAnimeGif(action) {
     for (const endpoint of phawseAPIEndpoints) {
         try {
-            const response = await axios.get(endpoint + '?detect', { timeout: 5000 });
+            const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
 
             if (data.url || data.gif || data.image) {
-                return {
-                    url: data.url || data.gif || data.image,
-                    anime: data.anime || null
-                };
+                return data.url || data.gif || data.image;
             }
         } catch (error) {
             continue;
         }
     }
     console.error('All phawse API endpoints failed for stare');
-    return { url: null, anime: null };
+    return null;
 }
 
 module.exports = {
@@ -50,14 +47,13 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const result = await getAnimeGif('stare');
-        const gifUrl = result.url;
+        const gifUrl = await getAnimeGif('stare');
 
         const embed = new EmbedBuilder()
             .setTitle('👀 STARE!')
                 .setDescription(`${interaction.user} stares at ${user}!`)
             .setColor(0x212121)
-            .setFooter({ text: result.anime ? `From: ${result.anime} 🔥` : 'Intense eye contact. 🔥' });
+            .setFooter({ text: 'Intense eye contact. 🔥' });
 
         if (gifUrl) {
             try {

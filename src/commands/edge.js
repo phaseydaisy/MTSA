@@ -77,8 +77,7 @@ module.exports = {
         addEdge(interaction.user.id, user.id);
         const edgeCount = getEdgeCount(interaction.user.id, user.id);
 
-        const result = await getPhawseGif(edgeTags, true, 'edge'); // true = nsfw endpoint
-        const gifUrl = result.url;
+        const gifUrl = await getPhawseGif(edgeTags, true, 'edge'); // true = nsfw endpoint
 
         const isSelf = user.id === interaction.user.id;
         const description = isSelf 
@@ -89,7 +88,7 @@ module.exports = {
             .setTitle('🪢 EDGE!')
             .setDescription(description)
             .setColor(0x212121)
-            .setFooter({ text: result.anime ? `From: ${result.anime} ✨` : 'Stay on the edge. ✨' });
+            .setFooter({ text: 'Stay on the edge. ✨' });
 
         if (gifUrl) {
             try {
