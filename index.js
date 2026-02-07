@@ -2,9 +2,8 @@ const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord
 const fs = require('fs');
 const path = require('path');
 const { aiConfig } = require('./src/ai/aiConfig');
-const { startPuterBridge } = require('./src/ai/bridgeServer');
-const { startHeadlessBridge } = require('./src/ai/headlessBridge');
-const { chatWithPuter } = require('./src/ai/puterClient');
+const { chatWithGroq } = require('./src/ai/groqClient');
+const { loadMemoryMap, createMemorySaver } = require('./src/ai/memoryStore');
 require('dotenv').config();
 
 const client = new Client({
@@ -84,6 +83,24 @@ client.on('interactionCreate', async interaction => {
 });
 
 const lastAiReplyAt = new Map();
+const memoryOptions = aiConfig.memory || {};
+const memoryEnabled = Boolean(memoryOptions.enabled);
+const memoryPersistent = Boolean(memoryOptions.persist);
+const aiHistory = memoryPersistent ? loadMemoryMap(memoryOptions) : new Map();
+const memorySaver = memoryPersistent ? createMemorySaver(aiHistory, memoryOptions) : null;
+
+function getHistoryKey(message) {
+    if (aiConfig.memory && aiConfig.memory.scope === 'user') {
+        return `${message.channelId}:${message.author.id}`;
+    }
+    return message.channelId;
+}
+
+function trimHistory(history, maxMessages) {
+    if (!Array.isArray(history)) return [];
+    if (history.length <= maxMessages) return history;
+    return history.slice(history.length - maxMessages);
+}
 
 client.on('messageCreate', async message => {
     if (!aiConfig.enabled) return;
@@ -97,13 +114,16 @@ client.on('messageCreate', async message => {
     const last = lastAiReplyAt.get(message.channelId) || 0;
     if (aiConfig.cooldownMs > 0 && now - last < aiConfig.cooldownMs) return;
 
+    const maxMessages = memoryOptions.maxMessages ? memoryOptions.maxMessages : 0;
+    const historyKey = getHistoryKey(message);
+    const history = memoryEnabled ? aiHistory.get(historyKey) || [] : [];
+
     try {
         await message.channel.sendTyping();
-        const reply = await chatWithPuter(content, {
+        const reply = await chatWithGroq(content, {
             model: aiConfig.model,
             systemPrompt: aiConfig.systemPrompt,
-            bridgeUrl: `http://localhost:${aiConfig.bridgePort}`,
-            timeoutMs: aiConfig.bridgeTimeoutMs
+            messages: history
         });
 
         if (!reply) return;
@@ -113,6 +133,15 @@ client.on('messageCreate', async message => {
             : reply;
 
         await message.reply(trimmedReply);
+
+        if (memoryEnabled && maxMessages > 0) {
+            history.push({ role: 'user', content });
+            history.push({ role: 'assistant', content: trimmedReply });
+            aiHistory.set(historyKey, trimHistory(history, maxMessages));
+            if (memorySaver) {
+                memorySaver.scheduleSave();
+            }
+        }
         lastAiReplyAt.set(message.channelId, now);
     } catch (error) {
         console.error('AI reply failed:', error.message || error);
@@ -120,26 +149,6 @@ client.on('messageCreate', async message => {
 });
 
 loadCommands();
-
-if (aiConfig.enabled) {
-    startPuterBridge({
-        port: aiConfig.bridgePort,
-        timeoutMs: aiConfig.bridgeTimeoutMs
-    });
-
-    if (aiConfig.headlessBridge && aiConfig.headlessBridge.enabled) {
-        const bridgeUrl = `http://localhost:${aiConfig.bridgePort}/`;
-        startHeadlessBridge({
-            url: bridgeUrl,
-            headless: aiConfig.headlessBridge.headless,
-            slowMoMs: aiConfig.headlessBridge.slowMoMs,
-            userDataDir: aiConfig.headlessBridge.userDataDir,
-            executablePath: aiConfig.headlessBridge.executablePath
-        }).catch(error => {
-            console.error('Headless Puter bridge failed:', error.message || error);
-        });
-    }
-}
 
 const token = process.env.DISCORD_TOKEN;
 if (!token) {
@@ -150,3 +159,17 @@ if (!token) {
 }
 
 client.login(token);
+
+function flushMemoryAndExit(code = 0) {
+    if (memorySaver) {
+        try {
+            memorySaver.flush();
+        } catch (error) {
+            console.error('Failed to flush AI memory:', error.message || error);
+        }
+    }
+    process.exit(code);
+}
+
+process.on('SIGINT', () => flushMemoryAndExit(0));
+process.on('SIGTERM', () => flushMemoryAndExit(0));
