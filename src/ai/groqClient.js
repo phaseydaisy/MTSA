@@ -28,7 +28,11 @@ async function chatWithGroq(prompt, options = {}) {
         {
             model,
             messages: finalMessages,
-            temperature: 0.7
+            max_tokens: options.maxTokens ?? 240,
+            temperature: options.temperature ?? 0.85,
+            top_p: options.topP ?? 0.9,
+            presence_penalty: options.presencePenalty ?? 0.8,
+            frequency_penalty: options.frequencyPenalty ?? 0.7
         },
         {
             headers: {
