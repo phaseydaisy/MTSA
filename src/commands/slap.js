@@ -5,14 +5,14 @@ const path = require('path');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('slap_stats.json');
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/slap',
     'https://api.phawse.lol/gif/angry',
     'https://api.phawse.lol/gif/punch'
 ];
 
 async function getAnimeGif(action) {
-    for (const endpoint of phawseAPIEndpoints) {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -24,7 +24,7 @@ async function getAnimeGif(action) {
             continue;
         }
     }
-    console.error('All phawse API endpoints failed for slap');
+    console.error('All API endpoints failed for slap');
     return null;
 }
 

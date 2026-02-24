@@ -4,14 +4,14 @@ const fs = require('fs');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('bite_stats.json');
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/bite',
     'https://api.phawse.lol/gif/pinch',
     'https://api.phawse.lol/gif/poke'
 ];
 
 async function getAnimeGif(action) {
-    for (const endpoint of phawseAPIEndpoints) {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -23,7 +23,7 @@ async function getAnimeGif(action) {
             continue;
         }
     }
-    console.error('All phawse API endpoints failed for bite');
+    console.error('All API endpoints failed for bite');
     return null;
 }
 

@@ -5,7 +5,7 @@ const path = require('path');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('hug_stats.json');
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/hug',
     'https://api.phawse.lol/gif/cuddle',
     'https://api.phawse.lol/gif/snuggle'
@@ -49,7 +49,7 @@ function getHugCount(user1Id, user2Id) {
 }
 
 async function getAnimeGif(action) {
-    for (const endpoint of phawseAPIEndpoints) {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -61,7 +61,7 @@ async function getAnimeGif(action) {
             continue;
         }
     }
-    console.error('All phawse API endpoints failed for hug');
+    console.error('All API endpoints failed for hug');
     return null;
 }
 

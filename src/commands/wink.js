@@ -1,9 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPI = 'https://api.phawse.lol/gif/wink';
+const gifApiEndpoint = 'https://api.phawse.lol/gif/wink';
 
-async function getPhawseGif(category = 'wink') {
+async function getGifFromApi(category = 'wink') {
     try {
         const response = await axios.get(`https://api.phawse.lol/gif/${category}`, { timeout: 5000 });
         const data = response.data;
@@ -14,7 +14,7 @@ async function getPhawseGif(category = 'wink') {
         
         return null;
     } catch (error) {
-        console.error(`Error fetching from phawse API: ${error.message}`);
+        console.error(`Error fetching from API: ${error.message}`);
         return null;
     }
 }
@@ -43,7 +43,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('wink');
+        const gifUrl = await getGifFromApi('wink');
 
         const embed = new EmbedBuilder()
             .setTitle('😉 WINK!')

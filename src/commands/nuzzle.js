@@ -5,7 +5,7 @@ const path = require('path');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('nuzzle_stats.json');
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/nuzzle',
     'https://api.phawse.lol/gif/cuddle',
     'https://api.phawse.lol/gif/snuggle'
@@ -49,7 +49,7 @@ function getNuzzleCount(user1Id, user2Id) {
 }
 
 async function getAnimeGif(action) {
-    for (const endpoint of phawseAPIEndpoints) {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;

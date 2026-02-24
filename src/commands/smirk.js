@@ -1,14 +1,14 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/smirk',
     'https://api.phawse.lol/gif/smile',
     'https://api.phawse.lol/gif/wink'
 ];
 
-async function getPhawseGif(category = 'smirk') {
-    for (const endpoint of phawseAPIEndpoints) {
+async function getGifFromApi(category = 'smirk') {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -40,7 +40,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('smirk');
+        const gifUrl = await getGifFromApi('smirk');
 
         let description;
         if (user) {

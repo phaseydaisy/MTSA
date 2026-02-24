@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const getPhawseGif = require('../utils/getPhawseGif');
+const getGifFromApi = require('../utils/getGifFromApi');
 const { resolveDataFile } = require('../utils/dataDir');
 const fs = require('fs');
 const path = require('path');
@@ -77,7 +77,7 @@ module.exports = {
         addEdge(interaction.user.id, user.id);
         const edgeCount = getEdgeCount(interaction.user.id, user.id);
 
-        const gifUrl = await getPhawseGif(edgeTags, true, 'edge'); // true = nsfw endpoint
+        const gifUrl = await getGifFromApi(edgeTags, true, 'edge'); // true = nsfw endpoint
 
         const isSelf = user.id === interaction.user.id;
         const description = isSelf 

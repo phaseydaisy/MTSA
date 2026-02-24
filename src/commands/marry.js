@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Butt
 const fs = require('fs');
 const path = require('path');
 const { resolveDataFile } = require('../utils/dataDir');
-const getPhawseGif = require('../utils/getPhawseGif');
+const getGifFromApi = require('../utils/getGifFromApi');
 
 const marriageFile = resolveDataFile('marriages.json');
 
@@ -154,7 +154,7 @@ module.exports = {
             if (i.customId.startsWith('marry_accept')) {
                 addMarriage(interaction.user.id, user.id);
 
-                const gifUrl = await getPhawseGif(['marry', 'wedding', 'hug', 'cuddle'], false, 'marry');
+                const gifUrl = await getGifFromApi(['marry', 'wedding', 'hug', 'cuddle'], false, 'marry');
 
                 const acceptEmbed = new EmbedBuilder()
                     .setTitle('💕 Marriage Accepted!')

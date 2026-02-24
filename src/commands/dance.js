@@ -1,14 +1,14 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/dance',
     'https://api.phawse.lol/gif/spin',
     'https://api.phawse.lol/gif/happy'
 ];
 
 async function getAnimeGif(action) {
-    for (const endpoint of phawseAPIEndpoints) {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -20,7 +20,7 @@ async function getAnimeGif(action) {
             continue;
         }
     }
-    console.error('All phawse API endpoints failed for dance');
+    console.error('All API endpoints failed for dance');
     return null;
 }
 

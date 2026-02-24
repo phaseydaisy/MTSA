@@ -4,7 +4,7 @@ const fs = require('fs');
 const { resolveDataFile } = require('../utils/dataDir');
 
 const statsFile = resolveDataFile('blush_stats.json');
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/blush',
     'https://api.phawse.lol/gif/shy',
     'https://api.phawse.lol/gif/flustered'
@@ -45,8 +45,8 @@ function getBlushCount(userId) {
     return stats[userId] || 0;
 }
 
-async function getPhawseGif(category = 'blush') {
-    for (const endpoint of phawseAPIEndpoints) {
+async function getGifFromApi(category = 'blush') {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -74,7 +74,7 @@ module.exports = {
         addBlush(interaction.user.id);
         const blushCount = getBlushCount(interaction.user.id);
 
-        const gifUrl = await getPhawseGif('blush');
+        const gifUrl = await getGifFromApi('blush');
 
         const embed = new EmbedBuilder()
             .setTitle('😊 BLUSH!')
@@ -90,11 +90,11 @@ module.exports = {
                 await interaction.followUp({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 console.error(`Error downloading gif: ${error.message}`);
-                embed.setDescription(`${interaction.user} is blushing!\n\n-# ${interaction.user} has blushed **${blushCount}** times\n\n*[Using phawse.lol API]*`);
+                embed.setDescription(`${interaction.user} is blushing!\n\n-# ${interaction.user} has blushed **${blushCount}** times`);
                 await interaction.followUp({ embeds: [embed] });
             }
         } else {
-            embed.setDescription(`${interaction.user} is blushing!\n\n-# ${interaction.user} has blushed **${blushCount}** times\n\n*[Using phawse.lol API]*`);
+            embed.setDescription(`${interaction.user} is blushing!\n\n-# ${interaction.user} has blushed **${blushCount}** times`);
             await interaction.followUp({ embeds: [embed] });
         }
     }

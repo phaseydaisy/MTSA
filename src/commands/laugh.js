@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const getPhawseGif = require('../utils/getPhawseGif');
+const getGifFromApi = require('../utils/getGifFromApi');
 
 const laughTags = ['laugh', 'happy', 'smile'];
 
@@ -21,7 +21,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif(laughTags, false, 'laugh');
+        const gifUrl = await getGifFromApi(laughTags, false, 'laugh');
 
         const isSelf = !user || user.id === interaction.user.id;
         const description = isSelf 

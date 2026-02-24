@@ -9,12 +9,12 @@ const responses = [
     'savagely rapes'
 ];
 
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/nsfw/sex'
 ];
 
 async function getAnimeGif() {
-    for (const endpoint of phawseAPIEndpoints) {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -63,7 +63,7 @@ module.exports = {
             .setTitle('💢 RAPE!')
             .setDescription(`${interaction.user} ${actionText} ${user}!`)
             .setColor(0x212121)
-            .setFooter({ text: 'Powered by Phawse API ✨' });
+            .setFooter({ text: '✨' });
 
         if (gifUrl) {
             try {

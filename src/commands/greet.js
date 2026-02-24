@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
-const getPhawseGif = require('../utils/getPhawseGif');
+const getGifFromApi = require('../utils/getGifFromApi');
 
 const greetTags = ['wave', 'hi', 'hello'];
 
@@ -28,7 +28,7 @@ module.exports = {
 
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif(greetTags, false, 'greet');
+        const gifUrl = await getGifFromApi(greetTags, false, 'greet');
 
         const embed = new EmbedBuilder()
             .setTitle('👋 Greet!')

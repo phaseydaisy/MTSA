@@ -1,14 +1,14 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const axios = require('axios');
 
-const phawseAPIEndpoints = [
+const gifApiEndpoints = [
     'https://api.phawse.lol/gif/pout',
     'https://api.phawse.lol/gif/sad',
     'https://api.phawse.lol/gif/cry'
 ];
 
-async function getPhawseGif(category = 'pout') {
-    for (const endpoint of phawseAPIEndpoints) {
+async function getGifFromApi(category = 'pout') {
+    for (const endpoint of gifApiEndpoints) {
         try {
             const response = await axios.get(endpoint, { timeout: 5000 });
             const data = response.data;
@@ -33,7 +33,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
 
-        const gifUrl = await getPhawseGif('pout');
+        const gifUrl = await getGifFromApi('pout');
 
         const embed = new EmbedBuilder()
             .setTitle('😠 POUT!')
