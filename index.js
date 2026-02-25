@@ -5,6 +5,7 @@ const logger = require('./src/utils/logger');
 const { aiConfig } = require('./src/ai/aiConfig');
 const { chatWithOpenRouter } = require('./src/ai/openrouterClient');
 const { loadMemoryMap, createMemorySaver } = require('./src/ai/memoryStore');
+const { handlePrefixModeration } = require('./src/commands/moderation');
 const { setResponseHandler, setVoiceConfig } = require('./src/ai/voiceState');
 require('dotenv').config();
 
@@ -314,8 +315,9 @@ client.on('error', error => {
 
 client.on('messageCreate', async message => {
     if (await handleVoiceVerification(message)) return;
-    if (!aiConfig.enabled) return;
     if (message.author.bot) return;
+    if (await handlePrefixModeration(message)) return;
+    if (!aiConfig.enabled) return;
     if (!aiConfig.channelIds.includes(message.channelId)) return;
 
     const content = (message.content || '').trim();

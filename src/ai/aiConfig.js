@@ -1,7 +1,7 @@
 const aiConfig = {
     enabled: true,
     channelIds: [
-        '1470080391024218207'
+        '1476142272499159053'
     ],
     model: 'openai/gpt-4o-mini',
     modelFallbacks: [
