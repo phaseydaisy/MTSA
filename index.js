@@ -1,9 +1,9 @@
-const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, REST, Routes, MessageFlags } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const logger = require('./src/utils/logger');
 const { aiConfig } = require('./src/ai/aiConfig');
-const { chatWithGroq } = require('./src/ai/groqClient');
+const { chatWithOpenRouter } = require('./src/ai/openrouterClient');
 const { loadMemoryMap, createMemorySaver } = require('./src/ai/memoryStore');
 const { setResponseHandler, setVoiceConfig } = require('./src/ai/voiceState');
 require('dotenv').config();
@@ -81,21 +81,41 @@ function trimHistory(history, maxMessages) {
     return history.slice(history.length - maxMessages);
 }
 
+function sanitizeAiReply(reply) {
+    if (!reply || typeof reply !== 'string') return '';
+
+    let cleaned = reply;
+
+    cleaned = cleaned.replace(/\[[^\]]+\]\((https?:\/\/[^)]+)\)/gi, '$1');
+    cleaned = cleaned.replace(/https?:\/\/\S+/gi, '');
+    cleaned = cleaned.replace(/\b(?:www\.)?[a-z0-9-]+\.(?:com|net|org|gg|io|ai|dev|co|app|xyz|edu|gov)\b/gi, '');
+    cleaned = cleaned.replace(/\b(?:according to|as\s+[a-z0-9.-]+\s+(?:says|suggests|states))\b[^.?!]*[.?!]?/gi, '');
+    cleaned = cleaned.replace(/\s{2,}/g, ' ').trim();
+
+    return cleaned;
+}
+
 async function getAiReply(content, historyKey) {
     const maxMessages = memoryOptions.maxMessages ? memoryOptions.maxMessages : 0;
     const history = memoryEnabled ? aiHistory.get(historyKey) || [] : [];
 
-    const reply = await chatWithGroq(content, {
+    const reply = await chatWithOpenRouter(content, {
         model: aiConfig.model,
+        modelFallbacks: aiConfig.modelFallbacks,
+        maxTokens: aiConfig.maxTokens,
+        temperature: aiConfig.temperature,
         systemPrompt: aiConfig.systemPrompt,
         messages: history
     });
 
     if (!reply) return '';
 
-    const trimmedReply = reply.length > aiConfig.maxReplyLength
-        ? reply.slice(0, aiConfig.maxReplyLength - 3) + '...'
-        : reply;
+    const sanitizedReply = sanitizeAiReply(reply);
+    if (!sanitizedReply) return '';
+
+    const trimmedReply = sanitizedReply.length > aiConfig.maxReplyLength
+        ? sanitizedReply.slice(0, aiConfig.maxReplyLength - 3) + '...'
+        : sanitizedReply;
 
     if (memoryEnabled && maxMessages > 0) {
         history.push({ role: 'user', content });
@@ -130,7 +150,7 @@ function shouldVerifyTranscript(transcript) {
         ? verifyConfig.triggerPhrases
         : [];
 
-    if (normalized.length < minChars || wordCount < minWords) return true;
+    if (normalized.length < minChars || wordCount < minWords) return false;
     return triggerPhrases.some(phrase => lower.includes(phrase));
 }
 
@@ -170,7 +190,7 @@ async function handleVoiceVerification(message) {
     return false;
 }
 
-client.once('ready', async () => {
+client.once('clientReady', async () => {
     logger.log(`Bot logged in as ${client.user.tag}`);
     logger.log('Bot is ready to use!');
     await registerCommands();
@@ -188,7 +208,8 @@ client.once('ready', async () => {
 
         setResponseHandler(async ({ guildId, userId, text, textChannelId, voiceChannelId }) => {
             const historyKey = `voice:${guildId}:${userId}`;
-            const targetChannelId = voiceChannelId || textChannelId;
+            const targetChannelId = textChannelId || voiceChannelId;
+            logger.debug(`Voice handler target channel: ${targetChannelId || 'none'} (text=${textChannelId || 'none'}, voice=${voiceChannelId || 'none'})`);
             if (targetChannelId && shouldVerifyTranscript(text)) {
                 const verifyConfig = aiConfig.voice.verify;
                 const key = getVoiceVerifyKey(guildId, userId);
@@ -204,6 +225,8 @@ client.once('ready', async () => {
                     const channel = await client.channels.fetch(targetChannelId);
                     if (channel && typeof channel.send === 'function') {
                         await channel.send(`**<@${userId}> did you say:** ${normalizeText(text)}\nReply "yes" or "no" within 15s.`);
+                    } else {
+                        logger.warn(`Voice verify channel is not text-capable: ${targetChannelId}`);
                     }
                 } catch (error) {
                     logger.error('Voice verify prompt failed:', error.message || error);
@@ -213,17 +236,25 @@ client.once('ready', async () => {
             }
 
             const reply = await getAiReply(text, historyKey);
-            if (!reply) return '';
+            if (!reply) {
+                logger.warn(`Voice AI produced empty reply for user ${userId}`);
+                return '';
+            }
 
             if (targetChannelId) {
                 try {
                     const channel = await client.channels.fetch(targetChannelId);
                     if (channel && typeof channel.send === 'function') {
                         await channel.send(`**<@${userId}> said:** ${text}\n${reply}`);
+                        logger.info(`Voice text reply sent to channel ${targetChannelId} for user ${userId}`);
+                    } else {
+                        logger.warn(`Voice response channel is not text-capable: ${targetChannelId}`);
                     }
                 } catch (error) {
                     logger.error('Voice text reply failed:', error.message || error);
                 }
+            } else {
+                logger.warn(`No target channel available for voice reply (guild ${guildId}, user ${userId})`);
             }
 
             return reply;
@@ -241,14 +272,31 @@ client.on('interactionCreate', async interaction => {
         logger.command(interaction.commandName, interaction.user, interaction.guild);
         await command.execute(interaction);
     } catch (error) {
+        if (error && (error.code === 10062 || error.code === 40060)) {
+            logger.warn(`Interaction expired for command ${interaction.commandName} (${interaction.id})`);
+            return;
+        }
+
         logger.error(error);
         const errorMessage = 'An error occurred while executing this command.';
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({ content: errorMessage, ephemeral: true });
-        } else {
-            await interaction.reply({ content: errorMessage, ephemeral: true });
+        try {
+            if (interaction.replied || interaction.deferred) {
+                await interaction.followUp({ content: errorMessage, flags: MessageFlags.Ephemeral });
+            } else {
+                await interaction.reply({ content: errorMessage, flags: MessageFlags.Ephemeral });
+            }
+        } catch (replyError) {
+            if (replyError && (replyError.code === 10062 || replyError.code === 40060)) {
+                logger.warn(`Unable to send command error response due to interaction state (${replyError.code}) for ${interaction.commandName} (${interaction.id})`);
+                return;
+            }
+            logger.error('Failed to send interaction error response:', replyError.message || replyError);
         }
     }
+});
+
+client.on('error', error => {
+    logger.error('Discord client error:', error.message || error);
 });
 
 client.on('messageCreate', async message => {
