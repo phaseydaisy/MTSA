@@ -92,7 +92,7 @@ function getLevelMessage(percentage) {
 const nsfwConfigs = {
     rape: {
         title: '💢 RAPE!',
-        endpoints: ['https://api.phawse.lol/nsfw/sex'],
+        endpoints: ['https://api.phawse.lol/nsfw/fuck'],
         actionText: (user, target) => {
             const action = rapeResponses[Math.floor(Math.random() * rapeResponses.length)];
             return `${user} ${action} ${target}!`;
@@ -116,7 +116,7 @@ const nsfwConfigs = {
     },
     edge: {
         title: '🪢 EDGE!',
-        tags: ['masturbate', 'ecchi', 'tease'],
+        tags: ['masturbate', 'ecchi', 'tease', 'solomale', 'solo'],
         actionText: (user, target) => target ? `${user} edges ${target}!` : `${user} edges themselves!`,
         requiresTarget: false
     }
@@ -180,7 +180,6 @@ module.exports = {
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
 
-        // Handle horny-level separately
         if (subcommand === 'horny') {
             const target = interaction.options.getUser('user') || interaction.user;
             const percentage = Math.floor(Math.random() * 101);
@@ -212,7 +211,6 @@ module.exports = {
             return;
         }
 
-        // Handle edge separately
         if (subcommand === 'edge') {
             const user = interaction.options.getUser('user') || interaction.user;
 

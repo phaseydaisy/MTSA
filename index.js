@@ -27,10 +27,14 @@ function loadCommands() {
     for (const file of commandFiles) {
         const filePath = path.join(commandsPath, file);
         try {
-            const command = require(filePath);
-            if (command.data && command.execute) {
-                client.commands.set(command.data.name, command);
-                logger.log(`✅ Loaded command: ${command.data.name}`);
+            const loaded = require(filePath);
+            const commands = Array.isArray(loaded) ? loaded : [loaded];
+
+            for (const command of commands) {
+                if (command && command.data && command.execute) {
+                    client.commands.set(command.data.name, command);
+                    logger.log(`✅ Loaded command: ${command.data.name}`);
+                }
             }
         } catch (error) {
             logger.error(`❌ Failed to load command ${file}:`, error);
@@ -95,6 +99,14 @@ function sanitizeAiReply(reply) {
     return cleaned;
 }
 
+function buildSystemPromptWithTime(basePrompt) {
+    const now = new Date();
+    const utcNow = now.toISOString();
+    const localNow = now.toLocaleString();
+    const timeContext = `Current time (UTC): ${utcNow}. Current local server time: ${localNow}.`;
+    return `${basePrompt}\n\n${timeContext}`;
+}
+
 async function getAiReply(content, historyKey) {
     const maxMessages = memoryOptions.maxMessages ? memoryOptions.maxMessages : 0;
     const history = memoryEnabled ? aiHistory.get(historyKey) || [] : [];
@@ -104,7 +116,7 @@ async function getAiReply(content, historyKey) {
         modelFallbacks: aiConfig.modelFallbacks,
         maxTokens: aiConfig.maxTokens,
         temperature: aiConfig.temperature,
-        systemPrompt: aiConfig.systemPrompt,
+        systemPrompt: buildSystemPromptWithTime(aiConfig.systemPrompt),
         messages: history
     });
 
@@ -118,8 +130,9 @@ async function getAiReply(content, historyKey) {
         : sanitizedReply;
 
     if (memoryEnabled && maxMessages > 0) {
-        history.push({ role: 'user', content });
-        history.push({ role: 'assistant', content: trimmedReply });
+        const nowIso = new Date().toISOString();
+        history.push({ role: 'user', content, timestamp: nowIso });
+        history.push({ role: 'assistant', content: trimmedReply, timestamp: nowIso });
         aiHistory.set(historyKey, trimHistory(history, maxMessages));
         if (memorySaver) {
             memorySaver.scheduleSave();

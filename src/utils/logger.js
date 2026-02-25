@@ -45,7 +45,7 @@ class Logger {
             const logFile = this.getLogFileName();
             fs.appendFileSync(logFile, formattedMessage + '\n', 'utf8');
         } catch (error) {
-            // Intentionally silent: user requested file-only logging
+            
         }
     }
 

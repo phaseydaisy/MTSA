@@ -6,92 +6,118 @@ const getGifFromApi = require('../utils/getGifFromApi');
 const actionConfigs = {
     hug: {
         title: '🤗 HUG!',
-        endpoints: ['https://api.phawse.lol/gif/hug', 'https://api.phawse.lol/gif/cuddle', 'https://api.phawse.lol/gif/snuggle'],
+        endpoints: ['https://api.phawse.lol/gif/hug'],
         actionText: (user, target) => `${user} hugs ${target}!`,
         selfError: "You can't hug yourself! Find someone else to hug."
     },
     kiss: {
         title: '💋 KISS!',
-        endpoints: ['https://api.phawse.lol/gif/kiss', 'https://api.phawse.lol/gif/blush', 'https://api.phawse.lol/gif/love'],
+        endpoints: ['https://api.phawse.lol/gif/kiss'],
         actionText: (user, target) => `${user} kisses ${target}!`,
         selfError: "You can't kiss yourself! Find someone else."
     },
     slap: {
         title: '✋ SLAP!',
-        endpoints: ['https://api.phawse.lol/gif/slap', 'https://api.phawse.lol/gif/angry', 'https://api.phawse.lol/gif/punch'],
+        endpoints: ['https://api.phawse.lol/gif/slap'],
         actionText: (user, target) => `${user} slaps ${target}!`,
         selfError: "You can't slap yourself! That's weird."
     },
     bite: {
         title: '🦷 BITE!',
-        endpoints: ['https://api.phawse.lol/gif/bite', 'https://api.phawse.lol/gif/pinch', 'https://api.phawse.lol/gif/poke'],
+        endpoints: ['https://api.phawse.lol/gif/bite'],
         actionText: (user, target) => `${user} bites ${target}!`,
         selfError: "You can't bite yourself!"
     },
     nuzzle: {
         title: '😊 NUZZLE!',
-        endpoints: ['https://api.phawse.lol/gif/nuzzle', 'https://api.phawse.lol/gif/cuddle', 'https://api.phawse.lol/gif/snuggle'],
+        endpoints: ['https://api.phawse.lol/gif/nuzzle'],
         actionText: (user, target) => `${user} nuzzles ${target}!`,
         selfError: "You can't nuzzle yourself! Find someone else."
     },
     pet: {
         title: '🐾 PET!',
-        endpoints: ['https://api.phawse.lol/gif/pat', 'https://api.phawse.lol/gif/hug', 'https://api.phawse.lol/gif/cuddle'],
+        endpoints: ['https://api.phawse.lol/gif/pat'],
         actionText: (user, target) => `${user} pets ${target}!`,
         selfError: "You can't pet yourself!"
     },
     lick: {
         title: '👅 LICK!',
-        endpoints: ['https://api.phawse.lol/gif/lick', 'https://api.phawse.lol/gif/kiss', 'https://api.phawse.lol/gif/blush'],
+        endpoints: ['https://api.phawse.lol/gif/lick'],
         actionText: (user, target) => `${user} licks ${target}!\n\n-# *slurp* 😜`,
         selfError: "You can't lick yourself!"
     },
     tickle: {
         title: '😂 TICKLE!',
-        endpoints: ['https://api.phawse.lol/gif/tickle', 'https://api.phawse.lol/gif/laugh', 'https://api.phawse.lol/gif/happy'],
+        endpoints: ['https://api.phawse.lol/gif/tickle'],
         actionText: (user, target) => `${user} tickles ${target}!`,
         selfError: "You can't tickle yourself!"
     },
     poke: {
         title: '👉 POKE!',
-        endpoints: ['https://api.phawse.lol/gif/poke', 'https://api.phawse.lol/gif/pinch', 'https://api.phawse.lol/gif/punch'],
+        endpoints: ['https://api.phawse.lol/gif/poke'],
         actionText: (user, target) => `${user} pokes ${target}!\n\n-# *poke poke* 😝`,
         selfError: "You can't poke yourself!"
     },
     pinch: {
         title: '🤏 PINCH!',
-        endpoints: ['https://api.phawse.lol/gif/pinch', 'https://api.phawse.lol/gif/poke', 'https://api.phawse.lol/gif/punch'],
+        endpoints: ['https://api.phawse.lol/gif/pinch'],
         actionText: (user, target) => `${user} pinches ${target}!\n\n-# *ouch!* 😣`,
         selfError: "You can't pinch yourself!"
     },
     boop: {
         title: '👃 BOOP!',
-        endpoints: ['https://api.phawse.lol/gif/boop', 'https://api.phawse.lol/gif/poke', 'https://api.phawse.lol/gif/cuddle'],
+        endpoints: ['https://api.phawse.lol/gif/boop'],
         actionText: (user, target) => `${user} boops ${target} on the nose!\n\n-# *boop* 💫`,
         selfError: "You can't boop yourself!"
     },
     handhold: {
         title: '🤝 HANDHOLD!',
-        endpoints: ['https://api.phawse.lol/gif/handhold', 'https://api.phawse.lol/gif/hug', 'https://api.phawse.lol/gif/cuddle'],
+        endpoints: ['https://api.phawse.lol/gif/handhold'],
         actionText: (user, target) => `${user} holds hands with ${target}!\n\n-# *so romantic* 💕`,
         selfError: "You can't hold your own hand!"
     },
     highfive: {
         title: '🙌 HIGH-FIVE!',
-        endpoints: ['https://api.phawse.lol/gif/highfive', 'https://api.phawse.lol/gif/celebrate', 'https://api.phawse.lol/gif/happy'],
+        endpoints: ['https://api.phawse.lol/gif/highfive'],
         actionText: (user, target) => `${user} high-fives ${target}!\n\n-# *SLAP!* 🎉`,
         selfError: "You can't high-five yourself!"
     },
     greet: {
         title: '👋 GREET!',
-        endpoints: ['https://api.phawse.lol/gif/wave', 'https://api.phawse.lol/gif/hello',],
+        endpoints: ['https://api.phawse.lol/gif/wave'],
         actionText: (user, target) => `${user} greets ${target}! Hello! 👋`,
         selfError: "You can't greet yourself!"
     },
     cheer: {
         title: '✨ CHEER!',
-        endpoints: ['https://api.phawse.lol/gif/cheer', 'https://api.phawse.lol/gif/happy', 'https://api.phawse.lol/gif/celebrate'],
+        endpoints: ['https://api.phawse.lol/gif/happy'],
         actionText: (user, target) => `${user} sends some encouragement to ${target}!`,
+        selfError: null
+    },
+    throw: {
+        title: '🌀 THROW!',
+        endpoints: ['https://api.phawse.lol/gif/yeet'],
+        actionText: (user, target) => `${user} throws ${target}!`,
+        selfError: "You can't throw yourself!"
+    },
+    shoot: {
+        title: '🔫 SHOOT!',
+        endpoints: ['https://api.phawse.lol/gif/shoot'],
+        actionText: (user, target) => `${user} shoots ${target}!`,
+        selfError: "You can't shoot yourself!"
+    },
+    kick: {
+        title: '🦵 KICK!',
+        endpoints: ['https://api.phawse.lol/gif/kick'],
+        actionText: (user, target) => `${user} kicks ${target}!`,
+        selfError: "You can't kick yourself!"
+    },
+    lurk: {
+        title: '🕶️ LURK!',
+        endpoints: ['https://api.phawse.lol/gif/lurk'],
+        actionText: (user, target) => target
+            ? `${user} lurks around ${target}...`
+            : `${user} is lurking in the shadows...`,
         selfError: null
     }
 };
@@ -175,6 +201,26 @@ module.exports = {
                 .setName('cheer')
                 .setDescription('Send encouragement to someone')
                 .addUserOption(option => option.setName('user').setDescription('The user to cheer for').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('throw')
+                .setDescription('Throw someone')
+                .addUserOption(option => option.setName('user').setDescription('The user to throw').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('shoot')
+                .setDescription('Shoot someone')
+                .addUserOption(option => option.setName('user').setDescription('The user to shoot').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('kick')
+                .setDescription('Kick someone')
+                .addUserOption(option => option.setName('user').setDescription('The user to kick').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('lurk')
+                .setDescription('Lurk around someone')
+                .addUserOption(option => option.setName('user').setDescription('The user to lurk around').setRequired(false)))
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 
@@ -187,7 +233,11 @@ module.exports = {
             return interaction.reply({ content: '❌ Unknown action!', flags: MessageFlags.Ephemeral });
         }
 
-        if (config.selfError && user.id === interaction.user.id) {
+        if (subcommand !== 'lurk' && !user) {
+            return interaction.reply({ content: '❌ You must specify a user!', flags: MessageFlags.Ephemeral });
+        }
+
+        if (config.selfError && user && user.id === interaction.user.id) {
             return interaction.reply({ content: `❌ ${config.selfError}`, flags: MessageFlags.Ephemeral });
         }
 

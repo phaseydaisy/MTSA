@@ -48,6 +48,16 @@ const reactionConfigs = {
         title: '🤢 DISGUST!',
         endpoints: ['https://api.phawse.lol/gif/disgust', 'https://api.phawse.lol/gif/disgusted'],
         reactionText: (user) => `${user} looks disgusted... 🤢`
+    },
+    nope: {
+        title: '🙅 NOPE!',
+        endpoints: ['https://api.phawse.lol/gif/nope'],
+        reactionText: (user) => `${user} says nope.`
+    },
+    bored: {
+        title: '😑 BORED!',
+        endpoints: ['https://api.phawse.lol/gif/bored'],
+        reactionText: (user) => `${user} looks bored...`
     }
 };
 
@@ -91,6 +101,14 @@ module.exports = {
             subcommand
                 .setName('disgust')
                 .setDescription('Show that you\'re disgusted'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('nope')
+                .setDescription('Say nope'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('bored')
+                .setDescription('Show that you are bored'))
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 
