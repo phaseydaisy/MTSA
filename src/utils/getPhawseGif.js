@@ -1,4 +1,5 @@
 const axios = require('axios');
+const logger = require('./logger');
 
 // Track last returned GIF per command to prevent duplicates
 const lastGifCache = {};
@@ -18,9 +19,12 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
     for (const tag of tags) {
         try {
             const phawseEndpoint = nsfw ? 'nsfw' : 'gif';
-            const res = await axios.get(`https://api.phawse.lol/${phawseEndpoint}/${tag}`, { timeout: 5000 });
+            const endpoint = `https://api.phawse.lol/${phawseEndpoint}/${tag}`;
+            logger.debug(`API Request: ${endpoint}`);
+            const res = await axios.get(endpoint, { timeout: 5000 });
             if (res.data && (res.data.url || res.data.gif || res.data.image)) {
                 const gifUrl = res.data.url || res.data.gif || res.data.image;
+                logger.info(`API Success: ${endpoint} -> ${res.status}`);
                 
                 if (gifUrl !== lastGif) {
                     lastGifCache[commandName] = gifUrl;
@@ -28,11 +32,15 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
                 }
             }
         } catch (err) {
+            logger.warn(`API Failed: https://api.phawse.lol - ${err.message}`);
             try {
                 const purrbotEndpoint = nsfw ? 'nsfw' : 'sfw';
-                const res = await axios.get(`https://api.purrbot.site/v2/img/${purrbotEndpoint}/${tag}/gif`, { timeout: 5000 });
+                const fallbackEndpoint = `https://api.purrbot.site/v2/img/${purrbotEndpoint}/${tag}/gif`;
+                logger.debug(`API Fallback Request: ${fallbackEndpoint}`);
+                const res = await axios.get(fallbackEndpoint, { timeout: 5000 });
                 if (res.data && res.data.link) {
                     const gifUrl = res.data.link;
+                    logger.info(`API Fallback Success: ${fallbackEndpoint} -> ${res.status}`);
                     
                     if (gifUrl !== lastGif) {
                         lastGifCache[commandName] = gifUrl;
@@ -40,10 +48,12 @@ async function getPhawseGif(tags, nsfw = false, commandName = 'default') {
                     }
                 }
             } catch (purrbotErr) {
+                logger.warn(`API Fallback Failed: https://api.purrbot.site - ${purrbotErr.message}`);
                 continue; 
             }
         }
     }
+    logger.error(`All API endpoints failed for command: ${commandName}`);
     return null;
 }
 

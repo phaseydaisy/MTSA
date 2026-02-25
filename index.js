@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const logger = require('./src/utils/logger');
 const { aiConfig } = require('./src/ai/aiConfig');
 const { chatWithGroq } = require('./src/ai/groqClient');
 const { loadMemoryMap, createMemorySaver } = require('./src/ai/memoryStore');
@@ -29,10 +30,10 @@ function loadCommands() {
             const command = require(filePath);
             if (command.data && command.execute) {
                 client.commands.set(command.data.name, command);
-                console.log(`✅ Loaded command: ${command.data.name}`);
+                logger.log(`✅ Loaded command: ${command.data.name}`);
             }
         } catch (error) {
-            console.error(`❌ Failed to load command ${file}:`, error);
+            logger.error(`❌ Failed to load command ${file}:`, error);
         }
     }
 }
@@ -44,17 +45,17 @@ async function registerCommands() {
     const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
     try {
-        console.log('Started refreshing application (/) commands.');
+        logger.log('Started refreshing application (/) commands.');
         await rest.put(
             Routes.applicationCommands(client.user.id),
             { body: commands }
         );
-        console.log(`✅ Synced ${commands.length} command(s)`);
+        logger.log(`✅ Synced ${commands.length} command(s)`);
     } catch (error) {
         if (error.status === 400) {
-            console.warn('⚠️ Command sync warning (400):', error.message);
+            logger.warn('⚠️ Command sync warning (400):', error.message);
         } else {
-            console.error('❌ Failed to sync commands:', error);
+            logger.error('❌ Failed to sync commands:', error);
         }
     }
 }
@@ -170,8 +171,8 @@ async function handleVoiceVerification(message) {
 }
 
 client.once('ready', async () => {
-    console.log(`Bot logged in as ${client.user.tag}`);
-    console.log('Bot is ready to use!');
+    logger.log(`Bot logged in as ${client.user.tag}`);
+    logger.log('Bot is ready to use!');
     await registerCommands();
 
     if (aiConfig.voice && aiConfig.voice.enabled) {
@@ -205,7 +206,7 @@ client.once('ready', async () => {
                         await channel.send(`**<@${userId}> did you say:** ${normalizeText(text)}\nReply "yes" or "no" within 15s.`);
                     }
                 } catch (error) {
-                    console.error('Voice verify prompt failed:', error.message || error);
+                    logger.error('Voice verify prompt failed:', error.message || error);
                 }
 
                 return '';
@@ -221,7 +222,7 @@ client.once('ready', async () => {
                         await channel.send(`**<@${userId}> said:** ${text}\n${reply}`);
                     }
                 } catch (error) {
-                    console.error('Voice text reply failed:', error.message || error);
+                    logger.error('Voice text reply failed:', error.message || error);
                 }
             }
 
@@ -237,9 +238,10 @@ client.on('interactionCreate', async interaction => {
     if (!command) return;
 
     try {
+        logger.command(interaction.commandName, interaction.user, interaction.guild);
         await command.execute(interaction);
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         const errorMessage = 'An error occurred while executing this command.';
         if (interaction.replied || interaction.deferred) {
             await interaction.followUp({ content: errorMessage, ephemeral: true });
@@ -269,10 +271,11 @@ client.on('messageCreate', async message => {
         const reply = await getAiReply(content, historyKey);
 
         if (!reply) return;
+        logger.ai(message.author, content, reply);
         await message.reply(`> ${content}\n${reply}`);
         lastAiReplyAt.set(message.channelId, now);
     } catch (error) {
-        console.error('AI reply failed:', error.message || error);
+        logger.error('AI reply failed:', error.message || error);
     }
 });
 
@@ -280,9 +283,9 @@ loadCommands();
 
 const token = process.env.DISCORD_TOKEN;
 if (!token) {
-    console.error('❌ Error: DISCORD_TOKEN not found in .env file');
-    console.error('Please create a .env file with your Discord bot token:');
-    console.error('DISCORD_TOKEN=your_token_here');
+    logger.error('❌ Error: DISCORD_TOKEN not found in .env file');
+    logger.error('Please create a .env file with your Discord bot token:');
+    logger.error('DISCORD_TOKEN=your_token_here');
     process.exit(1);
 }
 
@@ -293,9 +296,10 @@ function flushMemoryAndExit(code = 0) {
         try {
             memorySaver.flush();
         } catch (error) {
-            console.error('Failed to flush AI memory:', error.message || error);
+            logger.error('Failed to flush AI memory:', error.message || error);
         }
     }
+    logger.log('Bot shutting down...');
     process.exit(code);
 }
 

@@ -3,20 +3,26 @@ const aiConfig = {
     channelIds: [
         '1470080391024218207'
     ],
-    model: 'openai/gpt-oss-120b',
-    systemPrompt: 'You are a fast-talking, sarcastic commentator with dark humor and existential mockery. Use profanity for emphasis. Roast the absurdity of situations directly—call things fucking useless, ridiculous, pathetic, but never target real people with personal cruelty. Stay chaotic, unimpressed, cynical, slightly ominous. If asked directly, answer while staying cynical and bored. Keep it punchy and high-energy. Avoid repetitive openers (like starting every sentence with "oh") and avoid reusing the same phrasing from your last reply. Use no emojis unless explicitly asked.  If the user uses self-harm phrases (e.g., "kys"), do not provide hotline messages or long safety speeches; reply with a brief refusal and redirect to a neutral topic in one sentence. Avoid canned refusal lines like "I am not going to continue that - let us talk about something else" or "I am not going to engage with that - let us talk about something else." Your name is mtsa. Sound like a sharp, vicious streamer reacting in real time - sarcastic, annoyed, and creatively hostile. Mock how they died by referencing the cause, mistake, or specific action. Write one or two short sentences max. At least one sentence should react with disbelief, irritation, or dry sarcasm. Vary sentence structure and tone from previous deaths; avoid dramatic monologues. Do not use generic reactions like "I saw that coming" or repeated stock phrases. Keep profanity punchy and varied. No emojis. Mention at least one keyword naturally when provided.',
+    model: 'qwen/qwen3.5-397b-a17b',
+    modelFallbacks: [
+        'anthropic/claude-sonnet-4.6',
+        'aion-labs/aion-2.0'
+    ],
+    maxTokens: 120,
+    temperature: 0.75,
+    systemPrompt: 'Your name is mtsa. Keep replies short (1-2 sentences), direct, and helpful. Do not include links, domains, citations, references to websites, or "according to" phrasing. Do not mention sources. Do not roleplay as hostile, abusive, or demeaning. Light sarcasm is okay, but never insult or harass users. If the message is unclear, ask a short clarification question. No emojis unless explicitly requested.',
     memory: {
         enabled: true,
         scope: 'channel',
-        maxMessages: 100,
+        maxMessages: 25,
         persist: true,
         fileName: 'ai_memory.json',
         saveDebounceMs: 2000
     },
     voice: {
         enabled: true,
-        sttModel: 'whisper-large-v3',
-        ttsModel: 'canopylabs/orpheus-v1-english',
+        sttModel: 'openai/whisper-1',
+        ttsModel: 'openai/tts-1',
         ttsVoice: '',
         textOnly: true,
         verify: {
@@ -37,8 +43,8 @@ const aiConfig = {
         minSpeechMs: 800,
         maxSpeechMs: 20000
     },
-    maxReplyLength: 1200,
-    cooldownMs: 0
+    maxReplyLength: 450,
+    cooldownMs: 1000
 };
 
 module.exports = { aiConfig };

@@ -1,7 +1,8 @@
 const { joinVoiceChannel, getVoiceConnection, createAudioPlayer, createAudioResource, EndBehaviorType, StreamType } = require('@discordjs/voice');
 const prism = require('prism-media');
 const { Readable } = require('stream');
-const { speechToText, textToSpeech } = require('./groqClient');
+const { speechToText, textToSpeech } = require('./openrouterClient');
+const logger = require('../utils/logger');
 
 const sessions = new Map();
 let responseHandler = null;
@@ -58,6 +59,7 @@ function getSession(guildId) {
 
 async function handleTranscript(session, transcript, userId) {
     if (!responseHandler) return;
+    logger.debug(`Voice transcript received from ${userId}: ${transcript}`);
     const reply = await responseHandler({
         guildId: session.guildId,
         userId,
@@ -82,6 +84,7 @@ function subscribeToUser(session, userId) {
     if (session.activeUsers.has(userId)) return;
 
     session.activeUsers.add(userId);
+    logger.debug(`Voice capture started for user ${userId} in guild ${session.guildId}`);
 
     const opusStream = session.receiver.subscribe(userId, {
         end: {
@@ -98,16 +101,11 @@ function subscribeToUser(session, userId) {
 
     const pcmChunks = [];
     let totalBytes = 0;
+    let ended = false;
 
-    decoder.on('data', chunk => {
-        totalBytes += chunk.length;
-        if (totalBytes > (48000 * 2 * 2) * (config.maxSpeechMs / 1000)) {
-            return;
-        }
-        pcmChunks.push(chunk);
-    });
-
-    decoder.on('end', async () => {
+    const finalizeCapture = async () => {
+        if (ended) return;
+        ended = true;
         session.activeUsers.delete(userId);
 
         const pcmBuffer = Buffer.concat(pcmChunks);
@@ -116,20 +114,73 @@ function subscribeToUser(session, userId) {
         const minBytes = (48000 * 2 * 2) * (config.minSpeechMs / 1000);
         if (pcmBuffer.length < minBytes) return;
 
+        logger.debug(`Voice capture complete for user ${userId}: ${pcmBuffer.length} bytes`);
+
         const wavBuffer = pcmToWav(pcmBuffer);
 
         try {
             const transcript = await speechToText(wavBuffer, { model: config.sttModel });
             if (transcript) {
                 await handleTranscript(session, transcript, userId);
+            } else {
+                logger.debug(`Voice STT returned empty transcript for user ${userId}`);
             }
         } catch (error) {
-            console.error('STT failed:', error.message || error);
+            logger.error('STT failed:', error.message || error);
         }
+    };
+
+    const abortCapture = (reason, error) => {
+        if (ended) return;
+        ended = true;
+        session.activeUsers.delete(userId);
+        logger.warn(`Voice capture aborted (${reason}) for user ${userId}:`, error && (error.message || error));
+
+        try {
+            opusStream.unpipe(decoder);
+        } catch (e) {
+            // ignore cleanup errors
+        }
+
+        try {
+            decoder.destroy();
+        } catch (e) {
+            // ignore cleanup errors
+        }
+    };
+
+    decoder.on('data', chunk => {
+        totalBytes += chunk.length;
+        if (totalBytes > (48000 * 2 * 2) * (config.maxSpeechMs / 1000)) {
+            try {
+                opusStream.destroy();
+            } catch (e) {
+                // ignore cleanup errors
+            }
+            return;
+        }
+        pcmChunks.push(chunk);
     });
 
-    opusStream.on('error', () => {
-        session.activeUsers.delete(userId);
+    decoder.on('end', () => {
+        finalizeCapture();
+    });
+
+    decoder.on('error', error => {
+        abortCapture('decoder-error', error);
+    });
+
+    opusStream.on('error', error => {
+        abortCapture('opus-stream-error', error);
+    });
+
+    opusStream.on('end', () => {
+        if (ended) return;
+        try {
+            decoder.end();
+        } catch (error) {
+            abortCapture('decoder-end-failed', error);
+        }
     });
 
     opusStream.pipe(decoder);
@@ -149,6 +200,14 @@ async function joinVoice(options) {
     });
 
     const player = createAudioPlayer();
+    player.on('error', error => {
+        logger.error('Voice player error:', error.message || error);
+    });
+
+    connection.on('error', error => {
+        logger.error('Voice connection error:', error.message || error);
+    });
+
     connection.subscribe(player);
 
     const session = {
@@ -164,6 +223,7 @@ async function joinVoice(options) {
     sessions.set(guildId, session);
 
     session.receiver.speaking.on('start', userId => {
+        logger.debug(`Voice speaking start event for user ${userId} in guild ${guildId}`);
         subscribeToUser(session, userId);
     });
 

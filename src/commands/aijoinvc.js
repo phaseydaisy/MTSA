@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, MessageFlags } = require('discord.js');
 const { joinVoice } = require('../ai/voiceState');
 const { aiConfig } = require('../ai/aiConfig');
 
@@ -10,15 +10,17 @@ module.exports = {
         .setIntegrationTypes([0, 1]),
 
     async execute(interaction) {
+        await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
         if (!aiConfig.voice || !aiConfig.voice.enabled) {
-            return interaction.reply({ content: 'Voice mode is disabled.', ephemeral: true });
+            return interaction.editReply({ content: 'Voice mode is disabled.' });
         }
 
         const member = await interaction.guild.members.fetch(interaction.user.id);
         const voiceChannel = member.voice ? member.voice.channel : null;
 
         if (!voiceChannel) {
-            return interaction.reply({ content: 'Join a voice channel first.', ephemeral: true });
+            return interaction.editReply({ content: 'Join a voice channel first.' });
         }
 
         await joinVoice({
@@ -26,6 +28,6 @@ module.exports = {
             voiceChannelId: voiceChannel.id,
             textChannelId: interaction.channelId
         });
-        return interaction.reply({ content: `Joined ${voiceChannel.name}.`, ephemeral: true });
+        return interaction.editReply({ content: `Joined ${voiceChannel.name}.` });
     }
 };
