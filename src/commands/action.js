@@ -82,6 +82,14 @@ const actionConfigs = {
         actionText: (user, target) => `${user} high-fives ${target}!\n\n-# *SLAP!* 🎉`,
         selfError: "You can't high-five yourself!"
     },
+    dance: {
+        title: '💃 DANCE!',
+        endpoints: ['https://api.phawse.lol/gif/dance'],
+        actionText: (user, target) => target
+            ? `${user} dances with ${target}! 💃🕺`
+            : `${user} is dancing! 💃🕺`,
+        selfError: null
+    },
     greet: {
         title: '👋 GREET!',
         endpoints: ['https://api.phawse.lol/gif/wave'],
@@ -193,6 +201,11 @@ module.exports = {
                 .addUserOption(option => option.setName('user').setDescription('The user to high-five').setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
+                .setName('dance')
+                .setDescription('Dance solo or with someone')
+                .addUserOption(option => option.setName('with').setDescription('Who to dance with').setRequired(false)))
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('greet')
                 .setDescription('Greet someone')
                 .addUserOption(option => option.setName('user').setDescription('The user to greet').setRequired(true)))
@@ -226,14 +239,16 @@ module.exports = {
 
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
-        const user = interaction.options.getUser('user');
+        const user = subcommand === 'dance'
+            ? interaction.options.getUser('with')
+            : interaction.options.getUser('user');
         const config = actionConfigs[subcommand];
 
         if (!config) {
             return interaction.reply({ content: '❌ Unknown action!', flags: MessageFlags.Ephemeral });
         }
 
-        if (subcommand !== 'lurk' && !user) {
+        if (subcommand !== 'lurk' && subcommand !== 'dance' && !user) {
             return interaction.reply({ content: '❌ You must specify a user!', flags: MessageFlags.Ephemeral });
         }
 

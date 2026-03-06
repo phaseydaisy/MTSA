@@ -39,11 +39,6 @@ const reactionConfigs = {
         endpoints: ['https://api.phawse.lol/gif/stare', 'https://api.phawse.lol/gif/think', 'https://api.phawse.lol/gif/confused'],
         reactionText: (user) => `${user} is staring... 👁️👁️`
     },
-    dance: {
-        title: '💃 DANCE!',
-        endpoints: ['https://api.phawse.lol/gif/dance', 'https://api.phawse.lol/gif/happy', 'https://api.phawse.lol/gif/celebrate'],
-        reactionText: (user) => `${user} is dancing! 💃🕺`
-    },
     disgust: {
         title: '🤢 DISGUST!',
         endpoints: ['https://api.phawse.lol/gif/disgust', 'https://api.phawse.lol/gif/disgusted'],
@@ -93,10 +88,6 @@ module.exports = {
             subcommand
                 .setName('stare')
                 .setDescription('Stare intensely'))
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('dance')
-                .setDescription('Show off your dance moves'))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('disgust')
