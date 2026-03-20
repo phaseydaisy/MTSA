@@ -232,7 +232,6 @@ module.exports = {
             return;
         }
 
-        // Handle other NSFW commands
         const config = nsfwConfigs[subcommand];
         const user = interaction.options.getUser('user');
 
