@@ -145,6 +145,12 @@ const nsfwConfigs = {
         endpoints: ['https://api.phawse.lol/nsfw/underboob'],
         actionText: () => 'Underboob!',
         requiresTarget: false
+    },
+    neko: {
+        title: '😺 NSFW NEKO!',
+        endpoints: ['https://api.phawse.lol/nsfw/nsfwNeko', 'https://api.phawse.lol/nsfw/neko'],
+        actionText: () => 'NSFW neko time!',
+        requiresTarget: false
     }
 };
 
@@ -213,6 +219,10 @@ module.exports = {
             subcommand
                 .setName('underboob')
                 .setDescription('Show some NSFW underboob'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('neko')
+                .setDescription('Show a NSFW neko image'))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('horny')
