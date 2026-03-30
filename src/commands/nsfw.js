@@ -107,6 +107,13 @@ const nsfwConfigs = {
         requiresTarget: true,
         selfError: "❌ You can't suck yourself!"
     },
+    footjob: {
+        title: '🦶 FOOTJOB!',
+        endpoints: ['https://api.phawse.lol/nsfw/footjob', 'https://api.phawse.lol/nsfw/feet'],
+        actionText: (user, target) => `${user} gives ${target} a footjob!`,
+        requiresTarget: true,
+        selfError: "❌ You can't footjob yourself! Choose someone else."
+    },
     spank: {
         title: '👋 SPANK!',
         endpoints: ['https://api.phawse.lol/nsfw/bondage', 'https://api.phawse.lol/nsfw/sex', 'https://api.phawse.lol/nsfw/oppai'],
@@ -114,10 +121,29 @@ const nsfwConfigs = {
         requiresTarget: true,
         selfError: "❌ You can't spank yourself! Choose someone else."
     },
+    gag: {
+        title: '🪣 GAG!',
+        endpoints: ['https://api.phawse.lol/nsfw/gag'],
+        actionText: (user, target) => `${user} gags ${target}!`,
+        requiresTarget: true,
+        selfError: "❌ You can't gag yourself! Choose someone else."
+    },
     edge: {
         title: '🪢 EDGE!',
         tags: ['masturbate', 'ecchi', 'tease', 'solomale', 'solo'],
         actionText: (user, target) => target ? `${user} edges ${target}!` : `${user} edges themselves!`,
+        requiresTarget: false
+    },
+    thighs: {
+        title: '🍑 THIGHS!',
+        endpoints: ['https://api.phawse.lol/nsfw/thighs'],
+        actionText: () => 'Thighs!',
+        requiresTarget: false
+    },
+    underboob: {
+        title: '🎀 UNDERBOOBS!',
+        endpoints: ['https://api.phawse.lol/nsfw/underboob'],
+        actionText: () => 'Underboob!',
         requiresTarget: false
     }
 };
@@ -161,14 +187,32 @@ module.exports = {
                 .addUserOption(option => option.setName('user').setDescription('The user you want to suck').setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
+                .setName('footjob')
+                .setDescription('Give someone a footjob 🔞')
+                .addUserOption(option => option.setName('user').setDescription('The user you want to footjob').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('spank')
                 .setDescription('SPANK THEM')
                 .addUserOption(option => option.setName('user').setDescription('The user you want to spank').setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
+                .setName('gag')
+                .setDescription('Gag someone (playful NSFW roleplay)')
+                .addUserOption(option => option.setName('user').setDescription('The user you want to gag').setRequired(true)))
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('edge')
                 .setDescription('Edge someone or yourself')
                 .addUserOption(option => option.setName('user').setDescription('The user you want to edge (optional - defaults to yourself)').setRequired(false)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('thighs')
+                .setDescription('Show some NSFW thighs'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('underboob')
+                .setDescription('Show some NSFW underboob'))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('horny')

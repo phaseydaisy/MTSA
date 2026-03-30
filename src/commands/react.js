@@ -29,6 +29,11 @@ const reactionConfigs = {
         endpoints: ['https://api.phawse.lol/gif/smirk', 'https://api.phawse.lol/gif/smug', 'https://api.phawse.lol/gif/wink'],
         reactionText: (user) => `${user} smirks...`
     },
+    nosebleed: {
+        title: '🤕 NOSEBLEED!',
+        endpoints: ['https://api.phawse.lol/gif/nosebleed', 'https://api.phawse.lol/gif/blush', 'https://api.phawse.lol/gif/surprised'],
+        reactionText: (user) => `${user} gets a nosebleed!`
+    },
     wink: {
         title: '😉 WINK!',
         endpoints: ['https://api.phawse.lol/gif/wink', 'https://api.phawse.lol/gif/smirk', 'https://api.phawse.lol/gif/smug'],
@@ -80,6 +85,10 @@ module.exports = {
             subcommand
                 .setName('smirk')
                 .setDescription('Smirk at something'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('nosebleed')
+                .setDescription('Show a dramatic nosebleed reaction'))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('wink')

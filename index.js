@@ -204,7 +204,7 @@ async function handleVoiceVerification(message) {
     return false;
 }
 
-client.once('clientReady', async () => {
+client.once('ready', async () => {
     logger.log(`Bot logged in as ${client.user.tag}`);
     logger.log('Bot is ready to use!');
     await registerCommands();
