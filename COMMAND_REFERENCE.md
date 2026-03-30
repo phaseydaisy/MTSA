@@ -81,7 +81,7 @@ All using **api.phawse.lol** for GIFs
 
 ---
 
-## Suggested Future Commands
+## Possible Future Commands
 
 ### More Reaction Types
 - **`/cuddle`** - Deep cuddle session (romantic, cozy)
@@ -112,7 +112,7 @@ All using **api.phawse.lol** for GIFs
 ---
 
 ## Implementation Notes
-- All commands use **phawse.lol API** for GIF fetching
+- All commands use an external GIF API for fetching
 - Commands have fallback text if GIF fails to load
 - Commands with two parameters prevent self-targeting
 - Stats are tracked in JSON files (persistent)

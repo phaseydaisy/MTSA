@@ -3,13 +3,18 @@ const { createCanvas, loadImage, registerFont } = require('canvas');
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
+const fs = require('fs');
+const path = require('path');
+const fontPath = path.join(__dirname, '../utils/FuturaCondensedBold.ttf');
+console.log('Font exists:', fs.existsSync(fontPath));
+
 
 registerFont(path.join(__dirname, '../utils/FuturaCondensedBold.ttf'), { family: 'FuturaCondensedBold' });
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('im')
-        .setDescription('Image manipulation commands')
+        .setDescription('Image commands')
         .addSubcommand(sub =>
             sub.setName('caption')
                 .setDescription('Add a caption to an image')
