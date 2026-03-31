@@ -84,17 +84,14 @@ module.exports = {
             return interaction.editReply({ content: 'Failed to load the image. Make sure the link is direct and valid.' });
         }
 
-        // Make the white header taller and dynamically size/wrap text so it fits
         const topHeight = Math.max(120, Math.round(image.height * 0.12));
         const canvas = createCanvas(image.width, image.height + topHeight);
         const ctx = canvas.getContext('2d');
         ctx.drawImage(image, 0, topHeight, image.width, image.height);
 
-        // Draw white header
         ctx.fillStyle = '#fff';
         ctx.fillRect(0, 0, image.width, topHeight);
 
-        // Text styling and wrapping: start with a font size based on header height
         const maxTextWidth = Math.max(100, image.width - 40);
         let fontSize = Math.max(28, Math.floor(topHeight * 0.6));
         ctx.fillStyle = '#000';
@@ -121,7 +118,6 @@ module.exports = {
             return lines;
         };
 
-        // Reduce font size until text block fits within header height
         let lines = [];
         const minFontSize = 18;
         while (fontSize >= minFontSize) {

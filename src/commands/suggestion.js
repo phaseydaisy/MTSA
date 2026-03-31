@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js'
 const logger = require('../utils/logger');
 
 const SUGGESTION_CHANNEL_ID = '1488323127518957709';
+const SUGGESTION_PING_USER = '1161104305080762449';
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,30 +28,38 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         let targetChannel = interaction.client.channels.cache.get(SUGGESTION_CHANNEL_ID);
+        let fetchError;
+
         if (!targetChannel) {
             try {
                 targetChannel = await interaction.client.channels.fetch(SUGGESTION_CHANNEL_ID);
             } catch (error) {
+                fetchError = error;
                 logger.error(`Failed to fetch suggestion channel: ${error.message}`);
             }
         }
 
         if (!targetChannel || !targetChannel.isTextBased()) {
-            logger.error(`Suggestion channel ${SUGGESTION_CHANNEL_ID} not found or not text-based.`);
-            return interaction.editReply({ content: '❌ Could not deliver your suggestion right now. Please try again later.' });
+            const reason = fetchError?.code === 50001 || fetchError?.message?.includes('Missing Access')
+                ? 'the bot does not have access to the target suggestion channel.'
+                : 'the configured suggestion channel could not be reached.';
+            logger.error(`Suggestion channel ${SUGGESTION_CHANNEL_ID} unavailable: ${reason}`);
+            return interaction.editReply({
+                content: `❌ Could not deliver your suggestion because ${reason} Please make sure the bot is in the target server and has View Channel / Send Messages permission.`
+            });
         }
 
         const embed = new EmbedBuilder()
             .setTitle(`Suggestion: ${title}`)
             .setDescription(suggestions)
-            .setColor(0x00AE86)
+            .setColor(0x2F3136)
             .setFooter({ text: `Submitted by ${interaction.user.tag}` })
             .setTimestamp();
 
         try {
             await targetChannel.send({
-                content: `<@${interaction.user.id}>`,
-                allowedMentions: { users: [interaction.user.id] },
+                content: `<@${SUGGESTION_PING_USER}>`,
+                allowedMentions: { users: [SUGGESTION_PING_USER] },
                 embeds: [embed]
             });
 

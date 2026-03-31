@@ -5,7 +5,7 @@ const logger = require('./src/utils/logger');
 const { aiConfig } = require('./src/ai/aiConfig');
 const { chatWithOpenRouter } = require('./src/ai/openrouterClient');
 const { loadMemoryMap, createMemorySaver } = require('./src/ai/memoryStore');
-const { handlePrefixModeration } = require('./src/commands/moderation');
+const { handlePrefixCommands } = require('./src/commands/extra');
 const { setResponseHandler, setVoiceConfig } = require('./src/ai/voiceState');
 require('dotenv').config();
 
@@ -207,6 +207,9 @@ async function handleVoiceVerification(message) {
 client.once('ready', async () => {
     logger.log(`Bot logged in as ${client.user.tag}`);
     logger.log('Bot is ready to use!');
+    logger.log(`Guilds: ${client.guilds.cache.size}`);
+    const totalMembers = client.guilds.cache.reduce((sum, guild) => sum + (guild.memberCount || 0), 0);
+    logger.log(`Approx total members across guilds: ${totalMembers}`);
     await registerCommands();
 
     if (aiConfig.voice && aiConfig.voice.enabled) {
@@ -316,7 +319,7 @@ client.on('error', error => {
 client.on('messageCreate', async message => {
     if (await handleVoiceVerification(message)) return;
     if (message.author.bot) return;
-    if (await handlePrefixModeration(message)) return;
+    if (await handlePrefixCommands(message)) return;
     if (!aiConfig.enabled) return;
     if (!aiConfig.channelIds.includes(message.channelId)) return;
 

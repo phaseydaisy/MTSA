@@ -136,7 +136,7 @@ const nsfwConfigs = {
     },
     thighs: {
         title: '🍑 THIGHS!',
-        endpoints: ['https://api.phawse.lol/nsfw/thighs'],
+        endpoints: ['https://api.phawse.lol/nsfw/thighs', 'https://api.phawse.lol/nsfw/zettaiRyouiki'],
         actionText: () => 'Thighs!',
         requiresTarget: false
     },
@@ -156,7 +156,7 @@ const nsfwConfigs = {
 
 async function sendEmbedWithGif(interaction, embed, gifUrl, fileName) {
     if (!gifUrl) {
-        await interaction.followUp({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
         return;
     }
 
@@ -169,11 +169,26 @@ async function sendEmbedWithGif(interaction, embed, gifUrl, fileName) {
         });
         const attachment = new AttachmentBuilder(gifResponse.data, { name: fileName });
         embed.setImage(`attachment://${fileName}`);
-        await interaction.followUp({ embeds: [embed], files: [attachment] });
+        await interaction.editReply({ embeds: [embed], files: [attachment] });
     } catch (error) {
         logger.error(`Error downloading gif: ${error.message}`);
         embed.setImage(gifUrl);
-        await interaction.followUp({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
+    }
+}
+
+async function acknowledgeInteraction(interaction) {
+    if (interaction.deferred || interaction.replied) return;
+
+    try {
+        await interaction.deferReply();
+    } catch (deferError) {
+        logger.warn(`Defer failed for nsfw interaction: ${deferError.message}`);
+        try {
+            await interaction.reply({ content: 'Loading...', ephemeral: true });
+        } catch (replyError) {
+            logger.error(`Failed to acknowledge nsfw interaction: ${replyError.message}`);
+        }
     }
 }
 
@@ -238,7 +253,7 @@ module.exports = {
             const target = interaction.options.getUser('user') || interaction.user;
             const percentage = Math.floor(Math.random() * 101);
 
-            await interaction.deferReply();
+            await acknowledgeInteraction(interaction);
 
             const bar = getHornyBar(percentage);
             const message = getLevelMessage(percentage);
@@ -268,7 +283,7 @@ module.exports = {
         if (subcommand === 'edge') {
             const user = interaction.options.getUser('user') || interaction.user;
 
-            await interaction.deferReply();
+            await acknowledgeInteraction(interaction);
 
             const gifUrl = await getGifFromApi(['masturbate', 'ecchi', 'tease'], true, 'edge');
 
@@ -301,7 +316,7 @@ module.exports = {
             return interaction.reply({ content: config.selfError, flags: MessageFlags.Ephemeral });
         }
 
-        await interaction.deferReply();
+        await acknowledgeInteraction(interaction);
 
         const tags = config.endpoints
             .map(endpoint => endpoint.split('/').pop())
