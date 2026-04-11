@@ -127,6 +127,12 @@ const actionConfigs = {
             ? `${user} lurks around ${target}...`
             : `${user} is lurking in the shadows...`,
         selfError: null
+    },
+    lay: {
+        title: '🛏️ LAY!',
+        endpoints: ['https://api.phawse.lol/gif/lay', 'https://api.phawse.lol/gif/lying'],
+        actionText: (user) => `${user} lays down to relax...`,
+        selfError: null
     }
 };
 
@@ -234,6 +240,10 @@ module.exports = {
                 .setName('lurk')
                 .setDescription('Lurk around someone')
                 .addUserOption(option => option.setName('user').setDescription('The user to lurk around').setRequired(false)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('lay')
+                .setDescription('Lay down and relax'))
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 
@@ -241,22 +251,22 @@ module.exports = {
         const subcommand = interaction.options.getSubcommand();
         const user = subcommand === 'dance'
             ? interaction.options.getUser('with')
+            : subcommand === 'lay'
+            ? null
             : interaction.options.getUser('user');
         const config = actionConfigs[subcommand];
 
         if (!config) {
-            return interaction.reply({ content: '❌ Unknown action!', flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: '❌ Unknown action!', flags: MessageFlags.Ephemeral });
         }
 
-        if (subcommand !== 'lurk' && subcommand !== 'dance' && !user) {
-            return interaction.reply({ content: '❌ You must specify a user!', flags: MessageFlags.Ephemeral });
+        if (subcommand !== 'lurk' && subcommand !== 'dance' && subcommand !== 'lay' && !user) {
+            return interaction.editReply({ content: '❌ You must specify a user!', flags: MessageFlags.Ephemeral });
         }
 
         if (config.selfError && user && user.id === interaction.user.id) {
-            return interaction.reply({ content: `❌ ${config.selfError}`, flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: `❌ ${config.selfError}`, flags: MessageFlags.Ephemeral });
         }
-
-        await interaction.deferReply();
 
         const tags = config.endpoints
             .map(endpoint => endpoint.split('/').pop())
@@ -279,14 +289,14 @@ module.exports = {
                 });
                 const attachment = new AttachmentBuilder(gifResponse.data, { name: `${subcommand}.gif` });
                 embed.setImage(`attachment://${subcommand}.gif`);
-                await interaction.followUp({ embeds: [embed], files: [attachment] });
+                await interaction.editReply({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 logger.error(`Error downloading gif: ${error.message}`);
                 embed.setImage(gifUrl);
-                await interaction.followUp({ embeds: [embed] });
+                await interaction.editReply({ embeds: [embed] });
             }
         } else {
-            await interaction.followUp({ embeds: [embed] });
+            await interaction.editReply({ embeds: [embed] });
         }
     }
 };

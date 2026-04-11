@@ -116,7 +116,7 @@ const nsfwConfigs = {
     },
     spank: {
         title: '👋 SPANK!',
-        endpoints: ['https://api.phawse.lol/nsfw/bondage', 'https://api.phawse.lol/nsfw/sex', 'https://api.phawse.lol/nsfw/oppai'],
+        endpoints: ['https://api.phawse.lol/nsfw/grab_ass'],
         actionText: (user, target) => `${user} spanks ${target}!`,
         requiresTarget: true,
         selfError: "❌ You can't spank yourself! Choose someone else."
@@ -146,17 +146,53 @@ const nsfwConfigs = {
         actionText: () => 'Underboob!',
         requiresTarget: false
     },
+    boobs: {
+        title: '🍒 BOOBS!',
+        endpoints: ['https://api.phawse.lol/nsfw/boobs'],
+        actionText: () => 'Boobs!',
+        requiresTarget: false
+    },
+    pussy: {
+        title: '🍑 PUSSY!',
+        endpoints: ['https://api.phawse.lol/nsfw/pussy'],
+        actionText: () => 'Pussy!',
+        requiresTarget: false
+    },
     neko: {
         title: '😺 NSFW NEKO!',
         endpoints: ['https://api.phawse.lol/nsfw/nsfwNeko', 'https://api.phawse.lol/nsfw/neko'],
         actionText: () => 'NSFW neko time!',
         requiresTarget: false
+    },
+    grab_ass: {
+        title: '🍑 GRAB ASS!',
+        endpoints: ['https://api.phawse.lol/nsfw/ass_grab', 'https://api.phawse.lol/nsfw/ass'],
+        actionText: (user, target) => `${user} grabs ${target}'s ass!`,
+        requiresTarget: true,
+        selfError: '❌ You can’t grab your own ass here. Pick someone else.'
+    },
+    peg: {
+        title: '🍆 PEG!',
+        endpoints: ['https://api.phawse.lol/nsfw/strapon'],
+        actionText: (user, target) => `${user} pegs ${target}!`,
+        requiresTarget: true,
+        selfError: '❌ You can’t peg yourself here. Pick someone else.'
     }
 };
 
 async function sendEmbedWithGif(interaction, embed, gifUrl, fileName) {
+    const sendResponse = async (options) => {
+        if (interaction.deferred) {
+            return interaction.editReply(options);
+        }
+        if (interaction.replied) {
+            return interaction.followUp(options);
+        }
+        return interaction.reply(options);
+    };
+
     if (!gifUrl) {
-        await interaction.editReply({ embeds: [embed] });
+        await sendResponse({ embeds: [embed] });
         return;
     }
 
@@ -169,27 +205,17 @@ async function sendEmbedWithGif(interaction, embed, gifUrl, fileName) {
         });
         const attachment = new AttachmentBuilder(gifResponse.data, { name: fileName });
         embed.setImage(`attachment://${fileName}`);
-        await interaction.editReply({ embeds: [embed], files: [attachment] });
+        await sendResponse({ embeds: [embed], files: [attachment] });
     } catch (error) {
         logger.error(`Error downloading gif: ${error.message}`);
         embed.setImage(gifUrl);
-        await interaction.editReply({ embeds: [embed] });
+        await sendResponse({ embeds: [embed] });
     }
 }
 
 async function acknowledgeInteraction(interaction) {
-    if (interaction.deferred || interaction.replied) return;
-
-    try {
-        await interaction.deferReply();
-    } catch (deferError) {
-        logger.warn(`Defer failed for nsfw interaction: ${deferError.message}`);
-        try {
-            await interaction.reply({ content: 'Loading...', ephemeral: true });
-        } catch (replyError) {
-            logger.error(`Failed to acknowledge nsfw interaction: ${replyError.message}`);
-        }
-    }
+    // No longer needed - deferring happens in main handler
+    return;
 }
 
 module.exports = {
@@ -236,10 +262,26 @@ module.exports = {
                 .setDescription('Show some NSFW underboob'))
         .addSubcommand(subcommand =>
             subcommand
+                .setName('boobs')
+                .setDescription('Show some NSFW boobs'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('pussy')
+                .setDescription('Show some NSFW pussy'))
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('neko')
                 .setDescription('Show a NSFW neko image'))
         .addSubcommand(subcommand =>
             subcommand
+                .setName('grab_ass')
+                .setDescription('Grab someone else’s ass 🍑 (NSFW)')
+                .addUserOption(option => option.setName('user').setDescription('The target user').setRequired(true)))
+        .addSubcommand(subcommand =>                subcommand
+                    .setName('peg')
+                    .setDescription('Peg someone 🔞')
+                    .addUserOption(option => option.setName('user').setDescription('The target user').setRequired(true)))
+        .addSubcommand(subcommand =>            subcommand
                 .setName('horny')
                 .setDescription('Check the horny level 🔞 (arousal rating)')
                 .addUserOption(option => option.setName('user').setDescription('The user to check (optional - checks yourself if not specified)').setRequired(false)))
@@ -252,8 +294,6 @@ module.exports = {
         if (subcommand === 'horny') {
             const target = interaction.options.getUser('user') || interaction.user;
             const percentage = Math.floor(Math.random() * 101);
-
-            await acknowledgeInteraction(interaction);
 
             const bar = getHornyBar(percentage);
             const message = getLevelMessage(percentage);
@@ -283,8 +323,6 @@ module.exports = {
         if (subcommand === 'edge') {
             const user = interaction.options.getUser('user') || interaction.user;
 
-            await acknowledgeInteraction(interaction);
-
             const gifUrl = await getGifFromApi(['masturbate', 'ecchi', 'tease'], true, 'edge');
 
             const isSelf = user.id === interaction.user.id;
@@ -305,18 +343,16 @@ module.exports = {
         const user = interaction.options.getUser('user');
 
         if (!config) {
-            return interaction.reply({ content: '❌ Unknown NSFW command!', flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: '❌ Unknown NSFW command!', flags: MessageFlags.Ephemeral });
         }
 
         if (config.requiresTarget && !user) {
-            return interaction.reply({ content: '❌ You must specify a user!', flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: '❌ You must specify a user!', flags: MessageFlags.Ephemeral });
         }
 
         if (config.selfError && user && user.id === interaction.user.id) {
-            return interaction.reply({ content: config.selfError, flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: config.selfError, flags: MessageFlags.Ephemeral });
         }
-
-        await acknowledgeInteraction(interaction);
 
         const tags = config.endpoints
             .map(endpoint => endpoint.split('/').pop())

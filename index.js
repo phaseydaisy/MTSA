@@ -2,11 +2,7 @@ const { Client, GatewayIntentBits, Collection, REST, Routes, MessageFlags } = re
 const fs = require('fs');
 const path = require('path');
 const logger = require('./src/utils/logger');
-const { aiConfig } = require('./src/ai/aiConfig');
-const { chatWithOpenRouter } = require('./src/ai/openrouterClient');
-const { loadMemoryMap, createMemorySaver } = require('./src/ai/memoryStore');
 const { handlePrefixCommands } = require('./src/commands/extra');
-const { setResponseHandler, setVoiceConfig } = require('./src/ai/voiceState');
 require('dotenv').config();
 
 const client = new Client({
@@ -14,8 +10,7 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildVoiceStates
+        GatewayIntentBits.GuildMembers
     ]
 });
 
@@ -65,143 +60,26 @@ async function registerCommands() {
     }
 }
 
-const lastAiReplyAt = new Map();
-const memoryOptions = aiConfig.memory || {};
-const memoryEnabled = Boolean(memoryOptions.enabled);
-const memoryPersistent = Boolean(memoryOptions.persist);
-const aiHistory = memoryPersistent ? loadMemoryMap(memoryOptions) : new Map();
-const memorySaver = memoryPersistent ? createMemorySaver(aiHistory, memoryOptions) : null;
-const pendingVoiceVerifications = new Map();
 
-function getHistoryKey(message) {
-    if (aiConfig.memory && aiConfig.memory.scope === 'user') {
-        return `${message.channelId}:${message.author.id}`;
-    }
-    return message.channelId;
-}
 
-function trimHistory(history, maxMessages) {
-    if (!Array.isArray(history)) return [];
-    if (history.length <= maxMessages) return history;
-    return history.slice(history.length - maxMessages);
-}
+function getFullCommand(interaction) {
+    let fullCommand = `/${interaction.commandName}`;
 
-function sanitizeAiReply(reply) {
-    if (!reply || typeof reply !== 'string') return '';
+    try {
+        const group = interaction.options.getSubcommandGroup(false);
+        const subcommand = interaction.options.getSubcommand(false);
 
-    let cleaned = reply;
-
-    cleaned = cleaned.replace(/\[[^\]]+\]\((https?:\/\/[^)]+)\)/gi, '$1');
-    cleaned = cleaned.replace(/https?:\/\/\S+/gi, '');
-    cleaned = cleaned.replace(/\b(?:www\.)?[a-z0-9-]+\.(?:com|net|org|gg|io|ai|dev|co|app|xyz|edu|gov)\b/gi, '');
-    cleaned = cleaned.replace(/\b(?:according to|as\s+[a-z0-9.-]+\s+(?:says|suggests|states))\b[^.?!]*[.?!]?/gi, '');
-    cleaned = cleaned.replace(/\s{2,}/g, ' ').trim();
-
-    return cleaned;
-}
-
-function buildSystemPromptWithTime(basePrompt) {
-    const now = new Date();
-    const utcNow = now.toISOString();
-    const localNow = now.toLocaleString();
-    const timeContext = `Current time (UTC): ${utcNow}. Current local server time: ${localNow}.`;
-    return `${basePrompt}\n\n${timeContext}`;
-}
-
-async function getAiReply(content, historyKey) {
-    const maxMessages = memoryOptions.maxMessages ? memoryOptions.maxMessages : 0;
-    const history = memoryEnabled ? aiHistory.get(historyKey) || [] : [];
-
-    const reply = await chatWithOpenRouter(content, {
-        model: aiConfig.model,
-        modelFallbacks: aiConfig.modelFallbacks,
-        maxTokens: aiConfig.maxTokens,
-        temperature: aiConfig.temperature,
-        systemPrompt: buildSystemPromptWithTime(aiConfig.systemPrompt),
-        messages: history
-    });
-
-    if (!reply) return '';
-
-    const sanitizedReply = sanitizeAiReply(reply);
-    if (!sanitizedReply) return '';
-
-    const trimmedReply = sanitizedReply.length > aiConfig.maxReplyLength
-        ? sanitizedReply.slice(0, aiConfig.maxReplyLength - 3) + '...'
-        : sanitizedReply;
-
-    if (memoryEnabled && maxMessages > 0) {
-        const nowIso = new Date().toISOString();
-        history.push({ role: 'user', content, timestamp: nowIso });
-        history.push({ role: 'assistant', content: trimmedReply, timestamp: nowIso });
-        aiHistory.set(historyKey, trimHistory(history, maxMessages));
-        if (memorySaver) {
-            memorySaver.scheduleSave();
+        if (group) {
+            fullCommand += ` ${group}`;
         }
-    }
-
-    return trimmedReply;
-}
-
-function getVoiceVerifyKey(guildId, userId) {
-    return `${guildId}:${userId}`;
-}
-
-function normalizeText(value) {
-    return (value || '').trim();
-}
-
-function shouldVerifyTranscript(transcript) {
-    const verifyConfig = aiConfig.voice && aiConfig.voice.verify ? aiConfig.voice.verify : null;
-    if (!verifyConfig || !verifyConfig.enabled) return false;
-
-    const normalized = normalizeText(transcript);
-    const lower = normalized.toLowerCase();
-    const wordCount = normalized.split(/\s+/).filter(Boolean).length;
-    const minChars = verifyConfig.minTranscriptChars || 0;
-    const minWords = verifyConfig.minTranscriptWords || 0;
-    const triggerPhrases = Array.isArray(verifyConfig.triggerPhrases)
-        ? verifyConfig.triggerPhrases
-        : [];
-
-    if (normalized.length < minChars || wordCount < minWords) return false;
-    return triggerPhrases.some(phrase => lower.includes(phrase));
-}
-
-async function handleVoiceVerification(message) {
-    if (!message.guildId || message.author.bot) return false;
-
-    const key = getVoiceVerifyKey(message.guildId, message.author.id);
-    const pending = pendingVoiceVerifications.get(key);
-    if (!pending) return false;
-    if (message.channelId !== pending.channelId) return false;
-
-    if (Date.now() > pending.expiresAt) {
-        pendingVoiceVerifications.delete(key);
-        return false;
-    }
-
-    const response = normalizeText(message.content).toLowerCase();
-    const confirmSet = new Set(['yes', 'y', 'yeah', 'yep', 'confirm']);
-    const rejectSet = new Set(['no', 'n', 'nah', 'nope', 'cancel']);
-
-    if (confirmSet.has(response)) {
-        pendingVoiceVerifications.delete(key);
-        const historyKey = `voice:${pending.guildId}:${pending.userId}`;
-        const reply = await getAiReply(pending.transcript, historyKey);
-        if (reply) {
-            await message.channel.send(`**<@${pending.userId}> said:** ${pending.transcript}\n${reply}`);
+        if (subcommand) {
+            fullCommand += ` ${subcommand}`;
         }
-        return true;
+    } catch (error) {
+        // If no subcommand/group exists, just log the base command.
     }
 
-    if (rejectSet.has(response)) {
-        pendingVoiceVerifications.delete(key);
-        await message.reply('Okay, ignoring that.');
-        return true;
-    }
-
-    return false;
+    return fullCommand;
 }
 
 client.once('ready', async () => {
@@ -212,82 +90,37 @@ client.once('ready', async () => {
     logger.log(`Approx total members across guilds: ${totalMembers}`);
     await registerCommands();
 
-    if (aiConfig.voice && aiConfig.voice.enabled) {
-        setVoiceConfig({
-            sttModel: aiConfig.voice.sttModel,
-            ttsModel: aiConfig.voice.ttsModel,
-            ttsVoice: aiConfig.voice.ttsVoice,
-            textOnly: aiConfig.voice.textOnly,
-            minSpeechMs: aiConfig.voice.minSpeechMs,
-            maxSpeechMs: aiConfig.voice.maxSpeechMs,
-            botUserId: client.user.id
-        });
-
-        setResponseHandler(async ({ guildId, userId, text, textChannelId, voiceChannelId }) => {
-            const historyKey = `voice:${guildId}:${userId}`;
-            const targetChannelId = textChannelId || voiceChannelId;
-            logger.debug(`Voice handler target channel: ${targetChannelId || 'none'} (text=${textChannelId || 'none'}, voice=${voiceChannelId || 'none'})`);
-            if (targetChannelId && shouldVerifyTranscript(text)) {
-                const verifyConfig = aiConfig.voice.verify;
-                const key = getVoiceVerifyKey(guildId, userId);
-                pendingVoiceVerifications.set(key, {
-                    guildId,
-                    userId,
-                    transcript: normalizeText(text),
-                    channelId: targetChannelId,
-                    expiresAt: Date.now() + (verifyConfig.timeoutMs || 15000)
-                });
-
-                try {
-                    const channel = await client.channels.fetch(targetChannelId);
-                    if (channel && typeof channel.send === 'function') {
-                        await channel.send(`**<@${userId}> did you say:** ${normalizeText(text)}\nReply "yes" or "no" within 15s.`);
-                    } else {
-                        logger.warn(`Voice verify channel is not text-capable: ${targetChannelId}`);
-                    }
-                } catch (error) {
-                    logger.error('Voice verify prompt failed:', error.message || error);
-                }
-
-                return '';
-            }
-
-            const reply = await getAiReply(text, historyKey);
-            if (!reply) {
-                logger.warn(`Voice AI produced empty reply for user ${userId}`);
-                return '';
-            }
-
-            if (targetChannelId) {
-                try {
-                    const channel = await client.channels.fetch(targetChannelId);
-                    if (channel && typeof channel.send === 'function') {
-                        await channel.send(`**<@${userId}> said:** ${text}\n${reply}`);
-                        logger.info(`Voice text reply sent to channel ${targetChannelId} for user ${userId}`);
-                    } else {
-                        logger.warn(`Voice response channel is not text-capable: ${targetChannelId}`);
-                    }
-                } catch (error) {
-                    logger.error('Voice text reply failed:', error.message || error);
-                }
-            } else {
-                logger.warn(`No target channel available for voice reply (guild ${guildId}, user ${userId})`);
-            }
-
-            return reply;
-        });
-    }
 });
 
 client.on('interactionCreate', async interaction => {
+    const startTime = Date.now();
+
     if (!interaction.isChatInputCommand()) return;
 
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
 
+    // Defer immediately to prevent expiration
     try {
-        logger.command(interaction.commandName, interaction.user, interaction.guild);
+        await interaction.deferReply();
+    } catch (deferError) {
+        // Only log if it's not an "Unknown interaction" error (which is expected due to network latency)
+        if (!deferError.message?.includes('Unknown interaction')) {
+            logger.warn(`Failed to defer interaction for ${interaction.commandName}: ${deferError.message}`);
+        } else {
+            logger.debug(`Interaction expired before processing: ${interaction.commandName} (${interaction.id})`);
+        }
+        return;
+    }
+
+    try {
+        logger.command(getFullCommand(interaction), interaction.user, interaction.guild);
         await command.execute(interaction);
+
+        const processingTime = Date.now() - startTime;
+        if (processingTime > 2000) { // Log slow commands (>2 seconds)
+            logger.warn(`Slow command execution: ${interaction.commandName} took ${processingTime}ms`);
+        }
     } catch (error) {
         if (error && (error.code === 10062 || error.code === 40060)) {
             logger.warn(`Interaction expired for command ${interaction.commandName} (${interaction.id})`);
@@ -298,9 +131,9 @@ client.on('interactionCreate', async interaction => {
         const errorMessage = 'An error occurred while executing this command.';
         try {
             if (interaction.replied || interaction.deferred) {
-                await interaction.followUp({ content: errorMessage, flags: MessageFlags.Ephemeral });
+                await interaction.editReply({ content: errorMessage, flags: MessageFlags.Ephemeral });
             } else {
-                await interaction.reply({ content: errorMessage, flags: MessageFlags.Ephemeral });
+                await interaction.followUp({ content: errorMessage, flags: MessageFlags.Ephemeral });
             }
         } catch (replyError) {
             if (replyError && (replyError.code === 10062 || replyError.code === 40060)) {
@@ -317,32 +150,8 @@ client.on('error', error => {
 });
 
 client.on('messageCreate', async message => {
-    if (await handleVoiceVerification(message)) return;
     if (message.author.bot) return;
     if (await handlePrefixCommands(message)) return;
-    if (!aiConfig.enabled) return;
-    if (!aiConfig.channelIds.includes(message.channelId)) return;
-
-    const content = (message.content || '').trim();
-    if (!content) return;
-
-    const now = Date.now();
-    const last = lastAiReplyAt.get(message.channelId) || 0;
-    if (aiConfig.cooldownMs > 0 && now - last < aiConfig.cooldownMs) return;
-
-    const historyKey = getHistoryKey(message);
-
-    try {
-        await message.channel.sendTyping();
-        const reply = await getAiReply(content, historyKey);
-
-        if (!reply) return;
-        logger.ai(message.author, content, reply);
-        await message.reply(`> ${content}\n${reply}`);
-        lastAiReplyAt.set(message.channelId, now);
-    } catch (error) {
-        logger.error('AI reply failed:', error.message || error);
-    }
 });
 
 loadCommands();
@@ -358,13 +167,6 @@ if (!token) {
 client.login(token);
 
 function flushMemoryAndExit(code = 0) {
-    if (memorySaver) {
-        try {
-            memorySaver.flush();
-        } catch (error) {
-            logger.error('Failed to flush AI memory:', error.message || error);
-        }
-    }
     logger.log('Bot shutting down...');
     process.exit(code);
 }

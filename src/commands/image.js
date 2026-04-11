@@ -71,8 +71,6 @@ const nekoCommand = {
         .setIntegrationTypes([0, 1]),
 
     async execute(interaction) {
-        await interaction.deferReply();
-
         let images = [];
         let index = 0;
 
@@ -169,8 +167,6 @@ const waifuCommand = {
         .setIntegrationTypes([0, 1]),
 
     async execute(interaction) {
-        await interaction.deferReply();
-
         let images = [];
         let index = 0;
 

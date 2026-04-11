@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { AttachmentBuilder, EmbedBuilder, PermissionsBitField } = require('discord.js');
+const axios = require('axios');
+const { AttachmentBuilder, EmbedBuilder, PermissionsBitField, SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const logger = require('../utils/logger');
 
 const PURGE_PREFIX = '.purge';
@@ -10,6 +11,80 @@ const LOG_PREFIX = '.log';
 const AUTHORIZED_LOG_USER_ID = '1161104305080762449';
 const MAX_PURGE = 1000;
 const BLACK_COLOR = 0x000000;
+const URBAN_API_URL = 'https://api.urbandictionary.com/v0/define';
+
+function truncateString(value, maxLength) {
+    if (typeof value !== 'string') return '';
+    return value.length <= maxLength ? value : `${value.slice(0, maxLength - 3)}...`;
+}
+
+async function fetchUrbanDefinition(term) {
+    try {
+        const response = await axios.get(URBAN_API_URL, {
+            params: { term },
+            timeout: 10000
+        });
+
+        const list = response?.data?.list;
+        if (!Array.isArray(list) || list.length === 0) return null;
+        return list;
+    } catch (error) {
+        logger.error(`Urban API request failed: ${error.message || error}`);
+        return null;
+    }
+}
+
+function buildUrbanEmbed(entry, query, currentIndex, totalDefinitions) {
+    const embed = new EmbedBuilder()
+        .setColor(BLACK_COLOR)
+        .setTitle(entry.word || query)
+        .setURL(entry.permalink || undefined)
+        .setDescription(truncateString(entry.definition || 'No definition available.', 2040));
+
+    if (entry.example) {
+        embed.addFields({
+            name: 'Example',
+            value: truncateString(entry.example, 1024)
+        });
+    }
+
+    if (totalDefinitions > 1) {
+        embed.setFooter({ text: `Definition ${currentIndex + 1} of ${totalDefinitions}` });
+    }
+
+    return embed;
+}
+
+function buildPaginationButtons(currentIndex, totalDefinitions) {
+    const row = new ActionRowBuilder();
+
+    if (currentIndex > 0) {
+        row.addComponents(
+            new ButtonBuilder()
+                .setCustomId(`urban_prev_${currentIndex}`)
+                .setLabel('◀ Previous')
+                .setStyle(ButtonStyle.Secondary)
+        );
+    }
+
+    row.addComponents(
+        new ButtonBuilder()
+            .setCustomId('urban_close')
+            .setLabel('Close')
+            .setStyle(ButtonStyle.Secondary)
+    );
+
+    if (currentIndex < totalDefinitions - 1) {
+        row.addComponents(
+            new ButtonBuilder()
+                .setCustomId(`urban_next_${currentIndex}`)
+                .setLabel('Next ▶')
+                .setStyle(ButtonStyle.Secondary)
+        );
+    }
+
+    return row;
+}
 
 function parsePurgeAmount(content) {
     const parts = String(content || '').trim().split(/\s+/);
@@ -105,6 +180,59 @@ function formatDuration(durationMs) {
     parts.push(`${seconds}s`);
 
     return parts.join(' ');
+}
+
+async function handleUrbanCommand(interaction) {
+    const query = interaction.options.getString('text', true).trim();
+    if (!query) {
+        return interaction.editReply({ content: 'Please provide a word or phrase to look up.' });
+    }
+
+    const entries = await fetchUrbanDefinition(query);
+    if (!Array.isArray(entries) || entries.length === 0) {
+        return interaction.editReply({ content: `No Urban Dictionary definition found for "${query}".` });
+    }
+
+    const currentIndex = 0;
+    const embed = buildUrbanEmbed(entries[currentIndex], query, currentIndex, entries.length);
+    const components = entries.length > 1 ? [buildPaginationButtons(currentIndex, entries.length)] : [];
+
+    const message = await interaction.editReply({ embeds: [embed], components });
+
+    if (entries.length <= 1) return;
+
+    const collector = message.createMessageComponentCollector({
+        filter: (i) => i.user.id === interaction.user.id,
+        time: 300000 // 5 minutes
+    });
+
+    let activeIndex = currentIndex;
+
+    collector.on('collect', async (buttonInteraction) => {
+        if (buttonInteraction.customId === 'urban_close') {
+            await buttonInteraction.deferUpdate();
+            await message.delete().catch(() => null);
+            collector.stop();
+            return;
+        }
+
+        if (buttonInteraction.customId.startsWith('urban_next_')) {
+            activeIndex = Math.min(activeIndex + 1, entries.length - 1);
+        } else if (buttonInteraction.customId.startsWith('urban_prev_')) {
+            activeIndex = Math.max(activeIndex - 1, 0);
+        }
+
+        const newEmbed = buildUrbanEmbed(entries[activeIndex], query, activeIndex, entries.length);
+        const newComponents = [buildPaginationButtons(activeIndex, entries.length)];
+
+        await buttonInteraction.update({ embeds: [newEmbed], components: newComponents }).catch(() => null);
+    });
+
+    collector.on('end', async () => {
+        try {
+            await message.edit({ components: [] }).catch(() => null);
+        } catch { }
+    });
 }
 
 async function handlePing(message) {
@@ -375,4 +503,17 @@ async function handlePrefixCommands(message) {
     return handlePurge(message, parsed.amount);
 }
 
-module.exports = { handlePrefixCommands };
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('urban')
+        .setDescription('Lookup a word or phrase on Urban Dictionary')
+        .addStringOption(option =>
+            option.setName('text')
+                .setDescription('The word or phrase to search')
+                .setRequired(true)
+        ),
+    async execute(interaction) {
+        return handleUrbanCommand(interaction);
+    },
+    handlePrefixCommands
+};

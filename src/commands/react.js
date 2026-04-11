@@ -34,6 +34,11 @@ const reactionConfigs = {
         endpoints: ['https://api.phawse.lol/gif/nosebleed', 'https://api.phawse.lol/gif/blush', 'https://api.phawse.lol/gif/surprised'],
         reactionText: (user) => `${user} gets a nosebleed!`
     },
+    nod: {
+        title: '🤝 NOD!',
+        endpoints: ['https://api.phawse.lol/gif/nod', 'https://api.phawse.lol/gif/think', 'https://api.phawse.lol/gif/smile'],
+        reactionText: (user) => `${user} nods in agreement.`
+    },
     wink: {
         title: '😉 WINK!',
         endpoints: ['https://api.phawse.lol/gif/wink', 'https://api.phawse.lol/gif/smirk', 'https://api.phawse.lol/gif/smug'],
@@ -58,6 +63,11 @@ const reactionConfigs = {
         title: '😑 BORED!',
         endpoints: ['https://api.phawse.lol/gif/bored'],
         reactionText: (user) => `${user} looks bored...`
+    },
+    wag: {
+        title: '🐕 WAG!',
+        endpoints: ['https://api.phawse.lol/gif/wag', 'https://api.phawse.lol/gif/happy', 'https://api.phawse.lol/gif/excited'],
+        reactionText: (user) => `${user} is wagging with excitement!`
     }
 };
 
@@ -91,6 +101,10 @@ module.exports = {
                 .setDescription('Show a dramatic nosebleed reaction'))
         .addSubcommand(subcommand =>
             subcommand
+                .setName('nod')
+                .setDescription('Nod in agreement'))
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('wink')
                 .setDescription('Wink at something'))
         .addSubcommand(subcommand =>
@@ -109,6 +123,10 @@ module.exports = {
             subcommand
                 .setName('bored')
                 .setDescription('Show that you are bored'))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('wag')
+                .setDescription('Wag happily with excitement'))
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 
@@ -117,10 +135,8 @@ module.exports = {
         const config = reactionConfigs[subcommand];
 
         if (!config) {
-            return interaction.reply({ content: '❌ Unknown reaction!', flags: MessageFlags.Ephemeral });
+            return interaction.editReply({ content: '❌ Unknown reaction!', flags: MessageFlags.Ephemeral });
         }
-
-        await interaction.deferReply();
 
         const tags = config.endpoints
             .map(endpoint => endpoint.split('/').pop())
@@ -143,14 +159,14 @@ module.exports = {
                 });
                 const attachment = new AttachmentBuilder(gifResponse.data, { name: `${subcommand}.gif` });
                 embed.setImage(`attachment://${subcommand}.gif`);
-                await interaction.followUp({ embeds: [embed], files: [attachment] });
+                await interaction.editReply({ embeds: [embed], files: [attachment] });
             } catch (error) {
                 logger.error(`Error downloading gif: ${error.message}`);
                 embed.setImage(gifUrl);
-                await interaction.followUp({ embeds: [embed] });
+                await interaction.editReply({ embeds: [embed] });
             }
         } else {
-            await interaction.followUp({ embeds: [embed] });
+            await interaction.editReply({ embeds: [embed] });
         }
     }
 };

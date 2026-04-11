@@ -2,6 +2,8 @@ const { SlashCommandBuilder, AttachmentBuilder, MessageFlags } = require('discor
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
+const { spawn } = require('child_process');
 const utilsDir = path.join(__dirname, '../utils');
 
 module.exports = {
@@ -21,10 +23,28 @@ module.exports = {
                 .addStringOption(opt =>
                     opt.setName('link')
                         .setDescription('Direct image URL'))
+                .addBooleanOption(opt =>
+                    opt.setName('togif')
+                        .setDescription('Convert result to GIF (optional)')
+                        .setRequired(false)))
+        .addSubcommand(sub =>
+            sub.setName('togif')
+                .setDescription('Convert an image to GIF')
+                .addAttachmentOption(opt =>
+                    opt.setName('image')
+                        .setDescription('Image file to convert'))
+                .addStringOption(opt =>
+                    opt.setName('link')
+                        .setDescription('Direct image URL'))
         ),
     async execute(interaction) {
-        if (interaction.options.getSubcommand() !== 'caption') return;
-        await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+        const subcommand = interaction.options.getSubcommand();
+        
+        if (subcommand === 'togif') {
+            return await handleTogif(interaction);
+        }
+        
+        if (subcommand !== 'caption') return;
 
         // Lazy-load canvas to avoid crashing the whole bot if the native dependency is missing
         let createCanvas, loadImage, registerFont;
@@ -139,7 +159,86 @@ module.exports = {
             ctx.fillText(lines[i], image.width / 2, y);
         }
         const buffer = canvas.toBuffer('image/png');
-        const file = new AttachmentBuilder(buffer, { name: 'caption.png' });
-        await interaction.editReply({ files: [file] });
+        const shouldTogif = interaction.options.getBoolean('togif');
+        
+        if (shouldTogif) {
+            await convertToGif(interaction, buffer, 'caption.png');
+        } else {
+            const file = new AttachmentBuilder(buffer, { name: 'caption.png' });
+            await interaction.editReply({ files: [file] });
+        }
     }
 };
+
+async function handleTogif(interaction) {
+    const imageAttachment = interaction.options.getAttachment('image');
+    const imageUrl = interaction.options.getString('link');
+    
+    if (!imageAttachment && !imageUrl) {
+        return interaction.editReply({ content: 'Please provide an image or a direct image link.' });
+    }
+
+    const imgSrc = imageAttachment ? imageAttachment.url : imageUrl;
+
+    try {
+        // Fetch the image
+        const response = await axios.get(imgSrc, { responseType: 'arraybuffer' });
+        const buffer = Buffer.from(response.data);
+        const fileName = imageAttachment?.name || inferNameFromUrl(imgSrc) || 'image.png';
+        await convertToGif(interaction, buffer, fileName);
+    } catch (error) {
+        console.error(error);
+        return interaction.editReply({ content: 'Failed to process the image. Make sure the link is direct and valid.' });
+    }
+}
+
+async function convertToGif(interaction, buffer, originalName) {
+    try {
+        const gifBuffer = await convertBufferToGif(buffer, originalName);
+        const gifFile = new AttachmentBuilder(gifBuffer, { name: 'converted.gif' });
+        await interaction.editReply({ files: [gifFile] });
+    } catch (error) {
+        console.error(error);
+        await interaction.editReply({ content: 'GIF conversion failed. Make sure ffmpeg is installed and the image is valid.' });
+    }
+}
+
+function inferNameFromUrl(urlString) {
+    try {
+        const pathname = new URL(urlString).pathname;
+        return pathname ? path.basename(pathname) : null;
+    } catch {
+        return null;
+    }
+}
+
+function execFfmpeg(args) {
+    return new Promise((resolve, reject) => {
+        const ffmpeg = spawn('ffmpeg', args, { stdio: 'ignore', windowsHide: true });
+        ffmpeg.on('error', reject);
+        ffmpeg.on('close', code => {
+            if (code === 0) return resolve();
+            reject(new Error(`ffmpeg exited with code ${code}`));
+        });
+    });
+}
+
+async function convertBufferToGif(buffer, originalName) {
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'im-gif-'));
+    const inputPath = path.join(tmpDir, originalName);
+    const palettePath = path.join(tmpDir, 'palette.png');
+    const outputPath = path.join(tmpDir, 'output.gif');
+
+    try {
+        fs.writeFileSync(inputPath, buffer);
+        await execFfmpeg(['-y', '-i', inputPath, '-vf', 'palettegen', palettePath]);
+        await execFfmpeg(['-y', '-i', inputPath, '-i', palettePath, '-lavfi', 'paletteuse', '-r', '15', outputPath]);
+        return fs.readFileSync(outputPath);
+    } finally {
+        try {
+            fs.rmSync(tmpDir, { recursive: true, force: true });
+        } catch (cleanupError) {
+            console.error('Failed to clean up temp files:', cleanupError);
+        }
+    }
+}

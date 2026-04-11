@@ -25,8 +25,6 @@ module.exports = {
         const title = interaction.options.getString('title');
         const suggestions = interaction.options.getString('suggestions');
 
-        await interaction.deferReply({ ephemeral: true });
-
         let targetChannel = interaction.client.channels.cache.get(SUGGESTION_CHANNEL_ID);
         let fetchError;
 
