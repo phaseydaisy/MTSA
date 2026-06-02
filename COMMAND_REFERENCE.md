@@ -24,7 +24,7 @@ All using **api.phawse.lol** for GIFs
 - **`/hug`** - Hug someone (embrace, cuddle, snuggle)
 - **`/kiss`** - Kiss someone (smooch, peck, lip)
 - **`/nuzzle`** - Nuzzle someone (snuggle, cuddle, affection)
-- **`/pet`** - Pet someone (pat, stroke, caress)
+- **`/headpat`** - Headpat someone (pat, stroke, caress)
 
 ### Emotions & Reactions
 - **`/blush`** - Blush adorably! (shy, embarrassed, flustered)
@@ -50,7 +50,7 @@ All using **api.phawse.lol** for GIFs
 ## Command Categories
 
 **User-Target Commands** (2 parameters):
-- bite, slap, poke, pinch, tickle, wink, lick, boop, highfive, pet, hug, kiss, nuzzle, stare, handhold
+- bite, slap, poke, pinch, tickle, wink, lick, boop, highfive, headpat, hug, kiss, nuzzle, stare, handhold
 
 **Self Commands** (1 parameter):
 - blush, cheer, dance, pout, smirk
@@ -76,7 +76,7 @@ All using **api.phawse.lol** for GIFs
 ## Total: 25 Commands
 - **SFW/Affection:** 20 commands
 - **NSFW:** 5 commands
-- **Stats Tracking:** 10 commands (bite, edge, hug, kiss, nuzzle, pet, slap, spank, stare, rape)
+- **Stats Tracking:** 10 commands (bite, edge, hug, kiss, nuzzle, headpat, slap, spank, stare, rape)
 - **Horny Level System:** horny-level command
 
 ---

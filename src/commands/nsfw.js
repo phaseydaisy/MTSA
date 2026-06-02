@@ -116,7 +116,7 @@ const nsfwConfigs = {
     },
     spank: {
         title: '👋 SPANK!',
-        endpoints: ['https://api.phawse.lol/nsfw/grab_ass'],
+        endpoints: ['https://api.phawse.lol/nsfw/ass_grab'],
         actionText: (user, target) => `${user} spanks ${target}!`,
         requiresTarget: true,
         selfError: "❌ You can't spank yourself! Choose someone else."
@@ -160,11 +160,11 @@ const nsfwConfigs = {
     },
     neko: {
         title: '😺 NSFW NEKO!',
-        endpoints: ['https://api.phawse.lol/nsfw/nsfwNeko', 'https://api.phawse.lol/nsfw/neko'],
+        endpoints: ['https://api.phawse.lol/nsfw/neko'],
         actionText: () => 'NSFW neko time!',
         requiresTarget: false
     },
-    grab_ass: {
+    grabass: {
         title: '🍑 GRAB ASS!',
         endpoints: ['https://api.phawse.lol/nsfw/ass_grab', 'https://api.phawse.lol/nsfw/ass'],
         actionText: (user, target) => `${user} grabs ${target}'s ass!`,
@@ -274,7 +274,7 @@ module.exports = {
                 .setDescription('Show a NSFW neko image'))
         .addSubcommand(subcommand =>
             subcommand
-                .setName('grab_ass')
+                .setName('grabass')
                 .setDescription('Grab someone else’s ass 🍑 (NSFW)')
                 .addUserOption(option => option.setName('user').setDescription('The target user').setRequired(true)))
         .addSubcommand(subcommand =>                subcommand

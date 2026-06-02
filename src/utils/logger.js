@@ -25,7 +25,8 @@ class Logger {
     }
 
     formatMessage(level, ...args) {
-        const timestamp = new Date().toISOString();
+        const now = new Date();
+        const estTime = now.toLocaleString('en-US', { timeZone: 'America/New_York' });
         const message = args.map(arg => {
             if (typeof arg === 'object') {
                 try {
@@ -37,7 +38,7 @@ class Logger {
             return String(arg);
         }).join(' ');
         
-        return `[${timestamp}] [${level}] ${message}`;
+        return `[${estTime}] [${level}] ${message}`;
     }
 
     writeToFile(formattedMessage) {

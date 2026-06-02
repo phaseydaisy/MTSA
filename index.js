@@ -3,7 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const logger = require('./src/utils/logger');
 const { handlePrefixCommands } = require('./src/commands/extra');
+const aiCommand = require('./src/commands/ai');
 require('dotenv').config();
+
+const TS_CHANNEL_ID = '1414368687237894204';
 
 const client = new Client({
     intents: [
@@ -152,6 +155,20 @@ client.on('error', error => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
     if (await handlePrefixCommands(message)) return;
+
+    if (message.channel?.id === TS_CHANNEL_ID) {
+        const text = String(message.content || '').trim();
+        if (!text) return;
+
+        try {
+            const reply = await aiCommand.generateAiResponse(text, message.channel.id, message.author.id);
+            if (reply) {
+                await message.channel.send(reply);
+            }
+        } catch (error) {
+            logger.error('TS channel AI reply failed:', error.message || error);
+        }
+    }
 });
 
 loadCommands();

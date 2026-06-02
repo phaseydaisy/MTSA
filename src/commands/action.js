@@ -34,11 +34,11 @@ const actionConfigs = {
         actionText: (user, target) => `${user} nuzzles ${target}!`,
         selfError: "You can't nuzzle yourself! Find someone else."
     },
-    pet: {
-        title: '🐾 PET!',
+    headpat: {
+        title: '🐾 HEADPAT!',
         endpoints: ['https://api.phawse.lol/gif/pat'],
-        actionText: (user, target) => `${user} pets ${target}!`,
-        selfError: "You can't pet yourself!"
+        actionText: (user, target) => `${user} headpats ${target}!`,
+        selfError: "You can't headpat yourself!"
     },
     lick: {
         title: '👅 LICK!',
@@ -167,9 +167,9 @@ module.exports = {
                 .addUserOption(option => option.setName('user').setDescription('The user to nuzzle').setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
-                .setName('pet')
-                .setDescription('Pet someone')
-                .addUserOption(option => option.setName('user').setDescription('The user to pet').setRequired(true)))
+                .setName('headpat')
+                .setDescription('Headpat someone')
+                .addUserOption(option => option.setName('user').setDescription('The user to headpat').setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('lick')
