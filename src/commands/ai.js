@@ -209,7 +209,7 @@ async function generateAiResponse(query, channelId, userId) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ai')
-        .setDescription('dry teen discord ai')
+        .setDescription('work in progress')
         .addStringOption(o =>
             o.setName('query')
                 .setDescription('ask something')

@@ -4,11 +4,6 @@
 # Node modules
 node_modules/
 
-# Logs
-*.log
-
-# JSON stats files 
-jsons/
 
 # .gitignore
 .gitignore

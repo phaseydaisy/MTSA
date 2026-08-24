@@ -1,0 +1,69 @@
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: action
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: ai
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: api
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: urban
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: im
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: neko
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: waifu
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: nsfw
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: react
+[7/8/2026, 2:09:24 PM] [INFO] ✅ Loaded command: suggestion
+[7/8/2026, 2:09:26 PM] [INFO] Bot logged in as mtsa#8702
+[7/8/2026, 2:09:26 PM] [INFO] Bot is ready to use!
+[7/8/2026, 2:09:26 PM] [INFO] Guilds: 11
+[7/8/2026, 2:09:26 PM] [INFO] Approx total members across guilds: 78
+[7/8/2026, 2:09:26 PM] [INFO] Started refreshing application (/) commands.
+[7/8/2026, 2:09:26 PM] [INFO] ✅ Synced 10 command(s)
+[7/8/2026, 2:11:33 PM] [COMMAND] Command: /nsfw edge | User: xlfxr (1139723167275958316) | Guild: DM
+[7/8/2026, 2:11:33 PM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[7/8/2026, 2:11:33 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[7/8/2026, 2:11:35 PM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[7/8/2026, 2:11:35 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_053.gif
+[7/8/2026, 2:11:38 PM] [WARN] Slow command execution: nsfw took 5243ms
+[7/8/2026, 4:45:28 PM] [COMMAND] Command: /nsfw rape | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 4:45:28 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/8/2026, 4:45:29 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/8/2026, 4:45:29 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_200.gif
+[7/8/2026, 4:45:33 PM] [WARN] Slow command execution: nsfw took 5062ms
+[7/8/2026, 4:46:57 PM] [COMMAND] Command: /nsfw rape | User: h0urush (1521828350249799792) | Guild: DM
+[7/8/2026, 4:46:57 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/8/2026, 4:46:59 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/8/2026, 4:46:59 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_289.gif
+[7/8/2026, 4:47:01 PM] [WARN] Slow command execution: nsfw took 5010ms
+[7/8/2026, 4:47:07 PM] [COMMAND] Command: /nsfw gag | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 4:47:07 PM] [WARN] Unknown category 'gag' for strict map; passing through directly.
+[7/8/2026, 4:47:07 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/gag (attempt 1/4)
+[7/8/2026, 4:47:09 PM] [INFO] API Success: https://api.phawse.lol/nsfw/gag -> 200
+[7/8/2026, 4:47:09 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2Fe24091e696977b360d6b6bd8604b6e51%2FKonachan.com%2520-%2520394078%25202girls%2520bikini%2520blush%2520bondage%2520bow%2520bra%2520breasts%2520cameltoe%2520cleavage%2520gag%2520hat%2520navel%2520police%2520red_eyes%2520red_hair%2520ruhee%2520shackles%2520shirt%2520skirt%2520swimsuit%2520underwear.png
+[7/8/2026, 4:47:11 PM] [WARN] Slow command execution: nsfw took 5205ms
+[7/8/2026, 4:47:29 PM] [COMMAND] Command: /nsfw rape | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 4:47:29 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/8/2026, 4:47:31 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/8/2026, 4:47:31 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_220.gif
+[7/8/2026, 4:47:34 PM] [WARN] Slow command execution: nsfw took 5237ms
+[7/8/2026, 5:00:35 PM] [COMMAND] Command: /nsfw rape | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 5:00:35 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/8/2026, 5:00:37 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/8/2026, 5:00:37 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_339.gif
+[7/8/2026, 5:00:39 PM] [WARN] Slow command execution: nsfw took 4842ms
+[7/8/2026, 6:41:40 PM] [COMMAND] Command: /nsfw spank | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 6:41:40 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[7/8/2026, 6:41:40 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[7/8/2026, 6:41:43 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[7/8/2026, 6:41:43 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fa052d8082edf299b475b0122ed2bb989%2Fyande.re%25201265222%2520animal_ears%2520anus%2520arknights%2520ass%2520ass_grab%2520christmas%2520cum%2520ett%2520naked%2520nipple_slip%2520penis%2520pussy%2520sex%2520tail%2520thighhighs%2520uncensored%2520utage_%2528arknights%2529.png
+[7/8/2026, 6:42:46 PM] [ERROR] Error downloading gif: This operation was aborted
+[7/8/2026, 6:42:47 PM] [WARN] Slow command execution: nsfw took 68389ms
+[7/8/2026, 7:13:53 PM] [COMMAND] Command: /nsfw spank | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 7:13:53 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[7/8/2026, 7:13:53 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[7/8/2026, 7:13:54 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[7/8/2026, 7:13:54 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fac5dab46ed1f00ffe91d461ff2af1db5%2Fyande.re%25201265147%2520ass_grab%2520cum%2520cunnilingus%2520fellatio%2520hiyuki%2520naked%2520penis%2520rover_%2528male%2529%2520ruzhai%2520uncensored%2520wet%2520wuthering_waves.jpg
+[7/8/2026, 7:14:01 PM] [ERROR] Error downloading gif: timeout of 7000ms exceeded
+[7/8/2026, 7:14:01 PM] [WARN] Slow command execution: nsfw took 9090ms
+[7/8/2026, 7:26:27 PM] [COMMAND] Command: /nsfw spank | User: omgitsluv (1515509396480987177) | Guild: DM
+[7/8/2026, 7:26:27 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[7/8/2026, 7:26:27 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[7/8/2026, 7:26:28 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[7/8/2026, 7:26:28 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fe37ea6bb3a87f492fae0655c46c74242%2Fyande.re%25201265254%2520anus%2520arknights%2520ass%2520ass_grab%2520bottomless%2520breasts%2520ett%2520nipples%2520no_bra%2520pointy_ears%2520pussy%2520shirt_lift%2520tail%2520uncensored%2520wulfenite.png
+[7/8/2026, 7:27:31 PM] [ERROR] Error downloading gif: This operation was aborted
+[7/8/2026, 7:27:32 PM] [WARN] Slow command execution: nsfw took 65553ms

@@ -1,0 +1,13 @@
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: action
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: ai
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: api
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: urban
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: im
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: neko
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: waifu
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: nsfw
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: react
+[6/3/2026, 12:02:26 AM] [INFO] ✅ Loaded command: suggestion
+[6/3/2026, 12:02:26 AM] [ERROR] ❌ Error: DISCORD_TOKEN not found in .env file
+[6/3/2026, 12:02:26 AM] [ERROR] Please create a .env file with your Discord bot token:
+[6/3/2026, 12:02:26 AM] [ERROR] DISCORD_TOKEN=your_token_here

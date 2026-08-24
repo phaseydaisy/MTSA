@@ -1,0 +1,137 @@
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: action
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: ai
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: api
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: urban
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: im
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: neko
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: waifu
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: nsfw
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: react
+[7/16/2026, 9:12:37 PM] [INFO] ✅ Loaded command: suggestion
+[7/16/2026, 9:12:38 PM] [INFO] Bot logged in as mtsa#8702
+[7/16/2026, 9:12:38 PM] [INFO] Bot is ready to use!
+[7/16/2026, 9:12:38 PM] [INFO] Guilds: 11
+[7/16/2026, 9:12:38 PM] [INFO] Approx total members across guilds: 77
+[7/16/2026, 9:12:38 PM] [INFO] Started refreshing application (/) commands.
+[7/16/2026, 9:12:39 PM] [INFO] ✅ Synced 10 command(s)
+[7/16/2026, 9:24:52 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[7/16/2026, 9:24:52 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/16/2026, 9:24:53 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/16/2026, 9:24:53 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_368.gif
+[7/16/2026, 9:24:55 PM] [WARN] Slow command execution: nsfw took 3604ms
+[7/17/2026, 2:18:18 AM] [COMMAND] Command: /nsfw edge | User: rosethegoober (1404556515972743378) | Guild: E sex
+[7/17/2026, 2:18:18 AM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[7/17/2026, 2:18:18 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[7/17/2026, 2:18:20 AM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[7/17/2026, 2:18:20 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_141.gif
+[7/17/2026, 2:18:21 AM] [WARN] Slow command execution: nsfw took 3705ms
+[7/17/2026, 2:19:41 AM] [COMMAND] Command: /nsfw suck | User: rosethegoober (1404556515972743378) | Guild: E sex
+[7/17/2026, 2:19:41 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[7/17/2026, 2:19:41 AM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[7/17/2026, 2:19:41 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fblowjob%2Fgif%2Fblowjob_218.gif
+[7/17/2026, 2:19:44 AM] [WARN] Slow command execution: nsfw took 4030ms
+[7/17/2026, 6:47:26 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:47:26 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:47:27 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:47:27 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_051.gif
+[7/17/2026, 6:47:29 AM] [WARN] Slow command execution: nsfw took 3689ms
+[7/17/2026, 6:47:40 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:47:40 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:47:41 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:47:41 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_029.gif
+[7/17/2026, 6:47:43 AM] [WARN] Slow command execution: nsfw took 3336ms
+[7/17/2026, 6:48:03 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:48:03 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:48:03 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:48:03 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_060.gif
+[7/17/2026, 6:48:06 AM] [WARN] Slow command execution: nsfw took 3214ms
+[7/17/2026, 6:48:13 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:48:13 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:48:14 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:48:14 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fi0.nekobot.xyz%2F3%2F3%2F3%2Fbb2b08bc821875cd4afda0b1ad9a2.jpg
+[7/17/2026, 6:48:15 AM] [WARN] Slow command execution: nsfw took 2541ms
+[7/17/2026, 6:48:24 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:48:24 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:48:25 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:48:25 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fi0.nekobot.xyz%2F6%2Fd%2F9%2F61b8078cf0fd5ff811a4eb2dcc6bf.png
+[7/17/2026, 6:48:27 AM] [WARN] Slow command execution: nsfw took 3190ms
+[7/17/2026, 6:48:45 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:48:45 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:48:46 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:48:46 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2Fd8a3b55cac23941263645f061997d253%2FKonachan.com%2520-%2520404248%2520anal%2520animal%2520ass%2520bikini%2520blush%2520breasts%2520cat%2520catgirl%2520cosplay%2520fang%2520gloves%2520headband%2520loli%2520nipples%2520original%2520pink_hair%2520swimsuit%2520tail%2520tears%2520twintails%2520white.jpg
+[7/17/2026, 6:48:49 AM] [WARN] Slow command execution: nsfw took 3797ms
+[7/17/2026, 6:50:35 AM] [COMMAND] Command: /nsfw suck | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:50:35 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[7/17/2026, 6:50:36 AM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[7/17/2026, 6:50:36 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fi0.nekobot.xyz%2F1%2Fb%2Ff%2F47c868b6b8915c9e3db224164d25e7fdec249.gif
+[7/17/2026, 6:50:44 AM] [WARN] Slow command execution: nsfw took 9733ms
+[7/17/2026, 6:51:00 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:51:00 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:51:00 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:51:00 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekobot.xyz%2F9%2F1%2F9%2F42d0ef4a2c1d36c08fda7eaed8860.png
+[7/17/2026, 6:51:02 AM] [WARN] Slow command execution: nsfw took 2429ms
+[7/17/2026, 6:51:12 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:51:12 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:51:13 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:51:13 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekobot.xyz%2Fe%2F4%2Fa%2F9d23a38f794d9a84a844ada62b700.jpg
+[7/17/2026, 6:51:15 AM] [WARN] Slow command execution: nsfw took 2656ms
+[7/17/2026, 6:51:34 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:51:34 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:51:35 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:51:35 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fi0.nekobot.xyz%2F2%2F6%2F5%2F32a06e175f13467d3a8ec4fc96bd8.jpg
+[7/17/2026, 6:51:36 AM] [WARN] Slow command execution: nsfw took 2272ms
+[7/17/2026, 6:51:45 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:51:45 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:51:45 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:51:45 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_003.gif
+[7/17/2026, 6:51:51 AM] [WARN] Slow command execution: nsfw took 6849ms
+[7/17/2026, 6:53:04 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:53:04 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:53:05 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:53:05 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fi0.nekobot.xyz%2F4%2F8%2F3%2Ffdbe7ec065c170167d5d2504a619a.png
+[7/17/2026, 6:53:08 AM] [WARN] Slow command execution: nsfw took 4340ms
+[7/17/2026, 6:53:18 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:53:18 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:53:19 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:53:19 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2F6779881c0cbe374eefc4ee21b16b2746%2FKonachan.com%2520-%2520405560%2520animal%2520animal_ears%2520blush%2520breasts%2520cat%2520dress%2520fang%2520garter%2520gloves%2520halo%2520headband%2520purple_eyes%2520purple_hair%2520reflection%2520short_hair%2520tan_lines%2520wet%2520white.jpg
+[7/17/2026, 6:53:25 AM] [WARN] Slow command execution: nsfw took 7416ms
+[7/17/2026, 6:54:27 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:54:27 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:54:27 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:54:27 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_059.gif
+[7/17/2026, 6:54:30 AM] [WARN] Slow command execution: nsfw took 3504ms
+[7/17/2026, 6:54:49 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:54:49 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:54:49 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:54:49 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2Fb64af5f3cddab1916d23576818ee57a1%2FKonachan.com%2520-%2520405238%2520animal%2520animal_ears%2520blush%2520bodysuit%2520breasts%2520brown_eyes%2520building%2520cat%2520city%2520clouds%2520gray_hair%2520headphones%2520knife%2520long_hair%2520night%2520no_bra%2520original%2520sky%2520weapon.png
+[7/17/2026, 6:54:54 AM] [WARN] Slow command execution: nsfw took 5213ms
+[7/17/2026, 6:55:29 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:55:29 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:55:31 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:55:31 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_058.gif
+[7/17/2026, 6:55:33 AM] [WARN] Slow command execution: nsfw took 4713ms
+[7/17/2026, 6:56:01 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:56:01 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:56:02 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:56:02 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2F5c3e897eb0860e92ca6d0e73b9fffda4%2FKonachan.com%2520-%2520404174%2520animal%2520azur_lane%2520bed%2520blush%2520bow%2520breasts%2520cat%2520choker%2520cleavage%2520long_hair%2520no_bra%2520panties%2520purple_hair%2520qian_hen%2520see_through%2520stockings%2520underwear%2520wink.png
+[7/17/2026, 6:56:04 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:56:04 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:56:04 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:56:04 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2Fb7b7708e93a2c06f7f23ee09759528b1%2FKonachan.com%2520-%2520404247%2520anal%2520animal%2520ass%2520bikini%2520blush%2520breasts%2520cat%2520catgirl%2520cosplay%2520fang%2520gloves%2520headband%2520loli%2520long_hair%2520nipples%2520original%2520pink_hair%2520swimsuit%2520tail%2520twintails%2520white.jpg
+[7/17/2026, 6:56:06 AM] [WARN] Slow command execution: nsfw took 4741ms
+[7/17/2026, 6:56:07 AM] [WARN] Slow command execution: nsfw took 2882ms
+[7/17/2026, 6:56:07 AM] [COMMAND] Command: /nsfw neko | User: tmanishackin (1120085420642934965) | Guild: DM
+[7/17/2026, 6:56:07 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/neko (attempt 1/4)
+[7/17/2026, 6:56:07 AM] [INFO] API Success: https://api.phawse.lol/nsfw/neko -> 200
+[7/17/2026, 6:56:07 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fneko%2Fgif%2Fneko_045.gif
+[7/17/2026, 6:56:10 AM] [WARN] Slow command execution: nsfw took 3577ms
+[7/17/2026, 8:13:45 AM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[7/17/2026, 8:13:45 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/17/2026, 8:13:46 AM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/17/2026, 8:13:46 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_436.gif
+[7/17/2026, 8:13:48 AM] [WARN] Slow command execution: nsfw took 3946ms
+[7/17/2026, 8:14:28 AM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[7/17/2026, 8:14:28 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[7/17/2026, 8:14:29 AM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[7/17/2026, 8:14:29 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_466.gif
+[7/17/2026, 8:14:32 AM] [WARN] Slow command execution: nsfw took 4523ms

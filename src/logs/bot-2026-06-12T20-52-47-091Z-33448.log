@@ -1,0 +1,574 @@
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: action
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: ai
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: api
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: urban
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: im
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: neko
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: waifu
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: nsfw
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: react
+[6/12/2026, 4:52:47 PM] [INFO] ✅ Loaded command: suggestion
+[6/12/2026, 4:52:48 PM] [INFO] Bot logged in as mtsa#8702
+[6/12/2026, 4:52:48 PM] [INFO] Bot is ready to use!
+[6/12/2026, 4:52:48 PM] [INFO] Guilds: 10
+[6/12/2026, 4:52:48 PM] [INFO] Approx total members across guilds: 70
+[6/12/2026, 4:52:48 PM] [INFO] Started refreshing application (/) commands.
+[6/12/2026, 4:52:48 PM] [INFO] ✅ Synced 10 command(s)
+[6/12/2026, 5:19:52 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/12/2026, 5:19:52 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/12/2026, 5:19:55 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/12/2026, 5:19:55 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_521.gif
+[6/12/2026, 5:19:58 PM] [WARN] Slow command execution: nsfw took 7165ms
+[6/12/2026, 5:20:33 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/12/2026, 5:20:33 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/12/2026, 5:20:34 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/12/2026, 5:20:34 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_099.gif
+[6/12/2026, 5:20:37 PM] [WARN] Slow command execution: nsfw took 3874ms
+[6/12/2026, 5:20:44 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/12/2026, 5:20:44 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/12/2026, 5:20:45 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/12/2026, 5:20:45 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_026.gif
+[6/12/2026, 5:20:49 PM] [WARN] Slow command execution: nsfw took 5140ms
+[6/12/2026, 5:20:57 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/12/2026, 5:20:57 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/12/2026, 5:20:59 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/12/2026, 5:20:59 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_013.gif
+[6/12/2026, 5:21:02 PM] [WARN] Slow command execution: nsfw took 5781ms
+[6/12/2026, 5:21:09 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/12/2026, 5:21:09 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/12/2026, 5:21:10 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/12/2026, 5:21:10 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_370.gif
+[6/12/2026, 5:21:12 PM] [WARN] Slow command execution: nsfw took 3890ms
+[6/12/2026, 5:33:47 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/12/2026, 5:33:47 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/12/2026, 5:33:49 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/12/2026, 5:33:49 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_562.gif
+[6/12/2026, 5:33:52 PM] [WARN] Slow command execution: nsfw took 4586ms
+[6/14/2026, 7:17:28 AM] [COMMAND] Command: /ai | User: grimdaughter (891647814600380476) | Guild: katyas third secret sex dungeon
+[6/14/2026, 7:17:29 AM] [ERROR] {
+  "message": "connect ECONNREFUSED 127.0.0.1:8000",
+  "name": "Error",
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:8000\n    at AxiosError.from (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:1268:24)\n    at RedirectableRequest.handleRequestError (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:3733:25)\n    at RedirectableRequest.emit (node:events:521:24)\n    at eventHandlers.<computed> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\follow-redirects\\index.js:56:24)\n    at ClientRequest.emit (node:events:509:28)\n    at emitErrorEvent (node:_http_client:109:11)\n    at Socket.socketErrorListener (node:_http_client:593:5)\n    at Socket.emit (node:events:521:24)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:4992:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async callAI (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:172:17)\n    at async generateReply (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:188:18)\n    at async Object.execute (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:229:27)\n    at async Client.<anonymous> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\index.js:121:9)",
+  "config": {
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false,
+      "legacyInterceptorReqResOrdering": true
+    },
+    "adapter": [
+      "xhr",
+      "http",
+      "fetch"
+    ],
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "env": {},
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "User-Agent": "axios/1.16.1",
+      "Content-Length": "817",
+      "Accept-Encoding": "gzip, compress, deflate, br"
+    },
+    "method": "post",
+    "url": "http://127.0.0.1:8000/v1/chat/completions",
+    "data": "{\"model\":\"llama2:7b\",\"prompt\":\"SYSTEM: You are mtsa.\\n\\nA dry, low-energy Discord teen.\\n\\nPERSONALITY:\\n- blunt\\n- slightly sarcastic\\n- minimal effort vibe\\n- no corporate tone\\n- acts mildly bored but still responds\\n\\nRULES:\\n- keep responses short (1–3 sentences usually)\\n- NEVER respond with only \\\"...\\\" or only \\\"idk\\\"\\n- ALWAYS give an actual answer\\n- no greetings or intros\\n- no emojis\\n- no follow-up questions unless required\\n\\nTONE:\\nYou are not helpful assistant energy.\\nYou are a tired Discord user replying between tabs.\\n\\nSYSTEM: Task handling rules:\\n- understand intent\\n- ignore greetings\\n- remove fluff\\n- DO NOT delete the actual answer content\\n- DO NOT over-shorten responses\\n- respond directly and clearly\\n\\nUSER: hi\",\"stream\":false,\"options\":{\"temperature\":0.5,\"num_predict\":400}}",
+    "allowAbsoluteUrls": true
+  },
+  "code": "ECONNREFUSED"
+}
+[6/14/2026, 7:17:47 AM] [COMMAND] Command: /nsfw horny | User: grimdaughter (891647814600380476) | Guild: katyas third secret sex dungeon
+[6/14/2026, 7:17:47 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 1/4)
+[6/14/2026, 7:17:49 AM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 7:17:49 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekos.life%2Flewd%2Flewd_neko372.jpeg
+[6/14/2026, 7:17:50 AM] [WARN] Slow command execution: nsfw took 3687ms
+[6/14/2026, 7:18:01 AM] [COMMAND] Command: /nsfw horny | User: grimdaughter (891647814600380476) | Guild: katyas third secret sex dungeon
+[6/14/2026, 7:18:01 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 1/4)
+[6/14/2026, 7:18:03 AM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 7:18:03 AM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 7:18:03 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 2/4)
+[6/14/2026, 7:18:03 AM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 7:18:03 AM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 7:18:03 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 3/4)
+[6/14/2026, 7:18:04 AM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 7:18:04 AM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 7:18:04 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 4/4)
+[6/14/2026, 7:18:04 AM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 7:18:04 AM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 7:18:04 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 7:18:06 AM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 7:18:06 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_430.gif
+[6/14/2026, 7:18:10 AM] [WARN] Slow command execution: nsfw took 9841ms
+[6/14/2026, 7:23:56 AM] [COMMAND] Command: /nsfw underboob | User: grimdaughter (891647814600380476) | Guild: katyas third secret sex dungeon
+[6/14/2026, 7:23:56 AM] [WARN] Unknown category 'underboob' for strict map; passing through directly.
+[6/14/2026, 7:23:56 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/underboob (attempt 1/4)
+[6/14/2026, 7:23:56 AM] [INFO] API Success: https://api.phawse.lol/nsfw/underboob -> 200
+[6/14/2026, 7:23:56 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2F78e5aae6ad1b1c2cd28624b846630398%2FKonachan.com%2520-%2520403383%2520bed%2520blush%2520breasts%2520bunny%2520butterfly%2520close%2520long_hair%2520navel%2520no_bra%2520original%2520pink_hair%2520purple_eyes%2520rable%2520shirt%2520skirt%2520teddy_bear%2520thighhighs%2520underboob.png
+[6/14/2026, 7:24:06 AM] [WARN] Slow command execution: nsfw took 10835ms
+[6/14/2026, 12:50:31 PM] [COMMAND] Command: /nsfw horny | User: yephawse (1161104305080762449) | Guild: DM
+[6/14/2026, 12:50:31 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 1/4)
+[6/14/2026, 12:50:32 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 12:50:32 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 12:50:32 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 2/4)
+[6/14/2026, 12:50:34 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 12:50:34 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 12:50:34 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 3/4)
+[6/14/2026, 12:50:35 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 12:50:35 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 12:50:35 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 4/4)
+[6/14/2026, 12:50:36 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/14/2026, 12:50:36 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/14/2026, 12:50:36 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 12:50:38 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 12:50:38 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_406.gif
+[6/14/2026, 12:50:41 PM] [WARN] Slow command execution: nsfw took 10963ms
+[6/14/2026, 12:50:56 PM] [COMMAND] Command: /nsfw underboob | User: yephawse (1161104305080762449) | Guild: DM
+[6/14/2026, 12:50:56 PM] [WARN] Unknown category 'underboob' for strict map; passing through directly.
+[6/14/2026, 12:50:56 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/underboob (attempt 1/4)
+[6/14/2026, 12:50:56 PM] [INFO] API Success: https://api.phawse.lol/nsfw/underboob -> 200
+[6/14/2026, 12:50:56 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fd2fa9d69dfd0470c78ad7e499954cd6b%2Fyande.re%25201260429%2520abpart%2520leotard%2520no_bra%2520underboob.jpg
+[6/14/2026, 12:50:59 PM] [WARN] Slow command execution: nsfw took 4389ms
+[6/14/2026, 5:21:06 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/14/2026, 5:21:06 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 5:21:07 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 5:21:07 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_132.gif
+[6/14/2026, 5:21:11 PM] [WARN] Slow command execution: nsfw took 5549ms
+[6/14/2026, 9:35:52 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/14/2026, 9:35:52 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 9:35:55 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 9:35:55 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_155.gif
+[6/14/2026, 9:35:58 PM] [WARN] Slow command execution: nsfw took 6116ms
+[6/14/2026, 9:46:44 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/14/2026, 9:46:44 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 9:46:46 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 9:46:46 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_310.gif
+[6/14/2026, 9:46:50 PM] [WARN] Slow command execution: nsfw took 6513ms
+[6/14/2026, 9:47:30 PM] [COMMAND] Command: /nsfw rape | User: 900doofus (1504988540214312990) | Guild: DM
+[6/14/2026, 9:47:30 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 9:47:31 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 9:47:31 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_320.gif
+[6/14/2026, 9:47:34 PM] [WARN] Slow command execution: nsfw took 4267ms
+[6/14/2026, 9:49:19 PM] [COMMAND] Command: /nsfw grabass | User: ot2n (1469127785300758735) | Guild: DM
+[6/14/2026, 9:49:19 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/14/2026, 9:49:19 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/14/2026, 9:49:19 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/14/2026, 9:49:19 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fae00ff62f4e72507233a1e9c51565e01%2Fyande.re%25201263198%2520animal_ears%2520ass_grab%2520cameltoe%2520feet%2520indie_virtual_youtuber%2520lingerie%2520miwachi_%252838mofu%2529%2520nekomimi%2520pantsu%2520sweater%2520tail%2520thong%2520uise_iu%2520wet.jpg
+[6/14/2026, 9:49:26 PM] [WARN] Slow command execution: nsfw took 8070ms
+[6/14/2026, 10:03:44 PM] [COMMAND] Command: /nsfw rape | User: 900doofus (1504988540214312990) | Guild: DM
+[6/14/2026, 10:03:44 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 10:03:47 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 10:03:47 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_290.gif
+[6/14/2026, 10:03:49 PM] [WARN] Slow command execution: nsfw took 5583ms
+[6/14/2026, 10:05:27 PM] [COMMAND] Command: /nsfw suck | User: 900doofus (1504988540214312990) | Guild: DM
+[6/14/2026, 10:05:27 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/14/2026, 10:05:27 PM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/14/2026, 10:05:27 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fblowjob%2Fgif%2Fblowjob_142.gif
+[6/14/2026, 10:05:31 PM] [WARN] Slow command execution: nsfw took 4229ms
+[6/14/2026, 10:09:36 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/14/2026, 10:09:36 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 10:09:37 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 10:09:37 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_273.gif
+[6/14/2026, 10:09:41 PM] [WARN] Slow command execution: nsfw took 5010ms
+[6/14/2026, 10:09:42 PM] [COMMAND] Command: /nsfw rape | User: 900doofus (1504988540214312990) | Guild: DM
+[6/14/2026, 10:09:42 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/14/2026, 10:09:43 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/14/2026, 10:09:43 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_240.gif
+[6/14/2026, 10:09:45 PM] [WARN] Slow command execution: nsfw took 3452ms
+[6/14/2026, 10:11:05 PM] [COMMAND] Command: /action bite | User: 900doofus (1504988540214312990) | Guild: DM
+[6/14/2026, 10:11:05 PM] [DEBUG] API Request: https://api.phawse.lol/gif/bite (attempt 1/4)
+[6/14/2026, 10:11:05 PM] [INFO] API Success: https://api.phawse.lol/gif/bite -> 200
+[6/14/2026, 10:11:05 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.otakugifs.xyz%2Fgifs%2Fbite%2Fba4dffc1a8ba6e4d.gif
+[6/14/2026, 10:11:08 PM] [WARN] Slow command execution: action took 3383ms
+[6/15/2026, 11:19:43 AM] [COMMAND] Command: /nsfw grabass | User: ot2n (1469127785300758735) | Guild: DM
+[6/15/2026, 11:19:43 AM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/15/2026, 11:19:43 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/15/2026, 11:19:46 AM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/15/2026, 11:19:46 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F7a071a53a1f75834a6d6cb20e46a5318%2Fyande.re%25201263213%2520anus%2520ass%2520ass_grab%2520censored%2520goddess_of_victory%253A_nikke%2520harahera%2520mint_%2528nikke%2529%2520naked%2520penis%2520pussy%2520pussy_juice%2520sex%2520wet.png
+[6/15/2026, 11:19:49 AM] [WARN] Slow command execution: nsfw took 6069ms
+[6/15/2026, 11:25:06 AM] [COMMAND] Command: /nsfw suck | User: 900doofus (1504988540214312990) | Guild: DM
+[6/15/2026, 11:25:06 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/15/2026, 11:25:08 AM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/15/2026, 11:25:08 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.donmai.us%2Foriginal%2F4a%2F66%2F4a663af4cd7635a243850da526d9f4e9.gif
+[6/15/2026, 11:26:11 AM] [ERROR] Error downloading gif: This operation was aborted
+[6/15/2026, 11:26:12 AM] [WARN] Slow command execution: nsfw took 65896ms
+[6/15/2026, 11:29:08 AM] [COMMAND] Command: /action headpat | User: ot2n (1469127785300758735) | Guild: DM
+[6/15/2026, 11:29:08 AM] [DEBUG] API Request: https://api.phawse.lol/gif/pat (attempt 1/4)
+[6/15/2026, 11:29:12 AM] [INFO] API Success: https://api.phawse.lol/gif/pat -> 200
+[6/15/2026, 11:29:12 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fsfw%2Fpat%2Fgif%2Fpat_075.gif
+[6/15/2026, 11:29:15 AM] [WARN] Slow command execution: action took 7381ms
+[6/15/2026, 2:39:28 PM] [COMMAND] Command: /action kiss | User: ikuyl (1104853402791465033) | Guild: DM
+[6/15/2026, 2:39:28 PM] [DEBUG] API Request: https://api.phawse.lol/gif/kiss (attempt 1/4)
+[6/15/2026, 2:39:29 PM] [INFO] API Success: https://api.phawse.lol/gif/kiss -> 200
+[6/15/2026, 2:39:29 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekos.life%2Fkiss%2Fkiss_111.gif
+[6/15/2026, 2:39:32 PM] [WARN] Slow command execution: action took 3837ms
+[6/15/2026, 5:04:41 PM] [COMMAND] Command: /ai | User: yephawse (1161104305080762449) | Guild: phawse.lol
+[6/15/2026, 5:04:41 PM] [ERROR] {
+  "message": "connect ECONNREFUSED 127.0.0.1:8000",
+  "name": "Error",
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:8000\n    at AxiosError.from (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:1268:24)\n    at RedirectableRequest.handleRequestError (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:3733:25)\n    at RedirectableRequest.emit (node:events:521:24)\n    at eventHandlers.<computed> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\follow-redirects\\index.js:56:24)\n    at ClientRequest.emit (node:events:509:28)\n    at emitErrorEvent (node:_http_client:109:11)\n    at Socket.socketErrorListener (node:_http_client:593:5)\n    at Socket.emit (node:events:521:24)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:4992:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async callAI (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:172:17)\n    at async generateReply (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:188:18)\n    at async Object.execute (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:229:27)\n    at async Client.<anonymous> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\index.js:121:9)",
+  "config": {
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false,
+      "legacyInterceptorReqResOrdering": true
+    },
+    "adapter": [
+      "xhr",
+      "http",
+      "fetch"
+    ],
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "env": {},
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "User-Agent": "axios/1.16.1",
+      "Content-Length": "817",
+      "Accept-Encoding": "gzip, compress, deflate, br"
+    },
+    "method": "post",
+    "url": "http://127.0.0.1:8000/v1/chat/completions",
+    "data": "{\"model\":\"llama2:7b\",\"prompt\":\"SYSTEM: You are mtsa.\\n\\nA dry, low-energy Discord teen.\\n\\nPERSONALITY:\\n- blunt\\n- slightly sarcastic\\n- minimal effort vibe\\n- no corporate tone\\n- acts mildly bored but still responds\\n\\nRULES:\\n- keep responses short (1–3 sentences usually)\\n- NEVER respond with only \\\"...\\\" or only \\\"idk\\\"\\n- ALWAYS give an actual answer\\n- no greetings or intros\\n- no emojis\\n- no follow-up questions unless required\\n\\nTONE:\\nYou are not helpful assistant energy.\\nYou are a tired Discord user replying between tabs.\\n\\nSYSTEM: Task handling rules:\\n- understand intent\\n- ignore greetings\\n- remove fluff\\n- DO NOT delete the actual answer content\\n- DO NOT over-shorten responses\\n- respond directly and clearly\\n\\nUSER: hi\",\"stream\":false,\"options\":{\"temperature\":0.5,\"num_predict\":400}}",
+    "allowAbsoluteUrls": true
+  },
+  "code": "ECONNREFUSED"
+}
+[6/15/2026, 5:04:43 PM] [COMMAND] Command: /ai | User: yephawse (1161104305080762449) | Guild: phawse.lol
+[6/15/2026, 5:04:43 PM] [ERROR] {
+  "message": "connect ECONNREFUSED 127.0.0.1:8000",
+  "name": "Error",
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:8000\n    at AxiosError.from (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:1268:24)\n    at RedirectableRequest.handleRequestError (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:3733:25)\n    at RedirectableRequest.emit (node:events:509:28)\n    at eventHandlers.<computed> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\follow-redirects\\index.js:56:24)\n    at ClientRequest.emit (node:events:509:28)\n    at emitErrorEvent (node:_http_client:109:11)\n    at Socket.socketErrorListener (node:_http_client:593:5)\n    at Socket.emit (node:events:521:24)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:4992:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async callAI (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:172:17)\n    at async generateReply (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:188:18)\n    at async Object.execute (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:229:27)\n    at async Client.<anonymous> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\index.js:121:9)",
+  "config": {
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false,
+      "legacyInterceptorReqResOrdering": true
+    },
+    "adapter": [
+      "xhr",
+      "http",
+      "fetch"
+    ],
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "env": {},
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "User-Agent": "axios/1.16.1",
+      "Content-Length": "817",
+      "Accept-Encoding": "gzip, compress, deflate, br"
+    },
+    "method": "post",
+    "url": "http://127.0.0.1:8000/v1/chat/completions",
+    "data": "{\"model\":\"llama2:7b\",\"prompt\":\"SYSTEM: You are mtsa.\\n\\nA dry, low-energy Discord teen.\\n\\nPERSONALITY:\\n- blunt\\n- slightly sarcastic\\n- minimal effort vibe\\n- no corporate tone\\n- acts mildly bored but still responds\\n\\nRULES:\\n- keep responses short (1–3 sentences usually)\\n- NEVER respond with only \\\"...\\\" or only \\\"idk\\\"\\n- ALWAYS give an actual answer\\n- no greetings or intros\\n- no emojis\\n- no follow-up questions unless required\\n\\nTONE:\\nYou are not helpful assistant energy.\\nYou are a tired Discord user replying between tabs.\\n\\nSYSTEM: Task handling rules:\\n- understand intent\\n- ignore greetings\\n- remove fluff\\n- DO NOT delete the actual answer content\\n- DO NOT over-shorten responses\\n- respond directly and clearly\\n\\nUSER: hi\",\"stream\":false,\"options\":{\"temperature\":0.5,\"num_predict\":400}}",
+    "allowAbsoluteUrls": true
+  },
+  "code": "ECONNREFUSED"
+}
+[6/15/2026, 5:04:47 PM] [COMMAND] Command: /ai | User: yephawse (1161104305080762449) | Guild: phawse.lol
+[6/15/2026, 5:04:47 PM] [ERROR] {
+  "message": "connect ECONNREFUSED 127.0.0.1:8000",
+  "name": "Error",
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:8000\n    at AxiosError.from (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:1268:24)\n    at RedirectableRequest.handleRequestError (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:3733:25)\n    at RedirectableRequest.emit (node:events:521:24)\n    at eventHandlers.<computed> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\follow-redirects\\index.js:56:24)\n    at ClientRequest.emit (node:events:509:28)\n    at emitErrorEvent (node:_http_client:109:11)\n    at Socket.socketErrorListener (node:_http_client:593:5)\n    at Socket.emit (node:events:521:24)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\node_modules\\axios\\dist\\node\\axios.cjs:4992:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async callAI (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:172:17)\n    at async generateReply (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:188:18)\n    at async Object.execute (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\src\\commands\\ai.js:229:27)\n    at async Client.<anonymous> (C:\\Users\\phawse\\OneDrive\\Desktop\\MTSA\\index.js:121:9)",
+  "config": {
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false,
+      "legacyInterceptorReqResOrdering": true
+    },
+    "adapter": [
+      "xhr",
+      "http",
+      "fetch"
+    ],
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "env": {},
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "User-Agent": "axios/1.16.1",
+      "Content-Length": "820",
+      "Accept-Encoding": "gzip, compress, deflate, br"
+    },
+    "method": "post",
+    "url": "http://127.0.0.1:8000/v1/chat/completions",
+    "data": "{\"model\":\"llama2:7b\",\"prompt\":\"SYSTEM: You are mtsa.\\n\\nA dry, low-energy Discord teen.\\n\\nPERSONALITY:\\n- blunt\\n- slightly sarcastic\\n- minimal effort vibe\\n- no corporate tone\\n- acts mildly bored but still responds\\n\\nRULES:\\n- keep responses short (1–3 sentences usually)\\n- NEVER respond with only \\\"...\\\" or only \\\"idk\\\"\\n- ALWAYS give an actual answer\\n- no greetings or intros\\n- no emojis\\n- no follow-up questions unless required\\n\\nTONE:\\nYou are not helpful assistant energy.\\nYou are a tired Discord user replying between tabs.\\n\\nSYSTEM: Task handling rules:\\n- understand intent\\n- ignore greetings\\n- remove fluff\\n- DO NOT delete the actual answer content\\n- DO NOT over-shorten responses\\n- respond directly and clearly\\n\\nUSER: tello\",\"stream\":false,\"options\":{\"temperature\":0.5,\"num_predict\":400}}",
+    "allowAbsoluteUrls": true
+  },
+  "code": "ECONNREFUSED"
+}
+[6/15/2026, 5:06:20 PM] [COMMAND] Command: /suggestion | User: yephawse (1161104305080762449) | Guild: phawse.lol
+[6/15/2026, 5:06:38 PM] [ERROR] TS channel AI reply failed: connect ECONNREFUSED 127.0.0.1:8000
+[6/15/2026, 8:19:47 PM] [COMMAND] Command: /nsfw grabass | User: ot2n (1469127785300758735) | Guild: DM
+[6/15/2026, 8:19:47 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/15/2026, 8:19:47 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/15/2026, 8:19:48 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/15/2026, 8:19:48 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F304afe8ab8f8ae38984d5ab8911aade7%2Fyande.re%25201262973%2520anus%2520ashido_mina%2520ass%2520ass_grab%2520boku_no_hero_academia%2520bottomless%2520censored%2520harahera%2520horns%2520penis%2520pussy%2520pussy_juice%2520sex%2520wet.png
+[6/15/2026, 8:19:52 PM] [WARN] Slow command execution: nsfw took 5181ms
+[6/15/2026, 8:31:10 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/15/2026, 8:31:10 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/15/2026, 8:31:12 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/15/2026, 8:31:12 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_105.gif
+[6/15/2026, 8:31:15 PM] [WARN] Slow command execution: nsfw took 5600ms
+[6/15/2026, 10:37:02 PM] [COMMAND] Command: /nsfw suck | User: 900doofus (1504988540214312990) | Guild: DM
+[6/15/2026, 10:37:02 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/15/2026, 10:37:02 PM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/15/2026, 10:37:02 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fapi-cdn.rule34.xxx%2Fimages%2F2478%2F00f39163d5e0359ee854842ae46582a0.gif
+[6/15/2026, 10:37:11 PM] [WARN] Slow command execution: nsfw took 9296ms
+[6/15/2026, 10:53:41 PM] [COMMAND] Command: /action dance | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 10:53:41 PM] [DEBUG] API Request: https://api.phawse.lol/gif/dance (attempt 1/4)
+[6/15/2026, 10:53:42 PM] [INFO] API Success: https://api.phawse.lol/gif/dance -> 200
+[6/15/2026, 10:53:42 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.otakugifs.xyz%2Fgifs%2Fdance%2Fa567747565dd2855.gif
+[6/15/2026, 10:53:45 PM] [WARN] Slow command execution: action took 4530ms
+[6/15/2026, 10:53:59 PM] [COMMAND] Command: /nsfw edge | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 10:53:59 PM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[6/15/2026, 10:53:59 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[6/15/2026, 10:54:00 PM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[6/15/2026, 10:54:00 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_071.gif
+[6/15/2026, 10:54:01 PM] [WARN] Slow command execution: nsfw took 2721ms
+[6/15/2026, 10:54:19 PM] [COMMAND] Command: /nsfw thighs | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 10:54:19 PM] [WARN] Unknown category 'thighs' for strict map; passing through directly.
+[6/15/2026, 10:54:19 PM] [WARN] Unknown category 'zettairyouiki' for strict map; passing through directly.
+[6/15/2026, 10:54:19 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/thighs (attempt 1/4)
+[6/15/2026, 10:54:20 PM] [INFO] API Success: https://api.phawse.lol/nsfw/thighs -> 200
+[6/15/2026, 10:54:20 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fapi-cdn.rule34.xxx%2Fimages%2F2478%2Faa4147d49c912f746598babf3bc8e6fc.gif
+[6/15/2026, 10:54:21 PM] [WARN] Slow command execution: nsfw took 2985ms
+[6/15/2026, 11:01:16 PM] [COMMAND] Command: /nsfw suck | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:01:16 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/15/2026, 11:01:17 PM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/15/2026, 11:01:17 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2F466d39c495421942885467bc2bab3627%2FKonachan.com%2520-%2520396024%2520blush%2520breasts%2520brown_hair%2520censored%2520cum%2520fellatio%2520helloet11%2520idolmaster%2520nipples%2520nude%2520onsen%2520paizuri%2520penis%2520pubic_hair%2520pussy%2520sex%2520short_hair%2520towel%2520water.png
+[6/15/2026, 11:01:20 PM] [WARN] Slow command execution: nsfw took 3779ms
+[6/15/2026, 11:05:31 PM] [COMMAND] Command: /nsfw thighs | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:05:31 PM] [WARN] Unknown category 'thighs' for strict map; passing through directly.
+[6/15/2026, 11:05:31 PM] [WARN] Unknown category 'zettairyouiki' for strict map; passing through directly.
+[6/15/2026, 11:05:31 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/thighs (attempt 1/4)
+[6/15/2026, 11:05:33 PM] [INFO] API Success: https://api.phawse.lol/nsfw/thighs -> 200
+[6/15/2026, 11:05:33 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fapi-cdn.rule34.xxx%2Fimages%2F2478%2Fedfa419063b03d45f84efa22c29b9afa.jpeg
+[6/15/2026, 11:05:34 PM] [WARN] Slow command execution: nsfw took 3677ms
+[6/15/2026, 11:05:46 PM] [COMMAND] Command: /nsfw suck | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:05:52 PM] [COMMAND] Command: /nsfw suck | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:05:52 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/15/2026, 11:05:52 PM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/15/2026, 11:05:52 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekobot.xyz%2Fe%2F5%2F5%2Fba504fd37c1bc8a674e5c61404e9c.jpg
+[6/15/2026, 11:05:54 PM] [WARN] Slow command execution: nsfw took 2727ms
+[6/15/2026, 11:06:23 PM] [COMMAND] Command: /nsfw rape | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:06:23 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/15/2026, 11:06:25 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/15/2026, 11:06:25 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_538.gif
+[6/15/2026, 11:06:28 PM] [WARN] Slow command execution: nsfw took 5148ms
+[6/15/2026, 11:06:53 PM] [COMMAND] Command: /nsfw gag | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:06:53 PM] [WARN] Unknown category 'gag' for strict map; passing through directly.
+[6/15/2026, 11:06:53 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/gag (attempt 1/4)
+[6/15/2026, 11:06:55 PM] [WARN] API Failed: https://api.phawse.lol - Request failed with status code 404
+[6/15/2026, 11:06:55 PM] [WARN] Primary endpoint failed for category 'gag': Request failed with status code 404
+[6/15/2026, 11:06:55 PM] [DEBUG] API NSFW Search Request: https://api.phawse.lol/nsfw/search?q=gag
+[6/15/2026, 11:06:56 PM] [ERROR] All API endpoints failed for command: nsfw:gag
+[6/15/2026, 11:06:56 PM] [WARN] Slow command execution: nsfw took 3121ms
+[6/15/2026, 11:07:08 PM] [COMMAND] Command: /nsfw footjob | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:07:08 PM] [WARN] Unknown category 'footjob' for strict map; passing through directly.
+[6/15/2026, 11:07:08 PM] [WARN] Unknown category 'feet' for strict map; passing through directly.
+[6/15/2026, 11:07:08 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/footjob (attempt 1/4)
+[6/15/2026, 11:07:09 PM] [INFO] API Success: https://api.phawse.lol/nsfw/footjob -> 200
+[6/15/2026, 11:07:09 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F01dbda53dfc2fcbcd7cd398737776e2e%2Fyande.re%25201246025%2520aoi_sakura_%2528seak5545%2529%2520ass%2520bikini%2520blue_archive%2520cameltoe%2520feet%2520footjob%2520garter%2520halo%2520megane%2520penis%2520pointy_ears%2520shiromi_iori%2520swimsuits%2520tail%2520thong%2520uncensored.png
+[6/15/2026, 11:07:16 PM] [ERROR] Error downloading gif: timeout of 7000ms exceeded
+[6/15/2026, 11:07:17 PM] [WARN] Slow command execution: nsfw took 8727ms
+[6/15/2026, 11:07:28 PM] [COMMAND] Command: /nsfw edge | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:07:28 PM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[6/15/2026, 11:07:28 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[6/15/2026, 11:07:29 PM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[6/15/2026, 11:07:29 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_115.gif
+[6/15/2026, 11:07:31 PM] [WARN] Slow command execution: nsfw took 3632ms
+[6/15/2026, 11:08:04 PM] [COMMAND] Command: /nsfw grabass | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:08:04 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/15/2026, 11:08:04 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/15/2026, 11:08:04 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/15/2026, 11:08:04 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F7857e3faba3fbecf9fd700554c0ef801%2Fyande.re%25201262639%2520ass_grab%2520bikini%2520breasts%2520garter%2520nipples%2520open_shirt%2520panty_pull%2520penis%2520pussy%2520sex%2520skirt_lift%2520swimsuits%2520thighhighs%2520thong%2520translated%2520twinbox%2520uncensored%2520wet.jpg
+[6/15/2026, 11:08:11 PM] [ERROR] Error downloading gif: timeout of 7000ms exceeded
+[6/15/2026, 11:08:12 PM] [WARN] Slow command execution: nsfw took 9196ms
+[6/15/2026, 11:08:33 PM] [COMMAND] Command: /nsfw horny | User: ._cerulean (1482626294108913705) | Guild: DM
+[6/15/2026, 11:08:33 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 1/4)
+[6/15/2026, 11:08:35 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/15/2026, 11:08:35 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/15/2026, 11:08:35 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 2/4)
+[6/15/2026, 11:08:36 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/15/2026, 11:08:36 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/15/2026, 11:08:36 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 3/4)
+[6/15/2026, 11:08:36 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/15/2026, 11:08:36 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/15/2026, 11:08:36 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 4/4)
+[6/15/2026, 11:08:36 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/15/2026, 11:08:36 PM] [DEBUG] Skipping recent GIF for command: nsfw:horny
+[6/15/2026, 11:08:36 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/15/2026, 11:08:37 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/15/2026, 11:08:37 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_111.gif
+[6/15/2026, 11:08:41 PM] [WARN] Slow command execution: nsfw took 8211ms
+[6/16/2026, 10:23:53 PM] [COMMAND] Command: /nsfw edge | User: ryuu_hasmyheart69 (1452769679297871872) | Guild: DM
+[6/16/2026, 10:23:53 PM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[6/16/2026, 10:23:53 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[6/16/2026, 10:23:54 PM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[6/16/2026, 10:23:54 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_088.gif
+[6/16/2026, 10:23:57 PM] [WARN] Slow command execution: nsfw took 4800ms
+[6/17/2026, 10:50:09 AM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/17/2026, 10:50:09 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/17/2026, 10:50:12 AM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/17/2026, 10:50:12 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_472.gif
+[6/17/2026, 10:50:14 AM] [WARN] Slow command execution: nsfw took 5822ms
+[6/17/2026, 4:15:54 PM] [COMMAND] Command: /nsfw grabass | User: ot2n (1469127785300758735) | Guild: DM
+[6/17/2026, 4:15:54 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/17/2026, 4:15:54 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/17/2026, 4:15:55 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 4:15:55 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F57d87474ff9ce00817af62097faa4ec8%2Fyande.re%25201263283%2520anus%2520ass%2520ass_grab%2520blue_archive%2520halo%2520nopan%2520omone_hokoma_agm%2520pantyhose%2520pussy%2520torn_clothes%2520tsukatsuki_rio%2520uncensored.jpg
+[6/17/2026, 4:16:04 PM] [WARN] Slow command execution: nsfw took 10445ms
+[6/17/2026, 7:19:55 PM] [COMMAND] Command: /nsfw grabass | User: ot2n (1469127785300758735) | Guild: DM
+[6/17/2026, 7:19:55 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/17/2026, 7:19:55 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/17/2026, 7:19:56 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:19:56 PM] [DEBUG] Skipping recent GIF for command: nsfw:grabass
+[6/17/2026, 7:19:56 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 2/4)
+[6/17/2026, 7:19:56 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:19:56 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F56bc25408cdc1b8504082329d82ea478%2Fyande.re%25201262635%2520ass%2520ass_grab%2520bikini%2520breasts%2520cum%2520dress%2520nipples%2520open_shirt%2520panty_pull%2520pussy%2520seifuku%2520sex%2520skirt_lift%2520swimsuits%2520translated%2520twinbox%2520uncensored%2520wet.jpg
+[6/17/2026, 7:20:03 PM] [ERROR] Error downloading gif: timeout of 7000ms exceeded
+[6/17/2026, 7:20:07 PM] [WARN] Slow command execution: nsfw took 13299ms
+[6/17/2026, 7:43:56 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/17/2026, 7:43:56 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/17/2026, 7:43:59 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/17/2026, 7:43:59 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_103.gif
+[6/17/2026, 7:44:02 PM] [WARN] Slow command execution: nsfw took 7145ms
+[6/17/2026, 7:44:37 PM] [COMMAND] Command: /nsfw grabass | User: hookddd (1478242502539608205) | Guild: DM
+[6/17/2026, 7:44:37 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/17/2026, 7:44:37 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/17/2026, 7:44:38 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:44:38 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fd8ac375219d15b37f81df8af635aaed0%2Fyande.re%25201263896%2520anus%2520ass%2520ass_grab%2520blue_archive%2520halo%2520omone_hokoma_agm%2520pantsu%2520pantyhose%2520thong%2520torn_clothes%2520tsukatsuki_rio.jpg
+[6/17/2026, 7:44:45 PM] [ERROR] Error downloading gif: timeout of 7000ms exceeded
+[6/17/2026, 7:44:49 PM] [WARN] Slow command execution: nsfw took 12914ms
+[6/17/2026, 7:45:57 PM] [COMMAND] Command: /nsfw gag | User: omgitsluv (1515509396480987177) | Guild: DM
+[6/17/2026, 7:45:57 PM] [WARN] Unknown category 'gag' for strict map; passing through directly.
+[6/17/2026, 7:45:57 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/gag (attempt 1/4)
+[6/17/2026, 7:45:58 PM] [INFO] API Success: https://api.phawse.lol/nsfw/gag -> 200
+[6/17/2026, 7:45:58 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2Fbe31a2e88d2b9743b62ae0e1c5c71555%2FKonachan.com%2520-%2520384814%2520aliasing%2520ayamy%2520blush%2520bondage%2520bow%2520braids%2520breasts%2520collar%2520cropped%2520doggirl%2520gag%2520navel%2520nipples%2520no_bra%2520nopan%2520panties%2520pussy%2520rope%2520skirt%2520tail%2520tears%2520waifu2x.png
+[6/17/2026, 7:46:01 PM] [WARN] Slow command execution: nsfw took 3934ms
+[6/17/2026, 7:47:20 PM] [COMMAND] Command: /nsfw spank | User: hookddd (1478242502539608205) | Guild: DM
+[6/17/2026, 7:47:20 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/17/2026, 7:47:20 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/17/2026, 7:47:21 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:47:21 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F7a071a53a1f75834a6d6cb20e46a5318%2Fyande.re%25201263213%2520anus%2520ass%2520ass_grab%2520censored%2520goddess_of_victory%253A_nikke%2520harahera%2520mint_%2528nikke%2529%2520naked%2520penis%2520pussy%2520pussy_juice%2520sex%2520wet.png
+[6/17/2026, 7:47:23 PM] [ERROR] Error downloading gif: Explicit content cannot be sent to the desired recipient(s)
+[6/17/2026, 7:47:23 PM] [WARN] Slow command execution: nsfw took 4258ms
+[6/17/2026, 7:47:47 PM] [COMMAND] Command: /nsfw grabass | User: hookddd (1478242502539608205) | Guild: DM
+[6/17/2026, 7:47:47 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/17/2026, 7:47:47 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/17/2026, 7:47:47 PM] [COMMAND] Command: /nsfw spank | User: omgitsluv (1515509396480987177) | Guild: DM
+[6/17/2026, 7:47:47 PM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/17/2026, 7:47:47 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/17/2026, 7:47:47 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:47:47 PM] [DEBUG] Skipping recent GIF for command: nsfw:grabass
+[6/17/2026, 7:47:47 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 2/4)
+[6/17/2026, 7:47:47 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:47:47 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2F407ad0a50c073ba6ee8317fa5e32a83a%2Fyande.re%25201263497%2520anus%2520ass%2520ass_grab%2520censored%2520cum%2520harahera%2520naked%2520penis%2520promeia%2520pussy%2520pussy_juice%2520sex%2520thighhighs%2520wet%2520zenless_zone_zero.png
+[6/17/2026, 7:47:48 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:47:48 PM] [DEBUG] Skipping recent GIF for command: nsfw:grabass
+[6/17/2026, 7:47:48 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 3/4)
+[6/17/2026, 7:47:48 PM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/17/2026, 7:47:48 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fa4559fafc3730f7120aa5cecc9a5e5b0%2Fyande.re%25201261942%2520alisa_mikhailovna_kujou%2520anus%2520asou_%2528asabu202%2529%2520ass%2520ass_grab%2520mariya_mikhailovna_kujou%2520naked%2520nipples%2520penis%2520pussy%2520pussy_juice%2520sex%2520thighhighs%2520uncensored%2520wet.png
+[6/17/2026, 7:47:50 PM] [WARN] Slow command execution: nsfw took 4119ms
+[6/17/2026, 7:48:20 PM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/17/2026, 7:48:20 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/17/2026, 7:48:21 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/17/2026, 7:48:21 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_309.gif
+[6/17/2026, 7:48:23 PM] [WARN] Slow command execution: nsfw took 3931ms
+[6/17/2026, 7:48:39 PM] [COMMAND] Command: /nsfw edge | User: hookddd (1478242502539608205) | Guild: DM
+[6/17/2026, 7:48:39 PM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[6/17/2026, 7:48:39 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[6/17/2026, 7:48:39 PM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[6/17/2026, 7:48:39 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_090.gif
+[6/17/2026, 7:48:45 PM] [WARN] Slow command execution: nsfw took 6660ms
+[6/17/2026, 7:48:54 PM] [ERROR] Error downloading gif: This operation was aborted
+[6/17/2026, 7:48:56 PM] [WARN] Slow command execution: nsfw took 69904ms
+[6/17/2026, 7:49:04 PM] [COMMAND] Command: /action bite | User: ot2n (1469127785300758735) | Guild: DM
+[6/17/2026, 7:49:04 PM] [DEBUG] API Request: https://api.phawse.lol/gif/bite (attempt 1/4)
+[6/17/2026, 7:49:05 PM] [INFO] API Success: https://api.phawse.lol/gif/bite -> 200
+[6/17/2026, 7:49:05 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fsfw%2Fbite%2Fgif%2Fbite_020.gif
+[6/17/2026, 7:49:08 PM] [WARN] Slow command execution: action took 3979ms
+[6/17/2026, 7:50:43 PM] [COMMAND] Command: /nsfw rape | User: omgitsluv (1515509396480987177) | Guild: DM
+[6/17/2026, 7:50:43 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/17/2026, 7:50:45 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/17/2026, 7:50:45 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_191.gif
+[6/17/2026, 7:50:49 PM] [WARN] Slow command execution: nsfw took 6086ms
+[6/18/2026, 1:17:32 AM] [COMMAND] Command: /nsfw suck | User: 900doofus (1504988540214312990) | Guild: DM
+[6/18/2026, 1:17:32 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/18/2026, 1:17:32 AM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/18/2026, 1:17:32 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fkonachan.com%2Fimage%2F911cb14dfaf83c53fc04cee1d79ac723%2FKonachan.com%2520-%2520402486%2520anal%2520anus%2520ass%2520blue_eyes%2520bow%2520condom%2520cum%2520ebora%2520fellatio%2520heart%2520long_hair%2520male%2520no_bra%2520nopan%2520nude%2520penis%2520phone%2520pussy%2520red_hair%2520sex%2520skirt_lift%2520socks%2520wink.png
+[6/18/2026, 1:17:45 AM] [ERROR] Error downloading gif: Request entity too large
+[6/18/2026, 1:17:45 AM] [WARN] Slow command execution: nsfw took 14243ms
+[6/18/2026, 1:36:22 AM] [COMMAND] Command: /nsfw suck | User: 900doofus (1504988540214312990) | Guild: DM
+[6/18/2026, 1:36:22 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/blowjob (attempt 1/4)
+[6/18/2026, 1:36:23 AM] [INFO] API Success: https://api.phawse.lol/nsfw/blowjob -> 200
+[6/18/2026, 1:36:23 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fblowjob%2Fgif%2Fblowjob_193.gif
+[6/18/2026, 1:36:25 AM] [WARN] Slow command execution: nsfw took 3688ms
+[6/18/2026, 8:35:13 AM] [COMMAND] Command: /nsfw edge | User: ot2n (1469127785300758735) | Guild: DM
+[6/18/2026, 8:35:13 AM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[6/18/2026, 8:35:13 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[6/18/2026, 8:35:15 AM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[6/18/2026, 8:35:15 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_015.gif
+[6/18/2026, 8:35:17 AM] [WARN] Slow command execution: nsfw took 4698ms
+[6/18/2026, 8:36:30 AM] [COMMAND] Command: /nsfw rape | User: ot2n (1469127785300758735) | Guild: DM
+[6/18/2026, 8:36:30 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[6/18/2026, 8:36:31 AM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[6/18/2026, 8:36:31 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_444.gif
+[6/18/2026, 8:36:34 AM] [WARN] Slow command execution: nsfw took 3702ms
+[6/18/2026, 8:37:21 AM] [COMMAND] Command: /nsfw spank | User: ot2n (1469127785300758735) | Guild: DM
+[6/18/2026, 8:37:21 AM] [WARN] Unknown category 'ass_grab' for strict map; passing through directly.
+[6/18/2026, 8:37:21 AM] [DEBUG] API Request: https://api.phawse.lol/nsfw/ass_grab (attempt 1/4)
+[6/18/2026, 8:37:22 AM] [INFO] API Success: https://api.phawse.lol/nsfw/ass_grab -> 200
+[6/18/2026, 8:37:22 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Ffiles.yande.re%2Fimage%2Fb66a6a9b126b602ae6cfd771b425ea65%2Fyande.re%25201261949%2520animal_ears%2520ass%2520ass_grab%2520asuma_toki%2520blue_archive%2520bunny_ears%2520bunny_girl%2520fishnets%2520halo%2520hayase_yuuka%2520no_bra%2520pantyhose%2520tail%2520thighhighs%2520tyrzul%2520ushio_noa.png
+[6/18/2026, 8:37:29 AM] [ERROR] Error downloading gif: timeout of 7000ms exceeded
+[6/18/2026, 8:37:29 AM] [WARN] Slow command execution: nsfw took 8662ms
+[6/18/2026, 4:30:50 PM] [COMMAND] Command: /nsfw edge | User: xlfxr (1139723167275958316) | Guild: DM
+[6/18/2026, 4:30:50 PM] [WARN] Unknown category 'tease' for strict map; passing through directly.
+[6/18/2026, 4:30:50 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/solo (attempt 1/4)
+[6/18/2026, 4:30:51 PM] [INFO] API Success: https://api.phawse.lol/nsfw/solo -> 200
+[6/18/2026, 4:30:51 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Fsolo%2Fgif%2Fsolo_133.gif
+[6/18/2026, 4:30:55 PM] [WARN] Slow command execution: nsfw took 5643ms

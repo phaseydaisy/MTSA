@@ -1,0 +1,55 @@
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: action
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: ai
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: api
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: urban
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: im
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: neko
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: waifu
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: nsfw
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: react
+[6/3/2026, 12:08:27 AM] [INFO] ✅ Loaded command: suggestion
+[6/3/2026, 12:08:28 AM] [INFO] Bot logged in as mtsa#8702
+[6/3/2026, 12:08:28 AM] [INFO] Bot is ready to use!
+[6/3/2026, 12:08:28 AM] [INFO] Guilds: 10
+[6/3/2026, 12:08:28 AM] [INFO] Approx total members across guilds: 71
+[6/3/2026, 12:08:28 AM] [INFO] Started refreshing application (/) commands.
+[6/3/2026, 12:08:29 AM] [INFO] ✅ Synced 10 command(s)
+[6/3/2026, 12:49:31 PM] [COMMAND] Command: /nsfw horny | User: ot2n (1469127785300758735) | Guild: DM
+[6/3/2026, 12:49:31 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/lewd (attempt 1/4)
+[6/3/2026, 12:49:33 PM] [INFO] API Success: https://api.phawse.lol/nsfw/lewd -> 200
+[6/3/2026, 12:49:33 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekos.life%2Flewd%2Flewd_neko372.jpeg
+[6/3/2026, 12:49:34 PM] [ERROR] Error downloading gif: Message was blocked by AutoMod
+[6/3/2026, 12:49:35 PM] [ERROR] {
+  "requestBody": {
+    "files": [],
+    "json": {
+      "tts": false,
+      "enforce_nonce": false,
+      "embeds": [
+        {
+          "title": "🔥 worthyshe's Horny Level",
+          "description": "<@1012726823303528529> is **getting warmed up 😏**",
+          "color": 3066993,
+          "fields": [
+            {
+              "name": "Level",
+              "value": "[███░░░░░░░] 38%",
+              "inline": false
+            }
+          ],
+          "image": {
+            "url": "https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekos.life%2Flewd%2Flewd_neko372.jpeg"
+          }
+        }
+      ]
+    }
+  },
+  "rawError": {
+    "message": "Message was blocked by AutoMod",
+    "code": 200000
+  },
+  "code": 200000,
+  "status": 400,
+  "method": "PATCH",
+  "url": "https://discord.com/api/v10/webhooks/1457195035522105398/aW50ZXJhY3Rpb246MTUxMTc3MzgzNTE0MDE0MTA4NjoxZk91SWo1RGx0VXFFd3lOVU4zMHJDYlgxRFJvbDBiUHBHeWZNdmVRZWxsVG1iVWZ1ZjBlamR0aUJJelphWUwzSDFtYm5FbFdWRmRkd25PTFE0NGZhRFNoR044YkNaTWVpUEJkbEhvRkxEZmRzWlZhSmxyZjBEcER1a2FzM2JRcA/messages/%40original"
+}

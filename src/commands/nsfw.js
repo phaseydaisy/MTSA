@@ -1,7 +1,8 @@
-const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder, ChannelType, MessageFlags, PermissionsBitField } = require('discord.js');
 const axios = require('axios');
 const logger = require('../utils/logger');
 const getGifFromApi = require('../utils/getGifFromApi');
+const { getNsfwChannel, setNsfwChannel } = require('../utils/nsfwChannel');
 
 // Rape command variations
 const rapeResponses = [
@@ -285,11 +286,40 @@ module.exports = {
                 .setName('horny')
                 .setDescription('Check the horny level 🔞 (arousal rating)')
                 .addUserOption(option => option.setName('user').setDescription('The user to check (optional - checks yourself if not specified)').setRequired(false)))
+        .addSubcommand(subcommand => subcommand
+            .setName('channel')
+            .setDescription('Set the only channel where NSFW commands can be used')
+            .addChannelOption(option => option
+                .setName('channel')
+                .setDescription('The channel where NSFW commands are allowed')
+                .addChannelTypes(ChannelType.GuildText)
+                .setRequired(true)))
         .setContexts([0, 1, 2])
         .setIntegrationTypes([0, 1]),
 
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
+
+        if (subcommand === 'channel') {
+            if (!interaction.guildId) {
+                return interaction.editReply({ content: '❌ This setting can only be used in a server.', flags: MessageFlags.Ephemeral });
+            }
+
+            if (!interaction.memberPermissions?.has(PermissionsBitField.Flags.ManageGuild)) {
+                return interaction.editReply({ content: '❌ You need the Manage Server permission to change this setting.', flags: MessageFlags.Ephemeral });
+            }
+
+            const channel = interaction.options.getChannel('channel', true);
+            setNsfwChannel(interaction.guildId, channel.id);
+            return interaction.editReply({ content: `✅ NSFW commands are now restricted to ${channel}.`, flags: MessageFlags.Ephemeral });
+        }
+
+        if (interaction.guildId) {
+            const allowedChannelId = getNsfwChannel(interaction.guildId);
+            if (allowedChannelId && interaction.channelId !== allowedChannelId) {
+                return interaction.editReply({ content: `❌ NSFW commands can only be used in <#${allowedChannelId}>.`, flags: MessageFlags.Ephemeral });
+            }
+        }
 
         if (subcommand === 'horny') {
             const target = interaction.options.getUser('user') || interaction.user;

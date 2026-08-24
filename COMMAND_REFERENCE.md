@@ -39,6 +39,7 @@ All using **api.phawse.lol** for GIFs
 - **`/stare`** - Stare at someone (glare, ogle, eye contact)
 
 ### NSFW Commands
+- **`/nsfw channel <channel>`** - Restrict NSFW commands to one server channel (requires Manage Server)
 - **`/edge`** - Edge someone 🔞 (arousal, buildup)
 - **`/horny-level`** - Check the horny level 🔞 (arousal rating)
 - **`/spank`** - Spank someone 🔞 (playful aggression)

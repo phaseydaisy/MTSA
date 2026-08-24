@@ -1,0 +1,26 @@
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: action
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: ai
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: api
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: urban
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: im
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: neko
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: waifu
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: nsfw
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: react
+[8/21/2026, 8:19:16 PM] [INFO] ✅ Loaded command: suggestion
+[8/21/2026, 8:19:17 PM] [INFO] Bot logged in as mtsa#8702
+[8/21/2026, 8:19:17 PM] [INFO] Bot is ready to use!
+[8/21/2026, 8:19:17 PM] [INFO] Guilds: 11
+[8/21/2026, 8:19:17 PM] [INFO] Approx total members across guilds: 76
+[8/21/2026, 8:19:17 PM] [INFO] Started refreshing application (/) commands.
+[8/21/2026, 8:19:17 PM] [INFO] ✅ Synced 10 command(s)
+[8/21/2026, 8:19:19 PM] [COMMAND] Command: /action kiss | User: yephawse (1161104305080762449) | Guild: DM
+[8/21/2026, 8:19:19 PM] [DEBUG] API Request: https://api.phawse.lol/gif/kiss (attempt 1/4)
+[8/21/2026, 8:19:20 PM] [INFO] API Success: https://api.phawse.lol/gif/kiss -> 200
+[8/21/2026, 8:19:20 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.otakugifs.xyz%2Fgifs%2Fkiss%2Fcfac4b5571b3d308.gif
+[8/21/2026, 8:19:21 PM] [WARN] Slow command execution: action took 2216ms
+[8/21/2026, 8:20:03 PM] [COMMAND] Command: /nsfw rape | User: yephawse (1161104305080762449) | Guild: DM
+[8/21/2026, 8:20:03 PM] [DEBUG] API Request: https://api.phawse.lol/nsfw/fuck (attempt 1/4)
+[8/21/2026, 8:20:04 PM] [INFO] API Success: https://api.phawse.lol/nsfw/fuck -> 200
+[8/21/2026, 8:20:04 PM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fnsfw%2Ffuck%2Fgif%2Ffuck_305.gif
+[8/21/2026, 8:20:06 PM] [WARN] Slow command execution: nsfw took 2666ms

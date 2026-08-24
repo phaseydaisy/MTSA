@@ -1,0 +1,36 @@
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: action
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: ai
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: api
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: urban
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: im
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: neko
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: waifu
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: nsfw
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: react
+[6/3/2026, 12:05:41 AM] [INFO] ✅ Loaded command: suggestion
+[6/3/2026, 12:05:42 AM] [INFO] Bot logged in as mtsa#8702
+[6/3/2026, 12:05:42 AM] [INFO] Bot is ready to use!
+[6/3/2026, 12:05:42 AM] [INFO] Guilds: 10
+[6/3/2026, 12:05:42 AM] [INFO] Approx total members across guilds: 71
+[6/3/2026, 12:05:42 AM] [INFO] Started refreshing application (/) commands.
+[6/3/2026, 12:05:42 AM] [INFO] ✅ Synced 10 command(s)
+[6/3/2026, 12:06:36 AM] [COMMAND] Command: /action kiss | User: yephawse (1161104305080762449) | Guild: DM
+[6/3/2026, 12:06:36 AM] [DEBUG] API Request: https://api.phawse.lol/gif/kiss (attempt 1/4)
+[6/3/2026, 12:06:37 AM] [INFO] API Success: https://api.phawse.lol/gif/kiss -> 200
+[6/3/2026, 12:06:37 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.purrbot.site%2Fsfw%2Fkiss%2Fgif%2Fkiss_107.gif
+[6/3/2026, 12:06:40 AM] [WARN] Slow command execution: action took 5616ms
+[6/3/2026, 12:07:17 AM] [COMMAND] Command: /action kiss | User: yephawse (1161104305080762449) | Guild: DM
+[6/3/2026, 12:07:17 AM] [DEBUG] API Request: https://api.phawse.lol/gif/kiss (attempt 1/4)
+[6/3/2026, 12:07:18 AM] [INFO] API Success: https://api.phawse.lol/gif/kiss -> 200
+[6/3/2026, 12:07:18 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekos.life%2Fkiss%2Fkiss_140.gif
+[6/3/2026, 12:07:20 AM] [WARN] Slow command execution: action took 3489ms
+[6/3/2026, 12:07:24 AM] [COMMAND] Command: /action kiss | User: yephawse (1161104305080762449) | Guild: DM
+[6/3/2026, 12:07:24 AM] [DEBUG] API Request: https://api.phawse.lol/gif/kiss (attempt 1/4)
+[6/3/2026, 12:07:24 AM] [INFO] API Success: https://api.phawse.lol/gif/kiss -> 200
+[6/3/2026, 12:07:24 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.otakugifs.xyz%2Fgifs%2Fkiss%2Fe8620e4b5d4907df.gif
+[6/3/2026, 12:07:26 AM] [WARN] Slow command execution: action took 2182ms
+[6/3/2026, 12:07:29 AM] [COMMAND] Command: /action kiss | User: yephawse (1161104305080762449) | Guild: DM
+[6/3/2026, 12:07:29 AM] [DEBUG] API Request: https://api.phawse.lol/gif/kiss (attempt 1/4)
+[6/3/2026, 12:07:30 AM] [INFO] API Success: https://api.phawse.lol/gif/kiss -> 200
+[6/3/2026, 12:07:30 AM] [DEBUG] Downloading GIF: https://api.phawse.lol/proxy/https%3A%2F%2Fcdn.nekos.life%2Fkiss%2Fkiss_063.gif
+[6/3/2026, 12:07:31 AM] [WARN] Slow command execution: action took 2496ms
